@@ -46,7 +46,7 @@ function syncApprovedScreens(){
 }
 
 function show(name){
-  if(fullAppRoutes[name]){location.href="fullapp.html?v=50#"+fullAppRoutes[name];return;}
+  if(fullAppRoutes[name]){location.href="fullapp.html?v=51#"+fullAppRoutes[name];return;}
   hideAll();
   if(name==="home") home.hidden=false;
   else if(name==="istanbul") istanbulScreen.hidden=false;
@@ -103,7 +103,7 @@ function startBackgroundMusic(){
   const c=ensureAudio(); if(!c) return;
   if(!musicMaster){
     musicMaster=c.createGain();
-    musicMaster.gain.value=0.28;
+    musicMaster.gain.value=0.48;
     musicMaster.connect(c.destination);
   }
   const melody=[329.63,392.00,440.00,392.00,329.63,293.66,261.63,293.66,329.63,349.23,392.00,349.23,329.63,293.66,261.63,246.94];
@@ -113,7 +113,7 @@ function startBackgroundMusic(){
     o.type="sine";
     o.frequency.setValueAtTime(melody[musicStep%melody.length],t);
     g.gain.setValueAtTime(.0001,t);
-    g.gain.exponentialRampToValueAtTime(.18,t+.03);
+    g.gain.exponentialRampToValueAtTime(.30,t+.03);
     g.gain.exponentialRampToValueAtTime(.0001,t+.62);
     o.connect(g);g.connect(musicMaster);
     o.start(t);o.stop(t+.66);
