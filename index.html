@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body>
 <div class="app" id="app">
@@ -80,6 +80,27 @@
     <button class="hotspot settings-nav-profile" data-action="profile"></button>
   </section>
 
+  <section id="profileScreen" class="reference-screen" hidden>
+    <img class="reference-image" src="file_0000000088d08210b8015dc967623da1.jpg" alt="Profilim ekranı">
+    <button class="hotspot profile-back" data-action="home" aria-label="Geri"></button>
+
+    <div class="profile-name-wrap">
+      <input id="profileName" class="profile-name-input" type="text" maxlength="20" value="Akın" aria-label="Profil adı">
+      <button id="saveProfileName" class="profile-name-save" type="button">Kaydet</button>
+    </div>
+
+    <button class="hotspot profile-achievements" data-action="achievements" aria-label="Başarılarım"></button>
+    <button class="hotspot profile-progress" data-action="progress" aria-label="İstatistiklerim"></button>
+    <button class="hotspot profile-collection" data-action="collection" aria-label="Koleksiyonum"></button>
+    <button class="hotspot profile-settings" data-action="settings" aria-label="Ayarlar"></button>
+
+    <button class="hotspot profile-nav-home" data-action="home"></button>
+    <button class="hotspot profile-nav-daily" data-action="daily"></button>
+    <button class="hotspot profile-nav-progress" data-action="progress"></button>
+    <button class="hotspot profile-nav-collection" data-action="collection"></button>
+    <button class="hotspot profile-nav-profile" data-action="profile"></button>
+  </section>
+
   <section class="placeholder" id="placeholder" hidden>
     <button class="back" data-action="home">← Ana Sayfa</button>
     <div class="paper">
@@ -88,6 +109,6 @@
     </div>
   </section>
 </div>
-<script src="app.js?v=10"></script>
+<script src="app.js?v=12"></script>
 </body>
 </html>
