@@ -112,7 +112,16 @@
 .storeBalance{text-align:center;background:#efd08a;border:1px solid #b77a22;border-radius:14px;padding:12px;margin-bottom:12px;font:bold 19px Georgia}.storeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.storeCard{background:#f8e8bf;border:1px solid #b77a22;border-radius:14px;padding:12px;text-align:center}.storeCard b{display:block;color:#a3130f;font-size:1.25em;margin-bottom:5px}.storeCard button{width:100%;margin-top:8px;padding:9px;border:0;border-radius:18px;background:#a3130f;color:#fff2ce;font:bold 14px Georgia}.storeNote{font-size:13px;line-height:1.35;margin-top:12px;opacity:.8;text-align:center}
 .homeStoreBtn{position:absolute;right:7.5%;top:11.8%;z-index:35;border:1.5px solid #9b6428;border-radius:18px;background:#6f4a24;color:#fff2ce;padding:7px 12px;font:bold clamp(11px,1.4vh,15px) Georgia;box-shadow:0 2px 5px #0005;cursor:pointer}
 </style>
-</head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
+<style id="progress-reference-v1">
+.progressRefHot{position:absolute;border:0;background:transparent;z-index:95;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.progressRefBack{left:5%;top:3.2%;width:12%;height:7%}
+.progressRefContinue{left:7%;top:72%;width:86%;height:9%}
+.progressRefHome{left:4%;top:89%;width:18%;height:10%}
+.progressRefDaily{left:22%;top:89%;width:19%;height:10%}
+.progressRefProgress{left:41%;top:89%;width:19%;height:10%}
+.progressRefCollection{left:60%;top:89%;width:19%;height:10%}
+.progressRefProfile{left:79%;top:89%;width:17%;height:10%}
+</style></head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
 const MAIN='file_0000000095d881f4a1713e208409ffb4.png', GAME='file_0000000091ec821083759393667ca560.png'; const bg=document.getElementById('bg'),ui=document.getElementById('ui'),toast=document.getElementById('toast');
@@ -125,15 +134,21 @@ function dailyPage(){
  const dn=ui.querySelector('.dailyNav'); const di=dn.children; di[0].onclick=home; di[2].onclick=progressPage; di[3].onclick=collectionPage; di[4].onclick=profilePage;
 }
 function progressPage(){
- bg.src=MAIN;
- const done=completedPuzzles.size;
- const pct=Math.round(done/25*100);
- const generalDone=Math.max(0,Math.min(Object.keys(GENERAL_PUZZLES||{}).length,parseInt(localStorage.getItem('tb_general_completed')||String(Math.max(0,(parseInt(localStorage.getItem('tb_general_next')||'1',10)-1))),10)||0));
- const level=playerLevel(), lp=levelProgress();
- ui.innerHTML=`<div class="progressPage"><button class="progressBack" aria-label="Geri">←</button><div class="progressTitle">Türkiye Bulmacası<span>İlerleme</span></div><div class="progressPaper"><h2>İstanbul Yolculuğun</h2><div class="progressStats"><div class="progressStat"><b>${done}/25</b>Tamamlanan</div><div class="progressStat"><b>★ ${stars}</b>Yıldız</div></div><div class="progressBar"><div class="progressFill" style="width:${pct}%"></div></div><div class="progressText">%${pct} tamamlandı</div><button class="progressContinue">Bulmacaya Devam Et</button><hr style="border:0;border-top:1px solid #b77a22;margin:22px 0 16px"><h2>Genel Kültür</h2><div class="progressStats"><div class="progressStat"><b>${generalDone}</b>Tamamlanan</div><div class="progressStat"><b>Seviye ${level}</b>${lp}/250 XP</div><div class="progressStat"><b>${xp}</b>Toplam XP</div><div class="progressStat"><b>★ ${stars}</b>Yıldız</div></div></div><div class="progressNav"><span>Ana Sayfa</span><span>Günlük</span><b>İlerleme</b><span>Koleksiyon</span><span>Profilim</span></div></div>`;
- ui.querySelector('.progressBack').onclick=home;
- ui.querySelector('.progressContinue').onclick=()=>{currentPuzzle=nextIncomplete();persistSave();game();};
- const nav=ui.querySelector('.progressNav'); const items=nav.children; items[0].onclick=home; items[1].onclick=dailyPage; items[3].onclick=collectionPage; items[4].onclick=profilePage;
+ bg.src='file_00000000578881f4a9fc0fc4775a3a3a.jpg';
+ ui.innerHTML=`<button class="progressRefHot progressRefBack" aria-label="Geri"></button>
+ <button class="progressRefHot progressRefContinue" aria-label="Bulmacaya devam et"></button>
+ <button class="progressRefHot progressRefHome" aria-label="Ana Sayfa"></button>
+ <button class="progressRefHot progressRefDaily" aria-label="Günlük"></button>
+ <button class="progressRefHot progressRefProgress" aria-label="İlerleme"></button>
+ <button class="progressRefHot progressRefCollection" aria-label="Koleksiyon"></button>
+ <button class="progressRefHot progressRefProfile" aria-label="Profilim"></button>`;
+ ui.querySelector('.progressRefBack').onclick=home;
+ ui.querySelector('.progressRefContinue').onclick=()=>{currentPuzzle=nextIncomplete();persistSave();game();};
+ ui.querySelector('.progressRefHome').onclick=home;
+ ui.querySelector('.progressRefDaily').onclick=dailyPage;
+ ui.querySelector('.progressRefProgress').onclick=progressPage;
+ ui.querySelector('.progressRefCollection').onclick=collectionPage;
+ ui.querySelector('.progressRefProfile').onclick=profilePage;
 }
 const COLLECTION_ART='file_0000000038508210817f51c0db0e6023.png';
 function collectionPage(){
