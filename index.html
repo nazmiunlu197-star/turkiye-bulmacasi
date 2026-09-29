@@ -8,26 +8,36 @@
 </head>
 <body>
 <div class="app">
-  <main id="home" class="reference-home" aria-label="Türkiye Bulmacası ana ekranı">
-    <img class="reference-image" src="file_0000000095d881f4a1713e208409ffb4.png" alt="Türkiye Bulmacası">
+  <main id="home" class="reference-screen" aria-label="Türkiye Bulmacası ana ekranı">
+    <img class="reference-image" src="file_0000000095d881f4a1713e208409ffb4.png" alt="Türkiye Bulmacası ana ekranı">
 
-    <button class="hotspot settings" data-action="settings" aria-label="Ayarlar"></button>
-    <button class="hotspot daily" data-action="daily" aria-label="Günün Bulmacası"></button>
-    <button class="hotspot journey" data-action="journey" aria-label="Türkiye Yolculuğu"></button>
+    <button class="hotspot home-settings" data-action="settings" aria-label="Ayarlar"></button>
+    <button class="hotspot home-daily" data-action="daily" aria-label="Günün Bulmacası"></button>
+    <button class="hotspot home-journey" data-action="journey" aria-label="Türkiye Yolculuğu"></button>
 
-    <button class="hotspot istanbul" data-action="istanbul" aria-label="İstanbul Bulmacaları"></button>
-    <button class="hotspot ankara" data-action="ankara" aria-label="Ankara Bulmacaları"></button>
-    <button class="hotspot izmir" data-action="izmir" aria-label="İzmir Bulmacaları"></button>
-    <button class="hotspot old" data-action="old" aria-label="Eski Türkiye Bulmacaları"></button>
-    <button class="hotspot anatolia" data-action="anatolia" aria-label="Anadolu Bulmacaları"></button>
-    <button class="hotspot culture" data-action="culture" aria-label="Kültür ve Yaşam Bulmacaları"></button>
+    <button class="hotspot home-istanbul" data-action="istanbul" aria-label="İstanbul Bulmacaları"></button>
+    <button class="hotspot home-ankara" data-action="ankara" aria-label="Ankara Bulmacaları"></button>
+    <button class="hotspot home-izmir" data-action="izmir" aria-label="İzmir Bulmacaları"></button>
+    <button class="hotspot home-old" data-action="old" aria-label="Eski Türkiye Bulmacaları"></button>
+    <button class="hotspot home-anatolia" data-action="anatolia" aria-label="Anadolu Bulmacaları"></button>
+    <button class="hotspot home-culture" data-action="culture" aria-label="Kültür ve Yaşam Bulmacaları"></button>
 
-    <button class="hotspot nav-home" data-action="home" aria-label="Ana Sayfa"></button>
-    <button class="hotspot nav-daily" data-action="daily" aria-label="Günlük Bulmaca"></button>
-    <button class="hotspot nav-progress" data-action="progress" aria-label="İlerleme"></button>
-    <button class="hotspot nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
-    <button class="hotspot nav-profile" data-action="profile" aria-label="Profil"></button>
+    <button class="hotspot home-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
+    <button class="hotspot home-nav-daily" data-action="daily" aria-label="Günlük"></button>
+    <button class="hotspot home-nav-progress" data-action="progress" aria-label="İlerleme"></button>
+    <button class="hotspot home-nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
+    <button class="hotspot home-nav-achievements" data-action="achievements" aria-label="Başarılar"></button>
   </main>
+
+  <section id="collectionScreen" class="reference-screen" hidden aria-label="Koleksiyon ekranı">
+    <img class="reference-image" src="file_0000000038508210817f51c0db0e6023.png" alt="Türkiye Bulmacası Koleksiyon ekranı">
+    <button class="hotspot collection-back" data-action="home" aria-label="Geri"></button>
+    <button class="hotspot collection-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
+    <button class="hotspot collection-nav-daily" data-action="daily" aria-label="Günlük"></button>
+    <button class="hotspot collection-nav-progress" data-action="progress" aria-label="İlerleme"></button>
+    <button class="hotspot collection-nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
+    <button class="hotspot collection-nav-profile" data-action="profile" aria-label="Profilim"></button>
+  </section>
 
   <section class="placeholder" id="placeholder" hidden>
     <button class="back" data-action="home">← Ana Sayfa</button>
