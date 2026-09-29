@@ -122,13 +122,41 @@
 .progressRefCollection{left:60%;top:89%;width:19%;height:10%}
 .progressRefProfile{left:79%;top:89%;width:17%;height:10%}
 </style><style id="progress-dynamic-v1">
-.progressDyn{position:absolute;z-index:94;background:#efd39f;color:#2b170b;font-family:Georgia,serif;font-weight:700;text-align:center;line-height:1;pointer-events:none}
-.progressDynLevel{left:16.5%;top:29.0%;width:12.3%;height:5.0%;font-size:clamp(24px,5vw,36px);display:flex;align-items:center;justify-content:center;border-radius:50%;background:#efd39f}
+.progressDyn{position:absolute;z-index:94;color:#2b170b;font-family:Georgia,serif;font-weight:700;text-align:center;pointer-events:none;background:#efd39f}
+.progressDynLevel{
+ left:16.1%;top:28.2%;width:13.8%;height:6.0%;border-radius:50%;
+ display:flex;align-items:center;justify-content:center;
+ font-size:clamp(24px,5vw,36px);line-height:1
+}
 .progressDynName{display:none}
-.progressDynXp{left:51.2%;top:42.15%;width:18.5%;height:2.7%;font-size:clamp(11px,2.7vw,18px);display:flex;align-items:center;justify-content:center;background:#efd39f}
-.progressDynCompleted{left:15.2%;top:48.15%;width:13.5%;height:3.2%;font-size:clamp(18px,4vw,28px);display:flex;align-items:center;justify-content:center;background:#efd39f}
-.progressDynStars{left:72.4%;top:48.15%;width:13.5%;height:3.2%;font-size:clamp(18px,4vw,28px);display:flex;align-items:center;justify-content:center;background:#efd39f}
-.progressDynPct{left:14.2%;top:61.3%;width:13.6%;height:4.8%;font-size:clamp(16px,3.8vw,26px);display:flex;align-items:center;justify-content:center;background:#e8c98d;border-radius:50%}
+.progressDynXp{
+ left:50.7%;top:42.05%;width:20.5%;height:2.9%;
+ display:flex;align-items:center;justify-content:center;
+ font-size:clamp(11px,2.6vw,18px);line-height:1
+}
+.progressDynCompleted{
+ left:11.8%;top:49.25%;width:18.5%;height:5.1%;
+ display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+ font-size:clamp(18px,4vw,28px);line-height:1.02;padding-top:.15%
+}
+.progressDynCompleted::after{
+ content:'Tamamlanan\A Bulmaca';white-space:pre;
+ font-size:clamp(8px,1.8vw,13px);font-weight:700;line-height:1.05;margin-top:3px
+}
+.progressDynStars{
+ left:70.1%;top:49.25%;width:18.2%;height:5.1%;
+ display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+ font-size:clamp(18px,4vw,28px);line-height:1.02;padding-top:.15%
+}
+.progressDynStars::after{
+ content:'Toplam\A Jeton';white-space:pre;
+ font-size:clamp(8px,1.8vw,13px);font-weight:700;line-height:1.05;margin-top:3px
+}
+.progressDynPct{
+ left:13.0%;top:61.0%;width:15.2%;height:5.7%;border-radius:50%;
+ display:flex;align-items:center;justify-content:center;
+ font-size:clamp(16px,3.8vw,26px);line-height:1;background:#e8c98d
+}
 </style></head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
