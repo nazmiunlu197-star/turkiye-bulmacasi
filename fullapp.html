@@ -155,17 +155,29 @@
 .settingsRefStore{left:52%;top:75%;width:42%;height:11%}
 .settingsToast{position:absolute;left:50%;top:86%;transform:translateX(-50%);z-index:130;background:#3c210de8;color:#ffe8b4;padding:8px 14px;border-radius:18px;font:700 12px Arial;display:none;white-space:nowrap}
 .settingsToast.show{display:block}
-</style><style id="tb-visual-v46">
-html.tb-dark,body.tb-dark{background:#080706!important}
-body.tb-dark .screen{filter:brightness(.52) contrast(1.08) saturate(.8)}
-body.tb-dark .cell,body.tb-dark .key,body.tb-dark .cluecover,body.tb-dark .dailyPage,body.tb-dark .progressPage,body.tb-dark .collectionPage,body.tb-dark .profilePage,body.tb-dark .settingsPage,body.tb-dark .storePage{filter:none!important}
+</style><style id="tb-visual-v47">
+html.tb-dark,body.tb-dark{background:#090705!important}
+body.tb-dark .screen{filter:brightness(.70) contrast(1.10) saturate(.94) sepia(.12)}
+body.tb-dark .cell,body.tb-dark .key,body.tb-dark .cluecover,
+body.tb-dark .dailyPage,body.tb-dark .progressPage,body.tb-dark .collectionPage,
+body.tb-dark .profilePage,body.tb-dark .settingsPage,body.tb-dark .storePage{
+  filter:none!important
+}
+body.tb-dark .cell{background:#e0c18a!important;color:#2a160b!important}
+body.tb-dark .cell.block{background:#21150f!important}
+body.tb-dark .cluecover{background:#d9b979!important;color:#2b180e!important}
+body.tb-dark .key{background:#d8b779!important;color:#251309!important}
+body.tb-dark .dailyPage,body.tb-dark .progressPage,body.tb-dark .collectionPage,
+body.tb-dark .profilePage,body.tb-dark .settingsPage,body.tb-dark .storePage{
+  background:linear-gradient(#2c2017,#120c08)!important;color:#f0dfbf!important
+}
 body.tb-font-small .cell{font-size:clamp(10px,1.9vh,21px)!important}
 body.tb-font-large .cell{font-size:clamp(15px,2.6vh,29px)!important}
 body.tb-font-small .cluecover{font-size:clamp(8px,1vh,12px)!important}
 body.tb-font-large .cluecover{font-size:clamp(11px,1.45vh,17px)!important}
 body.tb-font-small .key{transform:scale(.94)}
 body.tb-font-large .key{transform:scale(1.04)}
-</style><script id="tb-visual-v46">
+</style><script id="tb-visual-v47">
 (function(){
  function val(k,d){const v=localStorage.getItem(k);return v===null?d:v==='1'}
  function apply(){
@@ -181,7 +193,7 @@ body.tb-font-large .key{transform:scale(1.04)}
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
 const MAIN='file_0000000095d881f4a1713e208409ffb4.png', GAME='file_0000000091ec821083759393667ca560.png'; const bg=document.getElementById('bg'),ui=document.getElementById('ui'),toast=document.getElementById('toast');
-function home(){location.href='game.html?v=46';}
+function home(){location.href='game.html?v=47';}
 function dailyPage(){
  bg.src=MAIN;
  ui.innerHTML=`<div class="dailyPage"><button class="dailyBack" aria-label="Geri">←</button><div class="dailyTitle">Türkiye Bulmacası<span>Günlük Bulmaca</span></div><div class="dailyPaper"><div class="dailyBadge">28 Eylül</div><h2>Bugünün İstanbul Bulmacası</h2><p>Her gün yeni bir kısa bulmaca seni bekliyor.</p><div class="dailyReward">★ Günlük ödül: +25 yıldız</div><button class="dailyStart">Günün Bulmacasını Oyna</button></div><div class="dailyNav"><span>Ana Sayfa</span><b>Günlük</b><span>İlerleme</span><span>Koleksiyon</span><span>Profilim</span></div></div>`;
@@ -244,7 +256,7 @@ function profilePage(){
  <button class="refHot profileRefProfile" aria-label="Profilim"></button>`;
  ui.querySelector('.profileRefBack').onclick=home;
  ui.querySelector('.profileRefEdit').onclick=()=>{const cur=localStorage.getItem('tb_profile_name')||'Akın';const next=prompt('Profil adını yaz:',cur);if(next===null)return;const v=next.trim().slice(0,20)||'Oyuncu';localStorage.setItem('tb_profile_name',v);profilePage();};
- ui.querySelector('.profileRefAchievements').onclick=()=>{location.href='game.html?v=46#achievements';};
+ ui.querySelector('.profileRefAchievements').onclick=()=>{location.href='game.html?v=47#achievements';};
  ui.querySelector('.profileRefProgress').onclick=progressPage;
  ui.querySelector('.profileRefCollection').onclick=collectionPage;
  ui.querySelector('.profileRefSettings').onclick=settingsPage;
@@ -628,7 +640,7 @@ function runRegressionTests(){
  if(errors.length)throw new Error('V33 regresyon testi başarısız: '+errors.join(' | '));
  return true;
 }
-function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),1800)}if(!location.hash){location.href='game.html?v=46';}
+function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),1800)}if(!location.hash){location.href='game.html?v=47';}
 </script><script>
 window.addEventListener('load',function(){
  const h=(location.hash||'').slice(1);
