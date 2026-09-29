@@ -24,7 +24,18 @@ function hideAll(){
   appRoot.classList.remove("settings-mode");
 }
 
+const fullAppRoutes={
+  istanbul:"istanbul",
+  "daily-play":"general",
+  settings:"settings",
+  store:"store"
+};
+
 function show(name){
+  if(fullAppRoutes[name]){
+    location.href="fullapp.html#"+fullAppRoutes[name];
+    return;
+  }
   hideAll();
   if(name==="home") home.hidden=false;
   else if(name==="istanbul") istanbulScreen.hidden=false;
