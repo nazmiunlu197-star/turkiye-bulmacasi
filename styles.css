@@ -80,8 +80,8 @@ button{font:inherit}
   display:flex;flex-direction:column;align-items:flex-start
 }
 .feature-content h2{
-  font-size:clamp(28px,6.1vw,40px);line-height:.96;margin:0;text-shadow:0 2px 2px #000;
-  max-width:100%;word-break:normal
+  font-size:clamp(24px,5.25vw,36px);line-height:.96;margin:0;text-shadow:0 2px 2px #000;
+  max-width:100%;word-break:normal;letter-spacing:-.4px
 }
 .feature-content p{font-size:18px;line-height:1.22;margin:14px 0 0;text-shadow:0 2px 2px #000}
 .feature-content .date{margin-top:18px;font-size:17px;font-weight:700}
@@ -119,9 +119,9 @@ button{font:inherit}
 .culture{background-image:linear-gradient(#5a351980,#28160d66),url("https://commons.wikimedia.org/wiki/Special:FilePath/%C4%B0zmir%20clock%20tower.jpg")}
 
 .bottom-nav{
-  position:fixed;z-index:20;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,520px);height:92px;
-  background:#f3dcaef7;border-top:1px solid #b78e5b;display:grid;grid-template-columns:repeat(5,1fr);
-  padding:7px 12px max(9px,env(safe-area-inset-bottom));border-radius:34px 34px 0 0;
+  position:relative;z-index:20;left:auto;bottom:auto;transform:none;width:calc(100% - 24px);height:105px;
+  margin:6px 12px 0;background:#f3dcaef7;border:1px solid #c59b63;display:grid;
+  grid-template-columns:repeat(5,1fr);padding:8px 12px 10px;border-radius:34px 34px 0 0;
   box-shadow:0 -5px 14px rgba(65,34,16,.18)
 }
 .bottom-nav button{
@@ -171,4 +171,12 @@ button{font:inherit}
   .brand-bottom{font-size:clamp(44px,10.2vw,60px)}
   .feature-content h2{font-size:clamp(27px,6vw,34px)}
   .city-card span{font-size:clamp(13px,3vw,17px)}
+}
+
+.feature-card.daily,
+.feature-card.journey{
+  background-position:center 55%;
+}
+@media(max-width:420px){
+  .feature-content h2{font-size:clamp(23px,5.15vw,31px)}
 }
