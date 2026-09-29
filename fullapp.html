@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Türkiye Bulmacası V33</title><style>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Türkiye Bulmacası V34</title><style>
 *{box-sizing:border-box}html,body{margin:0;height:100%;background:#17110d;font-family:Georgia,serif;overflow:hidden}.app{height:100%;display:flex;justify-content:center;align-items:center}.screen{position:relative;height:100vh;aspect-ratio:2/3;max-width:100vw}.bg{width:100%;height:100%;object-fit:contain;display:block}.hot{position:absolute;border:0;background:transparent;cursor:pointer}.play{left:10%;top:36%;width:38%;height:17%}.istanbulCard{left:8.5%;top:54.2%;width:27.5%;height:16.2%}.back{left:7%;top:4%;width:12%;height:7%}
 .grid{position:absolute;left:25.4%;top:27.54%;width:47.2%;height:25.52%;z-index:8;background:#2b1b10;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(8,1fr)}.cell{position:relative;z-index:2;touch-action:manipulation;-webkit-tap-highlight-color:transparent;border:1px solid #6e4a2b;background:#f3dba5;display:flex;align-items:center;justify-content:center;font:bold clamp(12px,2.2vh,25px) Georgia;color:#2c170b;cursor:pointer}.cell.numbered:before{content:attr(data-num);position:absolute;left:3px;top:1px;font:700 10px Arial;color:#2c170b;line-height:1;pointer-events:none}.cell.block{pointer-events:none;background:#2c1c11}.cell.word{background:#ead08e}.cell.sel{outline:3px solid #b51212;outline-offset:-3px;background:#f7e2aa}.cell.ok{background:#b9d89acc!important}.cell.bad{background:#d98f7aaa!important}.keys{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}.keyrow{position:absolute;display:grid;gap:.55%;pointer-events:auto}.keyrow.r1{left:9.0%;top:74.7%;width:82.2%;height:3.8%;grid-template-columns:repeat(12,1fr)}.keyrow.r2{left:11.6%;top:78.7%;width:77.1%;height:3.8%;grid-template-columns:repeat(11,1fr)}.keyrow.r3{left:15.0%;top:82.7%;width:72.8%;height:3.8%;grid-template-columns:repeat(10,1fr)}.key{border:0;background:transparent;font:0/0 a;color:transparent;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;outline:none;box-shadow:none;-webkit-user-select:none;user-select:none}.key:focus,.key:focus-visible,.key:active{outline:none!important;box-shadow:none!important;background:transparent!important;-webkit-tap-highlight-color:transparent}.hint{z-index:15;position:absolute;right:7%;top:27%;width:12%;height:7%;border:0;background:transparent;cursor:pointer}.letterhint{z-index:25;position:absolute;right:7.6%;top:34.55%;width:10.8%;height:6.2%;border:0;background:transparent;cursor:pointer}.wordhint{z-index:25;position:absolute;right:7.6%;top:42.0%;width:10.8%;height:6.8%;border:0;background:transparent;cursor:pointer}.starcount{position:absolute;right:12.0%;top:5.55%;width:12.8%;height:3.6%;display:flex;align-items:center;justify-content:center;font:bold clamp(15px,2.1vh,24px) Georgia;color:#2d1609;background:#f4d48f;border:2px solid #b77a22;box-shadow:0 0 0 7px #f4d48f;border-radius:22px;z-index:20;pointer-events:none}.toast{position:absolute;left:50%;top:21%;transform:translateX(-50%);background:#3c210de8;color:#ffe8b4;padding:8px 15px;border-radius:20px;font:600 13px Arial;display:none;z-index:60;white-space:nowrap}.toast.show{display:block}.cluecover{position:absolute;top:59.6%;height:11.5%;background:#efd59f;color:#3a2415;padding:.7% 1.5%;font:600 clamp(9px,1.18vh,14px) Georgia;line-height:1.2;z-index:4;border-radius:0 0 10px 10px;overflow:hidden}.cluecover.left{left:8%;width:40.5%}.cluecover.right{left:51.5%;width:40.5%}.cluecover b{display:none}.cluecover div{margin:.2em 0}@media(max-aspect-ratio:2/3){.screen{width:100vw;height:auto}}
 .cell.revealed{font-weight:800!important;}
@@ -121,6 +121,7 @@
 .progressRefProgress{left:41%;top:89%;width:19%;height:10%}
 .progressRefCollection{left:60%;top:89%;width:19%;height:10%}
 .progressRefProfile{left:79%;top:89%;width:17%;height:10%}
+.progressLiveBadge{position:absolute;left:18%;top:64.3%;width:64%;z-index:94;background:#efd49be8;border:1px solid #9b6428;border-radius:12px;padding:7px 9px;text-align:center;color:#321b0d;font:bold clamp(11px,1.55vh,17px) Georgia;line-height:1.15;pointer-events:none}
 </style><style id="approved-three-v1">
 .refHot{position:absolute;border:0;background:transparent;z-index:120;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .collectionRefBack{left:5%;top:3.5%;width:12%;height:7%}
@@ -205,12 +206,15 @@ function progressPage(){
  bg.src='file_00000000578881f4a9fc0fc4775a3a3a.jpg';
  ui.innerHTML=`
  <button class="progressRefHot progressRefBack" aria-label="Geri"></button>
+ <button class="progressRefHot progressRefContinue" aria-label="Bulmacaya Devam Et"></button>
+ <div class="progressLiveBadge">${completedPuzzles.size}/25 tamamlandı • Seviye ${playerLevel()} • ${xp} XP</div>
  <button class="progressRefHot progressRefHome" aria-label="Ana Sayfa"></button>
  <button class="progressRefHot progressRefDaily" aria-label="Günlük"></button>
  <button class="progressRefHot progressRefProgress" aria-label="İlerleme"></button>
  <button class="progressRefHot progressRefCollection" aria-label="Koleksiyon"></button>
  <button class="progressRefHot progressRefProfile" aria-label="Profilim"></button>`;
  ui.querySelector('.progressRefBack').onclick=home;
+ ui.querySelector('.progressRefContinue').onclick=()=>{gameMode='istanbul';currentPuzzle=nextIncomplete();persistSave();game();msg('İstanbul Bulmacası - '+currentPuzzle);};
  ui.querySelector('.progressRefHome').onclick=home;
  ui.querySelector('.progressRefDaily').onclick=dailyPage;
  ui.querySelector('.progressRefProgress').onclick=progressPage;
@@ -345,6 +349,28 @@ function persistSave(){
   try{localStorage.setItem(SAVE_KEY,JSON.stringify({stars,completed:[...completedPuzzles].sort((a,b)=>a-b),currentPuzzle,xp}))}catch(e){}
 }
 function nextIncomplete(){for(let n=1;n<=25;n++)if(!completedPuzzles.has(n))return n;return 25}
+function draftKey(){return 'tb_draft_'+gameMode+'_'+(gameMode==='general'?generalNumber:currentPuzzle)}
+function saveDraft(){
+  try{
+    const data={};
+    ui.querySelectorAll('.cell:not(.block)').forEach(c=>{
+      const v=(c.textContent||'').trim();
+      if(v)data[c.dataset.r+','+c.dataset.c]=v;
+    });
+    localStorage.setItem(draftKey(),JSON.stringify(data));
+  }catch(e){}
+}
+function loadDraft(){
+  try{
+    const raw=localStorage.getItem(draftKey()); if(!raw)return;
+    const data=JSON.parse(raw)||{};
+    Object.entries(data).forEach(([k,v])=>{
+      const [r,c]=k.split(',');
+      const el=cellAt(r,c); if(el)el.textContent=String(v).slice(0,1);
+    });
+  }catch(e){}
+}
+function clearDraft(){try{localStorage.removeItem(draftKey())}catch(e){}}
 
 // V14: çalışan V11 koordinatları korunur. Her kelimenin cevabı ve sorusu tek yerde tutulur.
 const WORDS1=[
@@ -585,7 +611,10 @@ function spend(n){if(stars<n){msg('Yeterli yıldızın yok.');return false}stars
 function game(){puzzleCompleted=false;persistSave();const puzzle=gameMode==='general'?(GENERAL_PUZZLES[generalNumber]||GENERAL_PUZZLES[1]):(PUZZLES[currentPuzzle]||PUZZLES[1]);pattern=puzzle.pattern||BASE_PATTERN;WORDS=puzzle.words;bg.src=GAME;let h='<button class="hot back"></button><div class="starcount">${stars}</div><div class="grid">';for(let r=0;r<8;r++)for(let c=0;c<10;c++){let b=pattern[r][c]=='#';h+=`<div class="cell ${b?'block':''}" data-r="${r}" data-c="${c}"></div>`}h+='</div><button class="hint" aria-label="İpucu"></button><button class="letterhint" aria-label="Harf Aç"></button><button class="wordhint" aria-label="Kelime Aç"></button><div class="cluecover left">'+WORDS.filter(w=>w.dir==='across').map(w=>`<div>${w.id.replace('A','')}. ${w.clue}</div>`).join('')+'</div><div class="cluecover right">'+WORDS.filter(w=>w.dir==='down').map(w=>`<div>${w.id.replace('D','')}. ${w.clue}</div>`).join('')+'</div><div class="keys">';const rows=['QWERTYUIOPĞÜ','ASDFGHJKLŞİ','ZXCVBNMÖÇ⌫'];rows.forEach((row,ri)=>{h+=`<div class="keyrow r${ri+1}">`;for(const k of row)h+=`<button class="key" data-k="${k}" aria-label="${k}"></button>`;h+='</div>'});h+='</div>';h+=`<div class="puzzleTitle2"><b>${gameMode==='general'?'Genel Kültür':'İstanbul'}</b>Bulmacası - ${gameMode==='general'?generalNumber:currentPuzzle}</div>`;ui.innerHTML=h;ui.querySelector('.back').onclick=home;ui.querySelectorAll('.cell:not(.block)').forEach(x=>x.onclick=()=>tapCell(x));ui.querySelectorAll('.key').forEach(x=>x.onclick=()=>press(x.dataset.k));const bindOnce=(el,fn)=>{el.onclick=null;el.ontouchstart=null;el.onpointerup=(e)=>{e.preventDefault();e.stopPropagation();fn()}};bindOnce(ui.querySelector('.hint'),useHint);bindOnce(ui.querySelector('.letterhint'),revealLetter);bindOnce(ui.querySelector('.wordhint'),revealWord);
   const starts=puzzle.starts;
   Object.entries(starts).forEach(([pos,n])=>{const [r,c]=pos.split(',');const el=cellAt(r,c);if(el){el.dataset.num=n;el.classList.add('numbered')}});
-  updateStars();tapCell(cellAt(1,1))}
+  loadDraft();
+  updateStars();
+  const firstPlayable=ui.querySelector('.cell:not(.block)');
+  tapCell(cellAt(1,1)||firstPlayable)}
 function tapCell(x){
   const wa=wordFor(x,'across'), wd=wordFor(x,'down');
   if(wa&&wd){
@@ -611,12 +640,14 @@ function checkPuzzleComplete(){
   if(puzzleCompleted||!puzzleIsSolved())return;
   puzzleCompleted=true;
   if(gameMode==='general'){
+    clearDraft();
     stars+=25; const levelReward=addXpWithLevelReward(50); try{const prevDone=parseInt(localStorage.getItem('tb_general_completed')||'0',10)||0;if(generalNumber>prevDone)localStorage.setItem('tb_general_completed',String(generalNumber));const nextNum=generalNumber+1;const prevNext=parseInt(localStorage.getItem('tb_general_next')||'1',10)||1;if(nextNum>prevNext)localStorage.setItem('tb_general_next',String(nextNum));}catch(e){} persistSave(); updateStars();
     const o=document.createElement('div');o.className='completeOverlay';
     o.innerHTML=`<div class="completeCard"><h2>Bulmaca Tamamlandı!</h2><div class="sub">Genel Kültür Bulmacası - ${generalNumber}</div><div class="completeReward">★ +25 yıldız • +50 XP kazandın</div>${levelRewardHtml(levelReward)}<button type="button">Sonraki Bulmaca →</button></div>`;
     o.querySelector('button').onclick=()=>{o.remove();generalNumber++;localStorage.setItem('tb_general_next',String(generalNumber));if(GENERAL_PUZZLES[generalNumber]){game();}else{generalNumber=Object.keys(GENERAL_PUZZLES).length+1;localStorage.setItem('tb_general_next',String(generalNumber));home();msg('Hazır genel kültür sorularının tamamını bitirdin. Yeni sorular eklenene kadar tekrar gösterilmeyecek.');}};
     ui.appendChild(o); return;
   }
+  clearDraft();
   const firstCompletion=!completedPuzzles.has(currentPuzzle);
   let levelReward=null;
   if(firstCompletion){completedPuzzles.add(currentPuzzle);stars+=25;levelReward=addXpWithLevelReward(50);}
@@ -628,10 +659,10 @@ function checkPuzzleComplete(){
 }
 
 function checkActive(){if(!activeDef||!activeDef.answer)return false;const cs=cellsFor(activeDef);if(cs.some(c=>!c.textContent))return false;cs.forEach(c=>c.classList.remove('ok','bad'));const typed=normalize(cs.map(c=>c.textContent).join(''));if(typed===normalize(activeDef.answer)){cs.forEach(c=>c.classList.add('ok'));msg('Doğru! ✓');setTimeout(checkPuzzleComplete,250);return true}cs.forEach(c=>c.classList.add('bad'));msg('Henüz doğru değil.');setTimeout(()=>cs.forEach(c=>c.classList.remove('bad')),650);return false}
-function press(k){if(!selected||!activeDef)return;const word=cellsFor(activeDef),i=word.indexOf(selected);if(k==='⌫'){word.forEach(c=>c.classList.remove('ok','bad'));if(selected.textContent)selected.textContent='';else if(i>0){select(word[i-1]);selected.textContent=''}return}selected.textContent=k;selected.classList.remove('ok','bad');if(i+1<word.length)select(word[i+1]);else checkActive()}
+function press(k){if(!selected||!activeDef)return;const word=cellsFor(activeDef),i=word.indexOf(selected);if(k==='⌫'){word.forEach(c=>c.classList.remove('ok','bad'));if(selected.textContent)selected.textContent='';else if(i>0){select(word[i-1]);selected.textContent=''}saveDraft();return}selected.textContent=k;selected.classList.remove('ok','bad');saveDraft();if(i+1<word.length)select(word[i+1]);else checkActive()}
 function useHint(){if(!activeDef||!activeDef.answer){msg('Bu kare için ipucu tanımlı değil.');return}if(!spend(10))return;msg('İpucu: '+activeDef.clue.replace(/\s*\(\d+\)\s*$/,''))}
-function ensureHintWord(){if(activeDef&&activeDef.answer)return activeDef;const w=WORDS.find(w=>cellsFor(w).some(c=>!c.textContent));if(w){activeDef=w;direction=w.dir;const cs=cellsFor(w);cs.forEach(c=>c.classList.add('word'));if(cs[0]){selected=cs[0];cs[0].classList.add('sel')}}return w||null}let lastLetterHintAt=0;function revealLetter(){const now=Date.now();if(now-lastLetterHintAt<1000)return;lastLetterHintAt=now;const w=ensureHintWord();if(!w){msg('Açılacak harf kalmadı.');return}const cs=cellsFor(w),ans=[...w.answer];const blanks=[];cs.forEach((c,i)=>{if(c&&!c.textContent)blanks.push(i)});if(!blanks.length){msg('Bu kelimede boş harf kalmadı.');return}const idx=blanks[0];if(!spend(15))return;const target=cs[idx];target.textContent=ans[idx];target.classList.add('revealed');msg('15 yıldız kullanıldı • 1 harf açıldı.')}
-function revealWord(){const w=ensureHintWord();if(!w){msg('Açılacak kelime kalmadı.');return}if(!spend(30))return;const cs=cellsFor(w);[...w.answer].forEach((ch,i)=>{if(cs[i])cs[i].textContent=ch});cs.forEach(c=>c.classList.add('ok'));msg('30 yıldız kullanıldı • Kelime açıldı. ✓');setTimeout(checkPuzzleComplete,250)}
+function ensureHintWord(){if(activeDef&&activeDef.answer)return activeDef;const w=WORDS.find(w=>cellsFor(w).some(c=>!c.textContent));if(w){activeDef=w;direction=w.dir;const cs=cellsFor(w);cs.forEach(c=>c.classList.add('word'));if(cs[0]){selected=cs[0];cs[0].classList.add('sel')}}return w||null}let lastLetterHintAt=0;function revealLetter(){const now=Date.now();if(now-lastLetterHintAt<1000)return;lastLetterHintAt=now;const w=ensureHintWord();if(!w){msg('Açılacak harf kalmadı.');return}const cs=cellsFor(w),ans=[...w.answer];const blanks=[];cs.forEach((c,i)=>{if(c&&!c.textContent)blanks.push(i)});if(!blanks.length){msg('Bu kelimede boş harf kalmadı.');return}const idx=blanks[0];if(!spend(15))return;const target=cs[idx];target.textContent=ans[idx];target.classList.add('revealed');saveDraft();msg('15 yıldız kullanıldı • 1 harf açıldı.')}
+function revealWord(){const w=ensureHintWord();if(!w){msg('Açılacak kelime kalmadı.');return}if(!spend(30))return;const cs=cellsFor(w);[...w.answer].forEach((ch,i)=>{if(cs[i])cs[i].textContent=ch});cs.forEach(c=>c.classList.add('ok'));saveDraft();msg('30 yıldız kullanıldı • Kelime açıldı. ✓');setTimeout(checkPuzzleComplete,250)}
 
 function runRegressionTests(){
  const errors=[];
