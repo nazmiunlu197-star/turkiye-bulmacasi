@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=20">
+<link rel="stylesheet" href="styles.css?v=22">
 </head>
 <body>
 <div class="app" id="app">
@@ -21,11 +21,15 @@
     <button class="hotspot home-old" data-action="old"></button>
     <button class="hotspot home-anatolia" data-action="anatolia"></button>
     <button class="hotspot home-culture" data-action="culture"></button>
-    <button class="hotspot home-nav-home" data-action="home"></button>
-    <button class="hotspot home-nav-daily" data-action="daily"></button>
-    <button class="hotspot home-nav-progress" data-action="progress"></button>
-    <button class="hotspot home-nav-collection" data-action="collection"></button>
-    <button class="hotspot home-nav-achievements" data-action="achievements"></button>
+    <div class="main-bottom-nav-bg" aria-hidden="true"></div>
+    <nav class="main-bottom-nav" aria-label="Ana menü">
+      <button data-action="home" class="active"><span class="nav-icon">⌂</span><span>Ana Sayfa</span></button>
+      <button data-action="daily"><span class="nav-icon">▣</span><span>Günlük</span></button>
+      <button data-action="progress"><span class="nav-icon">▥</span><span>İlerleme</span></button>
+      <button data-action="achievements"><span class="nav-icon">♛</span><span>Başarılar</span></button>
+      <button data-action="collection"><span class="nav-icon">★</span><span>Koleksiyon</span></button>
+      <button data-action="profile"><span class="nav-icon">◉</span><span>Profilim</span></button>
+    </nav>
   </main>
 
   <section id="dailyScreen" class="reference-screen" hidden>
@@ -109,6 +113,6 @@
     </div>
   </section>
 </div>
-<script src="app.js?v=20"></script>
+<script src="app.js?v=22"></script>
 </body>
 </html>
