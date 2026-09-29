@@ -45,7 +45,7 @@ function syncApprovedScreens(){
 }
 
 function show(name){
-  if(fullAppRoutes[name]){location.href="fullapp.html?v=45#"+fullAppRoutes[name];return;}
+  if(fullAppRoutes[name]){location.href="fullapp.html?v=46#"+fullAppRoutes[name];return;}
   hideAll();
   if(name==="home") home.hidden=false;
   else if(name==="istanbul") istanbulScreen.hidden=false;
@@ -143,7 +143,16 @@ function stopBackgroundMusic(){
 function settingBool(key,def=true){const v=localStorage.getItem(key);return v===null?def:v==="1";}
 function setSettingBool(key,val){localStorage.setItem(key,val?"1":"0");}
 function settingMessage(t){const m=document.getElementById("settingsMessage");if(!m)return;m.textContent=t;clearTimeout(settingMessage.t);settingMessage.t=setTimeout(()=>m.textContent="",1300);}
+function applyVisualSettings(){
+  const dark=settingBool("tb_dark",false);
+  document.body.classList.toggle("tb-dark",dark);
+  document.documentElement.classList.toggle("tb-dark",dark);
+  const size=localStorage.getItem("tb_font_size")||"Orta";
+  document.body.classList.remove("tb-font-small","tb-font-medium","tb-font-large");
+  document.body.classList.add(size==="Küçük"?"tb-font-small":size==="Büyük"?"tb-font-large":"tb-font-medium");
+}
 function updateSettingsUI(){
+  applyVisualSettings();
   const map=[["musicToggle","tb_music",true],["sfxToggle","tb_sfx",true],["notifToggle","tb_notif",true],["darkToggle","tb_dark",false]];
   map.forEach(([id,key,def])=>{const b=document.getElementById(id);if(!b)return;const on=settingBool(key,def);b.textContent=on?"Açık":"Kapalı";b.classList.toggle("on",on);});
   const f=document.getElementById("fontToggle");if(f)f.textContent=localStorage.getItem("tb_font_size")||"Orta";
@@ -154,13 +163,14 @@ function initSettingsControls(){
   music.onclick=()=>{const next=!settingBool("tb_music",true);setMusicEnabled(next);settingMessage(next?"Müzik açıldı":"Müzik kapatıldı");};
   document.getElementById("sfxToggle").onclick=()=>{const n=!settingBool("tb_sfx",true);setSettingBool("tb_sfx",n);updateSettingsUI();settingMessage(n?"Ses efektleri açıldı":"Ses efektleri kapatıldı");};
   document.getElementById("notifToggle").onclick=()=>{const n=!settingBool("tb_notif",true);setSettingBool("tb_notif",n);updateSettingsUI();settingMessage(n?"Bildirimler açıldı":"Bildirimler kapatıldı");};
-  document.getElementById("darkToggle").onclick=()=>{const n=!settingBool("tb_dark",false);setSettingBool("tb_dark",n);updateSettingsUI();settingMessage(n?"Karanlık mod seçildi":"Açık mod seçildi");};
-  document.getElementById("fontToggle").onclick=()=>{const vals=["Küçük","Orta","Büyük"];const cur=localStorage.getItem("tb_font_size")||"Orta";const n=vals[(vals.indexOf(cur)+1)%vals.length];localStorage.setItem("tb_font_size",n);updateSettingsUI();settingMessage("Yazı boyutu: "+n);};
+  document.getElementById("darkToggle").onclick=()=>{const n=!settingBool("tb_dark",false);setSettingBool("tb_dark",n);applyVisualSettings();updateSettingsUI();settingMessage(n?"Karanlık mod seçildi":"Açık mod seçildi");};
+  document.getElementById("fontToggle").onclick=()=>{const vals=["Küçük","Orta","Büyük"];const cur=localStorage.getItem("tb_font_size")||"Orta";const n=vals[(vals.indexOf(cur)+1)%vals.length];localStorage.setItem("tb_font_size",n);applyVisualSettings();updateSettingsUI();settingMessage("Yazı boyutu: "+n);};
   document.getElementById("aboutBtn").onclick=()=>settingMessage("Türkiye Bulmacası • v1.0.0");
   document.getElementById("supportBtn").onclick=()=>settingMessage("Destek bölümü APK sürümünde aktif olacak");
   updateSettingsUI();
 }
 document.addEventListener("pointerdown",()=>{if(musicEnabled())startBackgroundMusic();},{once:true});
+applyVisualSettings();
 initSettingsControls();syncApprovedScreens();
 
 
