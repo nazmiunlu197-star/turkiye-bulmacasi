@@ -46,7 +46,7 @@ function syncApprovedScreens(){
 }
 
 function show(name){
-  if(fullAppRoutes[name]){location.href="fullapp.html?v=49#"+fullAppRoutes[name];return;}
+  if(fullAppRoutes[name]){location.href="fullapp.html?v=50#"+fullAppRoutes[name];return;}
   hideAll();
   if(name==="home") home.hidden=false;
   else if(name==="istanbul") istanbulScreen.hidden=false;
@@ -102,37 +102,25 @@ function startBackgroundMusic(){
   if(!musicEnabled()||musicTimer) return;
   const c=ensureAudio(); if(!c) return;
   if(!musicMaster){
-    musicMaster=c.createGain();musicMaster.gain.value=0.34;
-    const filter=c.createBiquadFilter();filter.type="lowpass";filter.frequency.value=1700;filter.Q.value=.5;
-    musicMaster.connect(filter);filter.connect(c.destination);
+    musicMaster=c.createGain();
+    musicMaster.gain.value=0.28;
+    musicMaster.connect(c.destination);
   }
-  const chords=[
-    [220.00,261.63,329.63],[196.00,246.94,293.66],[174.61,220.00,261.63],[196.00,246.94,329.63],
-    [220.00,261.63,329.63],[164.81,220.00,261.63],[174.61,220.00,293.66],[196.00,246.94,329.63]
-  ];
-  const pluck=[329.63,392.00,440.00,392.00,329.63,293.66,261.63,293.66];
-  const playPad=(freq,delay=0)=>{
-    const t=c.currentTime+delay,o=c.createOscillator(),g=c.createGain();
-    o.type="sine";o.frequency.setValueAtTime(freq,t);
-    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.12,t+.55);
-    g.gain.setValueAtTime(.12,t+2.7);g.gain.exponentialRampToValueAtTime(.0001,t+3.7);
-    o.connect(g);g.connect(musicMaster);o.start(t);o.stop(t+3.8);
-  };
-  const playBell=(freq,delay=0)=>{
-    const t=c.currentTime+delay,o=c.createOscillator(),g=c.createGain();
-    o.type="triangle";o.frequency.setValueAtTime(freq,t);
-    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.075,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+1.15);
-    o.connect(g);g.connect(musicMaster);o.start(t);o.stop(t+1.2);
-  };
+  const melody=[329.63,392.00,440.00,392.00,329.63,293.66,261.63,293.66,329.63,349.23,392.00,349.23,329.63,293.66,261.63,246.94];
   const play=()=>{
     if(!musicEnabled()||!musicMaster) return;
-    const chord=chords[musicStep%chords.length];
-    chord.forEach((f,i)=>playPad(f,i*.05));
-    playBell(pluck[musicStep%pluck.length],.35);
-    playBell(pluck[(musicStep+2)%pluck.length]*2,.95);
+    const t=c.currentTime,o=c.createOscillator(),g=c.createGain();
+    o.type="sine";
+    o.frequency.setValueAtTime(melody[musicStep%melody.length],t);
+    g.gain.setValueAtTime(.0001,t);
+    g.gain.exponentialRampToValueAtTime(.18,t+.03);
+    g.gain.exponentialRampToValueAtTime(.0001,t+.62);
+    o.connect(g);g.connect(musicMaster);
+    o.start(t);o.stop(t+.66);
     musicStep++;
   };
-  play();musicTimer=setInterval(play,3600);
+  play();
+  musicTimer=setInterval(play,700);
 }
 function stopBackgroundMusic(){
   if(musicTimer){clearInterval(musicTimer);musicTimer=null;}
