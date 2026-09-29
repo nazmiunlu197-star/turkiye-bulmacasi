@@ -3,7 +3,7 @@ html,body{margin:0;min-height:100%;background:#17100b}
 body{font-family:Georgia,"Times New Roman",serif}
 button{font:inherit}
 .app{width:min(100%,560px);min-height:100vh;margin:0 auto;background:#17100b;position:relative}
-.reference-home{position:relative;width:100%;line-height:0}
+.reference-screen{position:relative;width:100%;line-height:0}
 .reference-image{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
 .hotspot{
   position:absolute;border:0;background:transparent;padding:0;margin:0;cursor:pointer;
@@ -11,24 +11,29 @@ button{font:inherit}
 }
 .hotspot:focus-visible{outline:3px solid rgba(255,0,0,.75);outline-offset:-3px}
 
-/* Referans görsel üzerindeki görünmez tıklama alanları */
-.settings{left:4%;top:1.1%;width:12%;height:5.5%}
-.daily{left:4.2%;top:29.3%;width:45.6%;height:21.2%}
-.journey{left:50.7%;top:29.3%;width:45.3%;height:21.2%}
+/* Ana ekran görünmez tıklama alanları */
+.home-settings{left:4%;top:1.1%;width:12%;height:5.5%}
+.home-daily{left:4.2%;top:29.3%;width:92%;height:21.2%}
+.home-journey{display:none}
+.home-istanbul{left:4.2%;top:52.2%;width:29.2%;height:15.7%}
+.home-ankara{left:35.3%;top:52.2%;width:29.2%;height:15.7%}
+.home-izmir{left:66.4%;top:52.2%;width:29.4%;height:15.7%}
+.home-old{left:4.2%;top:68.9%;width:29.2%;height:15.7%}
+.home-anatolia{left:35.3%;top:68.9%;width:29.2%;height:15.7%}
+.home-culture{left:66.4%;top:68.9%;width:29.4%;height:15.7%}
+.home-nav-home{left:3%;top:87.6%;width:18%;height:10.6%}
+.home-nav-daily{left:21%;top:87.6%;width:19%;height:10.6%}
+.home-nav-progress{left:40%;top:87.6%;width:19%;height:10.6%}
+.home-nav-collection{left:59%;top:87.6%;width:19%;height:10.6%}
+.home-nav-achievements{left:78%;top:87.6%;width:19%;height:10.6%}
 
-.istanbul{left:4.2%;top:52.2%;width:29.2%;height:15.7%}
-.ankara{left:35.3%;top:52.2%;width:29.2%;height:15.7%}
-.izmir{left:66.4%;top:52.2%;width:29.4%;height:15.7%}
-
-.old{left:4.2%;top:68.9%;width:29.2%;height:15.7%}
-.anatolia{left:35.3%;top:68.9%;width:29.2%;height:15.7%}
-.culture{left:66.4%;top:68.9%;width:29.4%;height:15.7%}
-
-.nav-home{left:3%;top:87.6%;width:18%;height:10.6%}
-.nav-daily{left:21%;top:87.6%;width:19%;height:10.6%}
-.nav-progress{left:40%;top:87.6%;width:19%;height:10.6%}
-.nav-collection{left:59%;top:87.6%;width:19%;height:10.6%}
-.nav-profile{left:78%;top:87.6%;width:19%;height:10.6%}
+/* Koleksiyon ekranı */
+.collection-back{left:5%;top:3.5%;width:12%;height:7%}
+.collection-nav-home{left:4%;top:89.2%;width:18%;height:9.5%}
+.collection-nav-daily{left:22%;top:89.2%;width:19%;height:9.5%}
+.collection-nav-progress{left:41%;top:89.2%;width:19%;height:9.5%}
+.collection-nav-collection{left:60%;top:89.2%;width:19%;height:9.5%}
+.collection-nav-profile{left:79%;top:89.2%;width:17%;height:9.5%}
 
 .placeholder{
   min-height:100vh;padding:28px 20px;background:linear-gradient(#ebd2a0,#c79858);
@@ -44,7 +49,4 @@ button{font:inherit}
 }
 .paper h2{color:#a50d10;font-size:34px;margin:0 0 14px}
 .paper p{font-size:18px;line-height:1.45;margin:0}
-
-@media(min-width:561px){
-  .app{box-shadow:0 0 44px #0009}
-}
+@media(min-width:561px){.app{box-shadow:0 0 44px #0009}}
