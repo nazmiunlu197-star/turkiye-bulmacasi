@@ -121,3 +121,55 @@ button{font:inherit}
 .istanbul-nav-progress{left:41%;top:89.2%;width:19%;height:9.5%}
 .istanbul-nav-collection{left:60%;top:89.2%;width:19%;height:9.5%}
 .istanbul-nav-profile{left:79%;top:89.2%;width:17%;height:9.5%}
+
+/* Oynanabilir İstanbul bulmacası */
+.istanbul-playable{position:absolute;inset:0;z-index:7;pointer-events:none}
+.cw-word{position:absolute;display:flex;gap:.35%;pointer-events:auto}
+.cw-word::before{
+  content:attr(data-number);position:absolute;left:2px;top:1px;z-index:2;
+  font:700 10px/1 Georgia,serif;color:#2a160b;pointer-events:none
+}
+.cw-cell{
+  width:38px;height:38px;max-width:4.05vw;max-height:4.05vw;
+  border:1px solid #5b3921;background:rgba(249,224,171,.96);
+  display:flex;align-items:center;justify-content:center;
+  font:700 clamp(14px,3.2vw,22px)/1 Georgia,serif;color:#251309;
+  cursor:pointer;user-select:none
+}
+.cw-cell.active{outline:3px solid #b11217;outline-offset:-3px}
+.cw-cell.correct{background:rgba(189,222,166,.97)}
+.cw-cell.wrong{background:rgba(239,172,160,.97)}
+.cw-1{left:26.1%;top:30.9%}
+.cw-4{left:25.9%;top:36.7%}
+.cw-6{left:30.7%;top:42.6%}
+.cw-7{left:35.5%;top:47.7%}
+.cw-8{left:30.8%;top:51.4%}
+.cw-side,.cw-check{
+  position:absolute;border:1px solid #8d5a27;background:rgba(244,216,165,.96);
+  color:#3a1d0c;font:700 clamp(10px,2.4vw,15px)/1 Georgia,serif;
+  border-radius:10px;padding:7px 5px;pointer-events:auto
+}
+.cw-hint{left:81.7%;top:31.7%;width:11.2%;height:4.7%}
+.cw-letter{left:81.7%;top:38.7%;width:11.2%;height:4.7%}
+.cw-word-open{left:81.7%;top:45.7%;width:11.2%;height:4.7%}
+.cw-check{left:81.7%;top:52.5%;width:11.2%;height:4.2%;background:#a90f13;color:#fff4dc}
+.cw-message{
+  position:absolute;left:25%;top:56.3%;width:50%;min-height:24px;
+  text-align:center;color:#8e0f12;font:700 clamp(11px,2.5vw,16px)/1.2 Georgia,serif;
+  pointer-events:none
+}
+.cw-keyboard{
+  position:absolute;left:9.3%;right:9.3%;top:72.7%;height:14.2%;
+  display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:1.1%;
+  pointer-events:auto
+}
+.cw-key{
+  width:8.4%;height:27%;border:1px solid #9a6b3a;border-radius:7px;
+  background:rgba(247,218,163,.96);color:#271308;
+  font:700 clamp(13px,3vw,20px)/1 Georgia,serif;
+  box-shadow:0 2px 3px #0003
+}
+.cw-key.backspace{width:9.8%;background:#6b351d;color:#fff0d0}
+@media(max-width:420px){
+  .cw-cell{width:29px;height:29px}
+}
