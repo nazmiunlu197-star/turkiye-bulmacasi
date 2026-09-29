@@ -28,13 +28,15 @@ const fullAppRoutes={
   istanbul:"istanbul",
   "daily-play":"general",
   progress:"progress",
+  collection:"collection",
+  profile:"profile",
   settings:"settings",
   store:"store"
 };
 
 function show(name){
   if(fullAppRoutes[name]){
-    location.href="fullapp.html?v=33#"+fullAppRoutes[name];
+    location.href="fullapp.html?v=40#"+fullAppRoutes[name];
     return;
   }
   hideAll();
