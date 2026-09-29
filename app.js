@@ -27,13 +27,14 @@ function hideAll(){
 const fullAppRoutes={
   istanbul:"istanbul",
   "daily-play":"general",
+  progress:"progress",
   settings:"settings",
   store:"store"
 };
 
 function show(name){
   if(fullAppRoutes[name]){
-    location.href="turkiye_bulmacasi_tum_sistem.html#"+fullAppRoutes[name];
+    location.href="fullapp.html#"+fullAppRoutes[name];
     return;
   }
   hideAll();
