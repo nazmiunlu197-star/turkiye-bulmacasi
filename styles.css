@@ -46,3 +46,25 @@ button{font:inherit}
 .paper h2{color:#a50d10;font-size:34px;margin:0 0 14px}
 .paper p{font-size:18px;line-height:1.45;margin:0}
 @media(min-width:561px){.app{box-shadow:0 0 44px #0009}}
+
+/* Profil */
+.profile-back{left:5%;top:3.5%;width:12%;height:7%}
+.profile-name-wrap{position:absolute;left:34.5%;top:14.9%;width:40%;z-index:8;display:flex;align-items:center;gap:6px}
+.profile-name-input{
+  width:72%;border:0;border-bottom:2px solid rgba(92,49,20,.45);background:#efd29a;
+  color:#2e160b;font-family:Georgia,"Times New Roman",serif;font-size:clamp(18px,4.4vw,31px);
+  font-weight:700;padding:2px 4px;line-height:1.1;outline:none
+}
+.profile-name-save{
+  border:1px solid #7a3b16;background:#8d321d;color:#fff3d1;border-radius:999px;
+  padding:5px 8px;font-size:clamp(9px,2vw,13px);font-weight:700
+}
+.profile-achievements{left:8%;top:45.5%;width:88%;height:7.4%}
+.profile-progress{left:8%;top:53.8%;width:88%;height:7.4%}
+.profile-collection{left:8%;top:62.1%;width:88%;height:7.4%}
+.profile-settings{left:8%;top:70.4%;width:88%;height:7.4%}
+.profile-nav-home{left:4%;top:89.2%;width:18%;height:9.5%}
+.profile-nav-daily{left:22%;top:89.2%;width:19%;height:9.5%}
+.profile-nav-progress{left:41%;top:89.2%;width:19%;height:9.5%}
+.profile-nav-collection{left:60%;top:89.2%;width:19%;height:9.5%}
+.profile-nav-profile{left:79%;top:89.2%;width:17%;height:9.5%}
