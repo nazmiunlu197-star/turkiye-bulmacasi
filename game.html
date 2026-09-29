@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=40">
+<link rel="stylesheet" href="styles.css?v=43">
 </head>
 <body>
 <div class="app" id="app">
@@ -95,15 +95,54 @@
     <button class="hotspot achievements-nav-achievements" data-action="achievements"></button>
   </section>
 
-  <section id="settingsScreen" class="reference-screen settings-screen" hidden>
-    <img class="reference-image" src="file_000000003e988210879971eccb5a920b.jpg" alt="Ayarlar ekranı">
-    <button class="hotspot settings-back" data-action="home"></button>
-    <button class="hotspot settings-nav-home" data-action="home"></button>
-    <button class="hotspot settings-nav-daily" data-action="daily"></button>
-    <button class="hotspot settings-nav-progress" data-action="progress"></button>
-    <button class="hotspot settings-nav-collection" data-action="collection"></button>
-    <button class="hotspot settings-nav-achievements" data-action="achievements"></button>
-    <button class="hotspot settings-nav-profile" data-action="profile"></button>
+  <section id="settingsScreen" class="settings-portrait" hidden>
+    <div class="settings-hero">
+      <button class="settings-round-back" data-action="home" aria-label="Geri">←</button>
+      <div class="settings-brand">Türkiye <span>Bulmacası</span></div>
+      <div class="settings-balance">★ <span id="settingsStars">320</span></div>
+    </div>
+    <div class="settings-card">
+      <h1>Ayarlar</h1>
+      <p class="settings-subtitle">Uygulama tercihleri</p>
+
+      <div class="settings-row">
+        <div><b>♫ Arka Plan Müziği</b><small>Nostaljik enstrümantal müzik</small></div>
+        <button id="musicToggle" class="settings-switch" type="button">Açık</button>
+      </div>
+      <div class="settings-row">
+        <div><b>🔊 Ses Efektleri</b><small>Buton ve doğru cevap sesleri</small></div>
+        <button id="sfxToggle" class="settings-switch" type="button">Açık</button>
+      </div>
+      <div class="settings-row">
+        <div><b>🔔 Bildirimler</b><small>Günlük bulmaca hatırlatmaları</small></div>
+        <button id="notifToggle" class="settings-switch" type="button">Açık</button>
+      </div>
+      <div class="settings-row">
+        <div><b>Aa Yazı Boyutu</b><small>Ekran yazılarının büyüklüğü</small></div>
+        <button id="fontToggle" class="settings-choice" type="button">Orta</button>
+      </div>
+      <div class="settings-row">
+        <div><b>◐ Karanlık Mod</b><small>Göz yormayan koyu görünüm</small></div>
+        <button id="darkToggle" class="settings-switch" type="button">Kapalı</button>
+      </div>
+      <div class="settings-row">
+        <div><b>🌐 Dil</b><small>Uygulama dili</small></div>
+        <button class="settings-choice" type="button" disabled>Türkçe</button>
+      </div>
+
+      <button class="settings-action primary" data-action="store">Mağaza & Reklamlar</button>
+      <button class="settings-action" id="aboutBtn" type="button">Hakkında • v1.0.0</button>
+      <button class="settings-action" id="supportBtn" type="button">Destek</button>
+      <div id="settingsMessage" class="settings-message" aria-live="polite"></div>
+    </div>
+    <nav class="settings-bottom-nav">
+      <button data-action="home">⌂<span>Ana Sayfa</span></button>
+      <button data-action="daily">▣<span>Günlük</span></button>
+      <button data-action="progress">▥<span>İlerleme</span></button>
+      <button data-action="collection">★<span>Koleksiyon</span></button>
+      <button data-action="achievements">♛<span>Başarılar</span></button>
+      <button data-action="profile">◉<span>Profilim</span></button>
+    </nav>
   </section>
 
   <section id="profileScreen" class="reference-screen" hidden>
@@ -135,6 +174,6 @@
     </div>
   </section>
 </div>
-<script src="app.js?v=41"></script>
+<script src="app.js?v=43"></script>
 </body>
 </html>
