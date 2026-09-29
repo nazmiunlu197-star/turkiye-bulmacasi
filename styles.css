@@ -3,6 +3,7 @@ html,body{margin:0;min-height:100%;background:#17100b}
 body{font-family:Georgia,"Times New Roman",serif}
 button{font:inherit}
 .app{width:min(100%,560px);min-height:100vh;margin:0 auto;background:#17100b;position:relative}
+.app.settings-mode{width:min(100%,1000px)}
 .reference-screen{position:relative;width:100%;line-height:0}
 .reference-image{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
 .hotspot{position:absolute;border:0;background:transparent;padding:0;margin:0;cursor:pointer;z-index:5;-webkit-tap-highlight-color:transparent}
@@ -39,6 +40,15 @@ button{font:inherit}
 .achievements-nav-progress{left:41%;top:89.2%;width:19%;height:9.5%}
 .achievements-nav-collection{left:60%;top:89.2%;width:19%;height:9.5%}
 .achievements-nav-achievements{left:79%;top:89.2%;width:17%;height:9.5%}
+
+/* Ayarlar yatay ekran */
+.settings-back{left:3%;top:4%;width:9%;height:9%}
+.settings-nav-home{left:18%;top:89%;width:13%;height:10%}
+.settings-nav-daily{left:31%;top:89%;width:13%;height:10%}
+.settings-nav-progress{left:44%;top:89%;width:13%;height:10%}
+.settings-nav-collection{left:57%;top:89%;width:13%;height:10%}
+.settings-nav-achievements{left:70%;top:89%;width:13%;height:10%}
+.settings-nav-profile{left:83%;top:89%;width:13%;height:10%}
 
 .placeholder{min-height:100vh;padding:28px 20px;background:linear-gradient(#ebd2a0,#c79858);color:#2d160c}
 .back{border:1px solid #9a652d;background:#f0d08d;border-radius:999px;padding:11px 16px;color:#2d160c;font-weight:700}
