@@ -17,7 +17,7 @@ import android.window.OnBackInvokedDispatcher;
 public class MainActivity extends Activity {
     private WebView webView;
     private static final String APP_URL =
-        "https://nazmiunlu197-star.github.io/turkiye-bulmacasi/game.html?v=51";
+        "https://nazmiunlu197-star.github.io/turkiye-bulmacasi/index.html?v=53";
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
         settings.setMediaPlaybackRequiresUserGesture(false);
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         settings.setLoadWithOverviewMode(true);
         settings.setUseWideViewPort(true);
 
