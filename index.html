@@ -7,71 +7,35 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="phone">
-  <main class="home" id="home">
-    <section class="masthead">
-      <button class="round gear" data-action="settings" aria-label="Ayarlar">⚙</button>
+<div class="app">
+  <main id="home" class="reference-home" aria-label="Türkiye Bulmacası ana ekranı">
+    <img class="reference-image" src="file_0000000095d881f4a1713e208409ffb4.png" alt="Türkiye Bulmacası">
 
-      <div class="brand">
-        <div class="brand-top">Türkiye</div>
-        <div class="brand-bottom">Bulmacası</div>
-        <div class="ornament">— ❧ —</div>
-        <div class="motto">Geçmiş, hatırladıkça yeniden yaşar.</div>
-      </div>
+    <button class="hotspot settings" data-action="settings" aria-label="Ayarlar"></button>
+    <button class="hotspot daily" data-action="daily" aria-label="Günün Bulmacası"></button>
+    <button class="hotspot journey" data-action="journey" aria-label="Türkiye Yolculuğu"></button>
 
-      <div class="wallet">
-        <span class="coin">★</span>
-        <b>320</b>
-        <button aria-label="Yıldız ekle">+</button>
-      </div>
-    </section>
+    <button class="hotspot istanbul" data-action="istanbul" aria-label="İstanbul Bulmacaları"></button>
+    <button class="hotspot ankara" data-action="ankara" aria-label="Ankara Bulmacaları"></button>
+    <button class="hotspot izmir" data-action="izmir" aria-label="İzmir Bulmacaları"></button>
+    <button class="hotspot old" data-action="old" aria-label="Eski Türkiye Bulmacaları"></button>
+    <button class="hotspot anatolia" data-action="anatolia" aria-label="Anadolu Bulmacaları"></button>
+    <button class="hotspot culture" data-action="culture" aria-label="Kültür ve Yaşam Bulmacaları"></button>
 
-    <section class="feature-row">
-      <article class="feature-card daily">
-        <div class="shade"></div>
-        <div class="feature-content">
-          <h2>Günün<br>Bulmacası</h2>
-          <p class="date">▣ 28 Eylül 2026</p>
-          <button data-action="daily">Oyna <span>→</span></button>
-        </div>
-      </article>
-
-      <article class="feature-card journey">
-        <div class="shade"></div>
-        <div class="feature-content">
-          <h2>Türkiye<br>Yolculuğu</h2>
-          <p>Türkiye’yi keşfet,<br>bilginle ilerle.</p>
-          <button data-action="journey">Oyna <span>→</span></button>
-        </div>
-      </article>
-    </section>
-
-    <section class="city-grid">
-      <button class="city-card istanbul" data-action="istanbul"><span>İstanbul<br>Bulmacaları</span><b>›</b></button>
-      <button class="city-card ankara" data-action="ankara"><span>Ankara<br>Bulmacaları</span><b>›</b></button>
-      <button class="city-card izmir" data-action="izmir"><span>İzmir<br>Bulmacaları</span><b>›</b></button>
-
-      <button class="city-card old" data-action="old"><span>Eski Türkiye<br>Bulmacaları</span><b>›</b></button>
-      <button class="city-card anatolia" data-action="anatolia"><span>Anadolu<br>Bulmacaları</span><b>›</b></button>
-      <button class="city-card culture" data-action="culture"><span>Kültür ve Yaşam<br>Bulmacaları</span><b>›</b></button>
-    </section>
+    <button class="hotspot nav-home" data-action="home" aria-label="Ana Sayfa"></button>
+    <button class="hotspot nav-daily" data-action="daily" aria-label="Günlük Bulmaca"></button>
+    <button class="hotspot nav-progress" data-action="progress" aria-label="İlerleme"></button>
+    <button class="hotspot nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
+    <button class="hotspot nav-profile" data-action="profile" aria-label="Profil"></button>
   </main>
 
   <section class="placeholder" id="placeholder" hidden>
-    <button class="back" data-action="home">←</button>
+    <button class="back" data-action="home">← Ana Sayfa</button>
     <div class="paper">
       <h2 id="placeholderTitle">Yakında</h2>
       <p>Bu ekranı onaylanan tasarıma göre sırayla bağlıyoruz.</p>
     </div>
   </section>
-
-  <nav class="bottom-nav" aria-label="Ana menü">
-    <button class="active" data-action="home" aria-label="Ana Sayfa"><span>⌂</span></button>
-    <button data-action="daily" aria-label="Günlük Bulmaca"><span>▣</span></button>
-    <button data-action="progress" aria-label="İlerleme"><span>▥</span></button>
-    <button data-action="collection" aria-label="Koleksiyon"><span>★</span></button>
-    <button data-action="profile" aria-label="Profil"><span>◉</span></button>
-  </nav>
 </div>
 <script src="app.js"></script>
 </body>
