@@ -272,3 +272,13 @@ body.tb-font-small .settings-card h1{font-size:31px!important}
 /* V48: use dedicated dark-home artwork; do not dim it again */
 body.tb-dark #home .reference-image{filter:none!important}
 body.tb-dark #home::after{display:none!important}
+
+
+/* V51: ana ekran telefon maketini kırp — uygulama kenardan kenara görünür */
+.app{overflow:hidden}
+#home{
+  width:109%;
+  margin-left:-4.5%;
+  margin-top:-8%;
+  overflow:hidden;
+}
