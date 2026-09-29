@@ -6,8 +6,8 @@ const collectionScreen=document.getElementById("collectionScreen");
 const achievementsScreen=document.getElementById("achievementsScreen");
 const settingsScreen=document.getElementById("settingsScreen");
 const profileScreen=document.getElementById("profileScreen");
-const profileName=document.getElementById("profileName");
-const saveProfileName=document.getElementById("saveProfileName");
+const profileNameDisplay=document.getElementById("profileNameDisplay");
+const editProfileName=document.getElementById("editProfileName");
 const placeholder=document.getElementById("placeholder");
 const title=document.getElementById("placeholderTitle");
 
@@ -42,12 +42,17 @@ document.addEventListener("click",e=>{
 });
 
 const savedProfileName=localStorage.getItem("turkiyeBulmacasiProfileName");
-if(savedProfileName) profileName.value=savedProfileName;
+if(savedProfileName){
+  profileNameDisplay.textContent=savedProfileName;
+  profileNameDisplay.classList.add("custom");
+}
 
-saveProfileName.addEventListener("click",()=>{
-  const name=profileName.value.trim()||"Oyuncu";
-  profileName.value=name;
+editProfileName.addEventListener("click",()=>{
+  const current=localStorage.getItem("turkiyeBulmacasiProfileName")||"Akın";
+  const next=window.prompt("Profil adını yaz:",current);
+  if(next===null) return;
+  const name=next.trim().slice(0,20)||"Oyuncu";
   localStorage.setItem("turkiyeBulmacasiProfileName",name);
-  saveProfileName.textContent="✓";
-  setTimeout(()=>saveProfileName.textContent="✎",900);
+  profileNameDisplay.textContent=name;
+  profileNameDisplay.classList.add("custom");
 });
