@@ -95,3 +95,21 @@ button{font:inherit}
   .main-bottom-nav button svg{width:24px;height:24px}
   .main-bottom-nav button span{font-size:9px}
 }
+
+.main-bottom-nav-bg{
+  position:absolute;left:5.4%;right:5.4%;bottom:1.1%;height:10.5%;
+  background:#ead2a2;border-radius:28px;z-index:7;pointer-events:none
+}
+.main-bottom-nav{
+  position:absolute;left:5.4%;right:5.4%;bottom:1.1%;height:10.5%;
+  display:grid;grid-template-columns:repeat(6,1fr);z-index:9
+}
+.main-bottom-nav button{
+  border:0;background:transparent;color:#3b2414;padding:5px 1px 4px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  font-family:Georgia,"Times New Roman",serif;font-weight:700;
+  -webkit-tap-highlight-color:transparent
+}
+.main-bottom-nav .nav-icon{font-size:clamp(24px,5.5vw,38px);line-height:.9}
+.main-bottom-nav button span:last-child{font-size:clamp(9px,2vw,13px);line-height:1}
+.main-bottom-nav button.active{color:#a80f12}
