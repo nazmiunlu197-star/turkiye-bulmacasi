@@ -1,15 +1,18 @@
-const state={screen:"home",score:120,q:0};
-const questions=[
-{q:"Türkiye'nin başkenti hangisidir?",o:["İstanbul","Ankara","İzmir","Bursa"],a:1},
-{q:"İstanbul Boğazı hangi iki denizi birbirine bağlar?",o:["Ege - Akdeniz","Karadeniz - Marmara","Marmara - Ege","Karadeniz - Ege"],a:1},
-{q:"Türkiye'nin en uzun nehri hangisidir?",o:["Kızılırmak","Fırat","Dicle","Sakarya"],a:0}
-];
-const screen=document.getElementById("screen"),score=document.getElementById("score");
-function home(){return '<section class="hero"><h2>Türkiye\'yi bulmacalarla keşfet</h2><p>Her gün yeni sorular çöz, illeri tamamla, koleksiyonunu büyüt ve başarılarınla ilerle.</p></section><div class="section-title"><h3>Bugünün Seçimleri</h3><span>Her gün yenilenir</span></div><section class="grid"><article class="card feature"><div><div class="emoji">📜</div><h4>Günün Bulmacası</h4><p>Türkiye ve genel kültürden 10 karışık soru.</p></div><button data-action="daily">Başla</button></article><article class="card feature"><div><div class="emoji">🧠</div><h4>Genel Kültür</h4><p>Tarih, coğrafya, kültür ve şehirlerden karışık sorular.</p></div><button data-action="general">Oyna</button></article></section><div class="section-title"><h3>İl Bulmacaları</h3><span>Şehrini seç</span></div><section class="grid"><article class="card"><span class="tag">İstanbul</span><h4>İstanbul Bulmacası</h4><p>Boğaz, tarihî yapılar, semtler ve kültür.</p><button data-action="istanbul">Devam Et</button></article><article class="card"><span class="tag">Ankara</span><h4>Ankara Bulmacası</h4><p>Başkent, tarih, müzeler ve simge noktalar.</p><button data-action="ankara">Başla</button></article></section>'}
-function quiz(title){const q=questions[state.q%questions.length];const opts=q.o.map((x,i)=>'<button class="option" data-answer="'+i+'">'+String.fromCharCode(65+i)+'. '+x+'</button>').join("");return '<button class="back" data-action="home">← Ana Sayfa</button><section class="panel"><div class="qnum">Soru '+(state.q+1)+' / 10</div><div class="progress"><div style="width:'+((state.q+1)*10)+'%"></div></div><h2>'+title+'</h2><div class="question">'+q.q+'</div><div class="list">'+opts+'</div></section>'}
-function listScreen(title,items){return '<section class="panel"><h2>'+title+'</h2><div class="list">'+items.map(x=>'<div class="item"><span>'+x[0]+'</span><strong>'+x[1]+'</strong></div>').join("")+'</div></section>'}
-function profile(){return '<button class="back" data-action="home">← Ana Sayfa</button><section class="panel"><h2>Profil</h2><div class="stats"><div class="stat"><strong>7</strong><span>Seviye</span></div><div class="stat"><strong>12</strong><span>Rozet</span></div><div class="stat"><strong>68%</strong><span>Başarı</span></div></div></section>'}
-function setScreen(name){state.screen=name;render();window.scrollTo(0,0);document.querySelectorAll(".bottom button").forEach(b=>b.classList.toggle("active",b.dataset.nav===name))}
-function render(){score.textContent=state.score;if(state.screen==="home")screen.innerHTML=home();else if(state.screen==="profile")screen.innerHTML=profile();else if(state.screen==="progress")screen.innerHTML=listScreen("İlerleme",[["İstanbul","72%"],["Ankara","25%"],["İzmir","Kilitli"]]);else if(state.screen==="collection")screen.innerHTML=listScreen("Koleksiyon",[["🏺 Anadolu Eseri","1/1"],["🧿 Nazar Boncuğu","1/1"],["🕌 Şehir Simgeleri","3/12"]]);else if(state.screen==="achievements")screen.innerHTML=listScreen("Başarılar",[["🏆 İlk 10 Soru","Tamamlandı"],["🔥 3 Gün Seri","Tamamlandı"],["🗺️ 5 İl Tamamla","2/5"]]);else if(state.screen==="settings")screen.innerHTML=listScreen("Ayarlar",[["🔊 Sesler","Açık"],["🌙 Görünüm","Sepya"],["🔔 Bildirimler","Açık"]]);else if(state.screen==="daily")screen.innerHTML=quiz("Günün Bulmacası");else if(state.screen==="general")screen.innerHTML=quiz("Genel Kültür");else if(state.screen==="istanbul")screen.innerHTML=quiz("İstanbul Bulmacası");else if(state.screen==="ankara")screen.innerHTML=quiz("Ankara Bulmacası")}
-document.addEventListener("click",e=>{const nav=e.target.closest("[data-nav]");if(nav){setScreen(nav.dataset.nav);return}const action=e.target.closest("[data-action]");if(action){setScreen(action.dataset.action);return}const ans=e.target.closest("[data-answer]");if(ans){const q=questions[state.q%questions.length],picked=Number(ans.dataset.answer);document.querySelectorAll(".option").forEach(b=>b.disabled=true);if(picked===q.a){ans.classList.add("correct");state.score+=10}else{ans.classList.add("wrong");const c=document.querySelector('[data-answer="'+q.a+'"]');if(c)c.classList.add("correct")}score.textContent=state.score;setTimeout(()=>{state.q=(state.q+1)%questions.length;render()},900)}});
-render();
+const home=document.getElementById("home");
+const placeholder=document.getElementById("placeholder");
+const title=document.getElementById("placeholderTitle");
+const labels={
+  settings:"Ayarlar",daily:"Günün Bulmacası",journey:"Türkiye Yolculuğu",
+  istanbul:"İstanbul Bulmacaları",ankara:"Ankara Bulmacaları",izmir:"İzmir Bulmacaları",
+  old:"Eski Türkiye Bulmacaları",anatolia:"Anadolu Bulmacaları",culture:"Kültür ve Yaşam",
+  progress:"İlerleme",collection:"Koleksiyon",profile:"Profil"
+};
+function show(name){
+  document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.toggle("active",b.dataset.action===name));
+  if(name==="home"){home.hidden=false;placeholder.hidden=true;return}
+  home.hidden=true;placeholder.hidden=false;title.textContent=labels[name]||"Türkiye Bulmacası";
+}
+document.addEventListener("click",e=>{
+  const el=e.target.closest("[data-action]");
+  if(el) show(el.dataset.action);
+});
