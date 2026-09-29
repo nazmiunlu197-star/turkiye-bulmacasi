@@ -552,7 +552,7 @@ function runRegressionTests(){
  if(errors.length)throw new Error('V33 regresyon testi başarısız: '+errors.join(' | '));
  return true;
 }
-function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),1800)}if(!location.hash){location.href='game.html?v=40';}else{home();}
+function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),1800)}if(!location.hash){location.href='game.html?v=40';}
 </script><script>
 window.addEventListener('load',function(){
  const h=(location.hash||'').slice(1);
