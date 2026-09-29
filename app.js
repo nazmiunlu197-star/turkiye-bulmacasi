@@ -48,6 +48,6 @@ saveProfileName.addEventListener("click",()=>{
   const name=profileName.value.trim()||"Oyuncu";
   profileName.value=name;
   localStorage.setItem("turkiyeBulmacasiProfileName",name);
-  saveProfileName.textContent="Kaydedildi";
-  setTimeout(()=>saveProfileName.textContent="Kaydet",1200);
+  saveProfileName.textContent="✓";
+  setTimeout(()=>saveProfileName.textContent="✎",900);
 });
