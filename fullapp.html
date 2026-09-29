@@ -125,7 +125,7 @@
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
 const MAIN='file_0000000095d881f4a1713e208409ffb4.png', GAME='file_0000000091ec821083759393667ca560.png'; const bg=document.getElementById('bg'),ui=document.getElementById('ui'),toast=document.getElementById('toast');
-function home(){bg.src=MAIN;ui.innerHTML='<div class="starcount homeStarCount">'+stars+'</div><button class="homeStoreBtn" aria-label="Mağaza ve Reklamlar">🛍 Mağaza</button><button class="hot play" aria-label="Günün Bulmacasını Oyna"></button><button class="hot istanbulCard" aria-label="İstanbul Bulmacaları"></button><button class="hot dailyHot" aria-label="Günlük"></button><button class="hot progressHot" aria-label="İlerleme"></button><button class="hot collectionHot" aria-label="Koleksiyon"></button><button class="hot profileHot" aria-label="Profilim"></button>';ui.querySelector('.homeStoreBtn').onclick=()=>storePage(true);ui.querySelector('.play').onclick=startGeneral;ui.querySelector('.istanbulCard').onclick=startIstanbul;ui.querySelector('.dailyHot').onclick=startGeneral;ui.querySelector('.progressHot').onclick=progressPage;ui.querySelector('.collectionHot').onclick=collectionPage;ui.querySelector('.profileHot').onclick=profilePage}
+function home(){location.href='game.html?v=40';}
 function dailyPage(){
  bg.src=MAIN;
  ui.innerHTML=`<div class="dailyPage"><button class="dailyBack" aria-label="Geri">←</button><div class="dailyTitle">Türkiye Bulmacası<span>Günlük Bulmaca</span></div><div class="dailyPaper"><div class="dailyBadge">28 Eylül</div><h2>Bugünün İstanbul Bulmacası</h2><p>Her gün yeni bir kısa bulmaca seni bekliyor.</p><div class="dailyReward">★ Günlük ödül: +25 yıldız</div><button class="dailyStart">Günün Bulmacasını Oyna</button></div><div class="dailyNav"><span>Ana Sayfa</span><b>Günlük</b><span>İlerleme</span><span>Koleksiyon</span><span>Profilim</span></div></div>`;
@@ -552,7 +552,7 @@ function runRegressionTests(){
  if(errors.length)throw new Error('V33 regresyon testi başarısız: '+errors.join(' | '));
  return true;
 }
-function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),1800)}home();
+function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),1800)}if(!location.hash){location.href='game.html?v=40';}else{home();}
 </script><script>
 window.addEventListener('load',function(){
  const h=(location.hash||'').slice(1);
