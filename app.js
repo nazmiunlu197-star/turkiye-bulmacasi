@@ -45,7 +45,7 @@ function syncApprovedScreens(){
 }
 
 function show(name){
-  if(fullAppRoutes[name]){location.href="fullapp.html?v=44#"+fullAppRoutes[name];return;}
+  if(fullAppRoutes[name]){location.href="fullapp.html?v=45#"+fullAppRoutes[name];return;}
   hideAll();
   if(name==="home") home.hidden=false;
   else if(name==="istanbul") istanbulScreen.hidden=false;
@@ -75,46 +75,71 @@ editProfileName.addEventListener("click",()=>{
   profileNameDisplay.classList.add("custom");
 });
 
-let musicCtx=null,musicTimer=null,musicStep=0,musicMaster=null;
+let musicCtx=null,musicTimer=null,musicMaster=null,musicStep=0;
 function musicEnabled(){const v=localStorage.getItem("tb_music");return v===null?true:v==="1";}
-function setMusicEnabled(on){localStorage.setItem("tb_music",on?"1":"0");if(on)startBackgroundMusic();else stopBackgroundMusic();updateSettingsUI();}
-function startBackgroundMusic(){
-  if(!musicEnabled()||musicTimer) return;
+function sfxEnabled(){const v=localStorage.getItem("tb_sfx");return v===null?true:v==="1";}
+function ensureAudio(){
   const AC=window.AudioContext||window.webkitAudioContext;
-  if(!AC) return;
+  if(!AC) return null;
   if(!musicCtx) musicCtx=new AC();
   if(musicCtx.state==="suspended") musicCtx.resume();
+  return musicCtx;
+}
+function setMusicEnabled(on){localStorage.setItem("tb_music",on?"1":"0");if(on)startBackgroundMusic();else stopBackgroundMusic();updateSettingsUI();}
+function tone(freq,dur=0.08,vol=0.08,type="sine",delay=0){
+  if(!sfxEnabled()) return;
+  const c=ensureAudio(); if(!c) return;
+  const t=c.currentTime+delay,o=c.createOscillator(),g=c.createGain();
+  o.type=type;o.frequency.setValueAtTime(freq,t);
+  g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+0.008);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+0.03);
+}
+function playClick(){tone(520,0.045,0.055,"sine");}
+function playCorrect(){tone(523.25,0.16,0.09,"sine");tone(659.25,0.2,0.08,"sine",0.09);tone(783.99,0.28,0.07,"sine",0.18);}
+function playWrong(){tone(180,0.1,0.065,"triangle");tone(145,0.13,0.055,"triangle",0.07);}
+function startBackgroundMusic(){
+  if(!musicEnabled()||musicTimer) return;
+  const c=ensureAudio(); if(!c) return;
   if(!musicMaster){
-    musicMaster=musicCtx.createGain();
-    musicMaster.gain.value=0.22;
-    musicMaster.connect(musicCtx.destination);
+    musicMaster=c.createGain();musicMaster.gain.value=0.34;
+    const filter=c.createBiquadFilter();filter.type="lowpass";filter.frequency.value=1700;filter.Q.value=.5;
+    musicMaster.connect(filter);filter.connect(c.destination);
   }
-  const melody=[329.63,392,440,523.25,493.88,440,392,329.63,293.66,329.63,392,440,392,349.23,329.63,293.66];
-  const bass=[130.81,130.81,146.83,146.83,174.61,174.61,146.83,146.83];
-  const playVoice=(freq,type,vol,dur,delay=0)=>{
-    const t=musicCtx.currentTime+delay;
-    const osc=musicCtx.createOscillator(),gain=musicCtx.createGain();
-    osc.type=type;osc.frequency.setValueAtTime(freq,t);
-    gain.gain.setValueAtTime(0.0001,t);
-    gain.gain.exponentialRampToValueAtTime(vol,t+0.03);
-    gain.gain.exponentialRampToValueAtTime(0.0001,t+dur);
-    osc.connect(gain);gain.connect(musicMaster);
-    osc.start(t);osc.stop(t+dur+0.05);
+  const chords=[
+    [220.00,261.63,329.63],[196.00,246.94,293.66],[174.61,220.00,261.63],[196.00,246.94,329.63],
+    [220.00,261.63,329.63],[164.81,220.00,261.63],[174.61,220.00,293.66],[196.00,246.94,329.63]
+  ];
+  const pluck=[329.63,392.00,440.00,392.00,329.63,293.66,261.63,293.66];
+  const playPad=(freq,delay=0)=>{
+    const t=c.currentTime+delay,o=c.createOscillator(),g=c.createGain();
+    o.type="sine";o.frequency.setValueAtTime(freq,t);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.12,t+.55);
+    g.gain.setValueAtTime(.12,t+2.7);g.gain.exponentialRampToValueAtTime(.0001,t+3.7);
+    o.connect(g);g.connect(musicMaster);o.start(t);o.stop(t+3.8);
+  };
+  const playBell=(freq,delay=0)=>{
+    const t=c.currentTime+delay,o=c.createOscillator(),g=c.createGain();
+    o.type="triangle";o.frequency.setValueAtTime(freq,t);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.075,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+1.15);
+    o.connect(g);g.connect(musicMaster);o.start(t);o.stop(t+1.2);
   };
   const play=()=>{
-    if(!musicEnabled()||!musicCtx) return;
-    const i=musicStep%melody.length;
-    playVoice(melody[i],"triangle",0.55,0.58);
-    if(i%2===0) playVoice(bass[Math.floor(i/2)%bass.length],"sine",0.24,1.05);
-    if(i%4===0){
-      playVoice(melody[i]/2,"sine",0.10,1.3,0.08);
-      playVoice(melody[i]*1.25,"triangle",0.08,0.85,0.16);
-    }
+    if(!musicEnabled()||!musicMaster) return;
+    const chord=chords[musicStep%chords.length];
+    chord.forEach((f,i)=>playPad(f,i*.05));
+    playBell(pluck[musicStep%pluck.length],.35);
+    playBell(pluck[(musicStep+2)%pluck.length]*2,.95);
     musicStep++;
   };
-  play();musicTimer=setInterval(play,640);
+  play();musicTimer=setInterval(play,3600);
 }
-function stopBackgroundMusic(){if(musicTimer){clearInterval(musicTimer);musicTimer=null;}if(musicMaster&&musicCtx){musicMaster.gain.cancelScheduledValues(musicCtx.currentTime);musicMaster.gain.setTargetAtTime(0.0001,musicCtx.currentTime,0.05);setTimeout(()=>{if(musicMaster){try{musicMaster.disconnect()}catch(e){}musicMaster=null;}},180);}}
+function stopBackgroundMusic(){
+  if(musicTimer){clearInterval(musicTimer);musicTimer=null;}
+  if(musicMaster&&musicCtx){
+    const g=musicMaster;g.gain.cancelScheduledValues(musicCtx.currentTime);g.gain.setTargetAtTime(.0001,musicCtx.currentTime,.08);
+    setTimeout(()=>{try{g.disconnect()}catch(e){}if(musicMaster===g)musicMaster=null;},350);
+  }
+}
 function settingBool(key,def=true){const v=localStorage.getItem(key);return v===null?def:v==="1";}
 function setSettingBool(key,val){localStorage.setItem(key,val?"1":"0");}
 function settingMessage(t){const m=document.getElementById("settingsMessage");if(!m)return;m.textContent=t;clearTimeout(settingMessage.t);settingMessage.t=setTimeout(()=>m.textContent="",1300);}
@@ -138,6 +163,8 @@ function initSettingsControls(){
 document.addEventListener("pointerdown",()=>{if(musicEnabled())startBackgroundMusic();},{once:true});
 initSettingsControls();syncApprovedScreens();
 
+
+document.addEventListener("pointerup",e=>{const b=e.target.closest("button,[data-action],.cw-cell");if(b&&sfxEnabled())playClick();}); // data-tb-sfx-hook
 function initIstanbulCrossword(){
   const root=document.getElementById("istanbulPlayable");if(!root)return;
   const words=[...root.querySelectorAll(".cw-word")];let activeWord=null,activeIndex=0;
@@ -154,7 +181,7 @@ function initIstanbulCrossword(){
   function revealOne(){if(!activeWord)return;const answer=[...activeWord.dataset.answer];const cells=[...activeWord.children];cells[activeIndex].textContent=answer[activeIndex];cells[activeIndex].classList.add("correct");}
   document.getElementById("cwHint").addEventListener("click",revealOne);document.getElementById("cwLetter").addEventListener("click",revealOne);
   document.getElementById("cwWord").addEventListener("click",()=>{if(!activeWord)return;const answer=[...activeWord.dataset.answer];[...activeWord.children].forEach((c,i)=>{c.textContent=answer[i];c.classList.add("correct")});});
-  document.getElementById("cwCheck").addEventListener("click",()=>{let allCorrect=true,hasEmpty=false;words.forEach(w=>{const ans=[...w.dataset.answer];[...w.children].forEach((c,i)=>{const val=(c.textContent||"").toLocaleUpperCase("tr-TR");c.classList.remove("correct","wrong");if(!val){hasEmpty=true;allCorrect=false;return;}if(val===ans[i])c.classList.add("correct");else{c.classList.add("wrong");allCorrect=false;}});});const m=document.getElementById("cwMessage");m.textContent=allCorrect?"Tebrikler! İstanbul Bulmacası tamamlandı.":(hasEmpty?"Eksik kareler var.":"Bazı harfler yanlış.");});
+  document.getElementById("cwCheck").addEventListener("click",()=>{let allCorrect=true,hasEmpty=false;words.forEach(w=>{const ans=[...w.dataset.answer];[...w.children].forEach((c,i)=>{const val=(c.textContent||"").toLocaleUpperCase("tr-TR");c.classList.remove("correct","wrong");if(!val){hasEmpty=true;allCorrect=false;return;}if(val===ans[i])c.classList.add("correct");else{c.classList.add("wrong");allCorrect=false;}});});const m=document.getElementById("cwMessage");m.textContent=allCorrect?"Tebrikler! İstanbul Bulmacası tamamlandı.":(hasEmpty?"Eksik kareler var.":"Bazı harfler yanlış.");if(allCorrect)playCorrect();else if(!hasEmpty)playWrong();});
 }
 initIstanbulCrossword();
 window.addEventListener('load',()=>{if(location.hash==='achievements')setTimeout(()=>show('achievements'),60);});
