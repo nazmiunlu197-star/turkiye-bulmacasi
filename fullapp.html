@@ -159,7 +159,7 @@
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
 const MAIN='file_0000000095d881f4a1713e208409ffb4.png', GAME='file_0000000091ec821083759393667ca560.png'; const bg=document.getElementById('bg'),ui=document.getElementById('ui'),toast=document.getElementById('toast');
-function home(){location.href='game.html?v=40';}
+function home(){location.href='game.html?v=45';}
 function dailyPage(){
  bg.src=MAIN;
  ui.innerHTML=`<div class="dailyPage"><button class="dailyBack" aria-label="Geri">←</button><div class="dailyTitle">Türkiye Bulmacası<span>Günlük Bulmaca</span></div><div class="dailyPaper"><div class="dailyBadge">28 Eylül</div><h2>Bugünün İstanbul Bulmacası</h2><p>Her gün yeni bir kısa bulmaca seni bekliyor.</p><div class="dailyReward">★ Günlük ödül: +25 yıldız</div><button class="dailyStart">Günün Bulmacasını Oyna</button></div><div class="dailyNav"><span>Ana Sayfa</span><b>Günlük</b><span>İlerleme</span><span>Koleksiyon</span><span>Profilim</span></div></div>`;
@@ -222,7 +222,7 @@ function profilePage(){
  <button class="refHot profileRefProfile" aria-label="Profilim"></button>`;
  ui.querySelector('.profileRefBack').onclick=home;
  ui.querySelector('.profileRefEdit').onclick=()=>{const cur=localStorage.getItem('tb_profile_name')||'Akın';const next=prompt('Profil adını yaz:',cur);if(next===null)return;const v=next.trim().slice(0,20)||'Oyuncu';localStorage.setItem('tb_profile_name',v);profilePage();};
- ui.querySelector('.profileRefAchievements').onclick=()=>{location.href='game.html?v=41#achievements';};
+ ui.querySelector('.profileRefAchievements').onclick=()=>{location.href='game.html?v=45#achievements';};
  ui.querySelector('.profileRefProgress').onclick=progressPage;
  ui.querySelector('.profileRefCollection').onclick=collectionPage;
  ui.querySelector('.profileRefSettings').onclick=settingsPage;
@@ -606,7 +606,7 @@ function runRegressionTests(){
  if(errors.length)throw new Error('V33 regresyon testi başarısız: '+errors.join(' | '));
  return true;
 }
-function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),1800)}if(!location.hash){location.href='game.html?v=40';}
+function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),1800)}if(!location.hash){location.href='game.html?v=45';}
 </script><script>
 window.addEventListener('load',function(){
  const h=(location.hash||'').slice(1);
@@ -623,4 +623,25 @@ window.addEventListener('load',function(){
   }catch(e){console.error(e)}
  },80);
 });
+</script><script id="tb-audio-v45">
+(function(){
+ let c=null,master=null,timer=null,step=0;
+ function val(k,d){const v=localStorage.getItem(k);return v===null?d:v==='1'}
+ function ctx(){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;if(!c)c=new AC();if(c.state==='suspended')c.resume();return c}
+ function tone(f,d=.06,v=.055,type='sine',delay=0){if(!val('tb_sfx',true))return;const x=ctx();if(!x)return;const t=x.currentTime+delay,o=x.createOscillator(),g=x.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(x.destination);o.start(t);o.stop(t+d+.03)}
+ function click(){tone(520,.045,.055)}
+ function success(){tone(523.25,.16,.09);tone(659.25,.2,.08,'sine',.09);tone(783.99,.28,.07,'sine',.18)}
+ function music(){
+  if(!val('tb_music',true)||timer)return;const x=ctx();if(!x)return;
+  master=x.createGain();master.gain.value=.34;const fl=x.createBiquadFilter();fl.type='lowpass';fl.frequency.value=1700;master.connect(fl);fl.connect(x.destination);
+  const chords=[[220,261.63,329.63],[196,246.94,293.66],[174.61,220,261.63],[196,246.94,329.63]],lead=[329.63,392,440,392,329.63,293.66,261.63,293.66];
+  const voice=(f,delay=0)=>{const t=x.currentTime+delay,o=x.createOscillator(),g=x.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.12,t+.5);g.gain.setValueAtTime(.12,t+2.7);g.gain.exponentialRampToValueAtTime(.0001,t+3.6);o.connect(g);g.connect(master);o.start(t);o.stop(t+3.7)};
+  const bell=(f,delay)=>{const t=x.currentTime+delay,o=x.createOscillator(),g=x.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.07,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+1.1);o.connect(g);g.connect(master);o.start(t);o.stop(t+1.15)};
+  const play=()=>{if(!val('tb_music',true)||!master)return;chords[step%chords.length].forEach((f,i)=>voice(f,i*.05));bell(lead[step%lead.length],.35);bell(lead[(step+2)%lead.length]*2,.95);step++};play();timer=setInterval(play,3600);
+ }
+ document.addEventListener('pointerdown',()=>{if(val('tb_music',true))music()},{once:true});
+ document.addEventListener('pointerup',e=>{if(e.target.closest('button,.cell,.key,.refHot,.hot,.hint,.letterhint,.wordhint'))click()});
+ const obs=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes){if(n.nodeType===1&&(n.classList?.contains('completeOverlay')||/Doğru!/.test(n.textContent||'')))success()}});
+ obs.observe(document.body,{subtree:true,childList:true});
+})();
 </script></body></html>
