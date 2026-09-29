@@ -7,24 +7,21 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
-<div class="app">
+<div class="app" id="app">
   <main id="home" class="reference-screen" aria-label="Türkiye Bulmacası ana ekranı">
     <img class="reference-image" src="file_0000000095d881f4a1713e208409ffb4.png" alt="Türkiye Bulmacası ana ekranı">
-
     <button class="hotspot home-settings" data-action="settings" aria-label="Ayarlar"></button>
     <button class="hotspot home-daily" data-action="daily" aria-label="Günün Bulmacası"></button>
     <button class="hotspot home-journey" data-action="journey" aria-label="Türkiye Yolculuğu"></button>
-
     <button class="hotspot home-istanbul" data-action="istanbul" aria-label="İstanbul Bulmacaları"></button>
     <button class="hotspot home-ankara" data-action="ankara" aria-label="Ankara Bulmacaları"></button>
     <button class="hotspot home-izmir" data-action="izmir" aria-label="İzmir Bulmacaları"></button>
     <button class="hotspot home-old" data-action="old" aria-label="Eski Türkiye Bulmacaları"></button>
     <button class="hotspot home-anatolia" data-action="anatolia" aria-label="Anadolu Bulmacaları"></button>
     <button class="hotspot home-culture" data-action="culture" aria-label="Kültür ve Yaşam Bulmacaları"></button>
-
     <button class="hotspot home-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
     <button class="hotspot home-nav-daily" data-action="daily" aria-label="Günlük"></button>
     <button class="hotspot home-nav-progress" data-action="progress" aria-label="İlerleme"></button>
@@ -52,6 +49,17 @@
     <button class="hotspot achievements-nav-achievements" data-action="achievements" aria-label="Başarılar"></button>
   </section>
 
+  <section id="settingsScreen" class="reference-screen settings-screen" hidden aria-label="Ayarlar ekranı">
+    <img class="reference-image" src="file_000000003e988210879971eccb5a920b.jpg" alt="Türkiye Bulmacası Ayarlar ekranı">
+    <button class="hotspot settings-back" data-action="home" aria-label="Geri"></button>
+    <button class="hotspot settings-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
+    <button class="hotspot settings-nav-daily" data-action="daily" aria-label="Günlük"></button>
+    <button class="hotspot settings-nav-progress" data-action="progress" aria-label="İlerleme"></button>
+    <button class="hotspot settings-nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
+    <button class="hotspot settings-nav-achievements" data-action="achievements" aria-label="Başarılar"></button>
+    <button class="hotspot settings-nav-profile" data-action="profile" aria-label="Profilim"></button>
+  </section>
+
   <section class="placeholder" id="placeholder" hidden>
     <button class="back" data-action="home">← Ana Sayfa</button>
     <div class="paper">
@@ -60,6 +68,6 @@
     </div>
   </section>
 </div>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>
