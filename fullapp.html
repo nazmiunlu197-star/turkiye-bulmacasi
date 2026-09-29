@@ -121,6 +121,40 @@
 .progressRefProgress{left:41%;top:89%;width:19%;height:10%}
 .progressRefCollection{left:60%;top:89%;width:19%;height:10%}
 .progressRefProfile{left:79%;top:89%;width:17%;height:10%}
+</style><style id="approved-three-v1">
+.refHot{position:absolute;border:0;background:transparent;z-index:120;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.collectionRefBack{left:5%;top:3.5%;width:12%;height:7%}
+.collectionRefCard{left:7%;top:25%;width:86%;height:58%}
+.collectionRefHome{left:4%;top:89.2%;width:18%;height:9.5%}
+.collectionRefDaily{left:22%;top:89.2%;width:19%;height:9.5%}
+.collectionRefProgress{left:41%;top:89.2%;width:19%;height:9.5%}
+.collectionRefCollection{left:60%;top:89.2%;width:19%;height:9.5%}
+.collectionRefProfile{left:79%;top:89.2%;width:17%;height:9.5%}
+
+.profileRefBack{left:5%;top:3.5%;width:12%;height:7%}
+.profileRefEdit{left:32%;top:13%;width:38%;height:16%}
+.profileRefAchievements{left:8%;top:45.5%;width:88%;height:7.4%}
+.profileRefProgress{left:8%;top:53.8%;width:88%;height:7.4%}
+.profileRefCollection{left:8%;top:62.1%;width:88%;height:7.4%}
+.profileRefSettings{left:8%;top:70.4%;width:88%;height:7.4%}
+.profileRefHome{left:4%;top:89.2%;width:18%;height:9.5%}
+.profileRefDaily{left:22%;top:89.2%;width:19%;height:9.5%}
+.profileRefProg{left:41%;top:89.2%;width:19%;height:9.5%}
+.profileRefColl{left:60%;top:89.2%;width:19%;height:9.5%}
+.profileRefProfile{left:79%;top:89.2%;width:17%;height:9.5%}
+.profileLiveName{position:absolute;left:33%;top:16.2%;z-index:119;min-width:24%;max-width:35%;padding:2px 6px;border-radius:4px;background:#efd29a;color:#241208;font:bold clamp(17px,3.6vw,27px)/1 Georgia;text-align:left;pointer-events:none}
+
+.settingsRefWrap{position:absolute;inset:0;z-index:110;background:#17100b;overflow:auto}
+.settingsRefImg{display:block;width:100%;height:auto;position:absolute;left:0;top:0}
+.settingsRefBack{left:3%;top:2.5%;width:10%;height:9%}
+.settingsRefSfx{left:52%;top:20%;width:42%;height:11%}
+.settingsRefMusic{left:52%;top:31%;width:42%;height:11%}
+.settingsRefNotif{left:52%;top:42%;width:42%;height:11%}
+.settingsRefFont{left:52%;top:53%;width:42%;height:11%}
+.settingsRefDark{left:52%;top:64%;width:42%;height:11%}
+.settingsRefStore{left:52%;top:75%;width:42%;height:11%}
+.settingsToast{position:absolute;left:50%;top:86%;transform:translateX(-50%);z-index:130;background:#3c210de8;color:#ffe8b4;padding:8px 14px;border-radius:18px;font:700 12px Arial;display:none;white-space:nowrap}
+.settingsToast.show{display:block}
 </style></head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
@@ -151,59 +185,79 @@ function progressPage(){
 }
 const COLLECTION_ART='file_0000000038508210817f51c0db0e6023.png';
 function collectionPage(){
- bg.src=MAIN;
+ bg.style.display='block';bg.style.objectFit='contain';bg.src='file_0000000038508210817f51c0db0e6023.png';
  const done=completedPuzzles.size;
- const unlocked=done>=25;
- const card=unlocked
-  ? `<div class="cityRewardCard" style="--photo:url(${COLLECTION_ART})"><div class="cityRewardPhoto"></div><div class="cityRewardShade"></div><div class="cityRewardCheck">✓</div><div class="cityRewardRibbon">İstanbul Hatırası<span>25/25 • İstanbul tamamlandı</span></div></div>`
-  : `<div class="cityRewardCard locked" style="--photo:url(${COLLECTION_ART})"><div class="cityRewardPhoto"></div><div class="cityRewardShade"></div><div class="cityRewardLock">🔒<small>${done}/25 tamamlandı</small></div><div class="cityRewardRibbon">Eski İstanbul Hatırası<span>25 bulmacanın tamamını bitirince açılır</span></div></div>`;
- ui.innerHTML=`<div class="collectionPage"><button class="collectionBack" aria-label="Geri">←</button><div class="collectionTitle">Türkiye Bulmacası<span>Koleksiyon</span></div><div class="collectionPaper cityAlbum"><div class="cityRewardWrap"><h2>Şehir Hatıraları</h2><div class="cityRewardStatus">İstanbul • ${done}/25</div>${card}<div class="cityRewardNote">İstanbul'un 25 bulmacasını tamamla ve özel eski İstanbul hatırasını koleksiyonuna ekle.</div></div></div><div class="collectionNav"><span>Ana Sayfa</span><span>Günlük</span><span>İlerleme</span><b>Koleksiyon</b><span>Profilim</span></div></div>`;
- ui.querySelector('.collectionBack').onclick=home;
- const nav=ui.querySelector('.collectionNav'),items=nav.children;items[0].onclick=home;items[1].onclick=dailyPage;items[2].onclick=progressPage;items[4].onclick=profilePage;
+ ui.innerHTML=`
+ <button class="refHot collectionRefBack" aria-label="Geri"></button>
+ <button class="refHot collectionRefCard" aria-label="Koleksiyon durumu"></button>
+ <button class="refHot collectionRefHome" aria-label="Ana Sayfa"></button>
+ <button class="refHot collectionRefDaily" aria-label="Günlük"></button>
+ <button class="refHot collectionRefProgress" aria-label="İlerleme"></button>
+ <button class="refHot collectionRefCollection" aria-label="Koleksiyon"></button>
+ <button class="refHot collectionRefProfile" aria-label="Profilim"></button>`;
+ ui.querySelector('.collectionRefBack').onclick=home;
+ ui.querySelector('.collectionRefCard').onclick=()=>msg(done>=25?'İstanbul Hatırası açıldı ✓':'İstanbul ilerlemesi: '+done+'/25');
+ ui.querySelector('.collectionRefHome').onclick=home;
+ ui.querySelector('.collectionRefDaily').onclick=dailyPage;
+ ui.querySelector('.collectionRefProgress').onclick=progressPage;
+ ui.querySelector('.collectionRefCollection').onclick=collectionPage;
+ ui.querySelector('.collectionRefProfile').onclick=profilePage;
 }
 
 function profilePage(){
- bg.src=MAIN;
- const done=completedPuzzles.size;
- const generalDone=Math.max(0,Math.min(Object.keys(GENERAL_PUZZLES||{}).length,parseInt(localStorage.getItem('tb_general_completed')||String(Math.max(0,(parseInt(localStorage.getItem('tb_general_next')||'1',10)-1))),10)||0));
- const name=(localStorage.getItem('tb_profile_name')||'Oyuncu').replace(/[<>]/g,'');
- const memory=done>=25?'✓ Eski İstanbul Hatırası kazanıldı':'🔒 Eski İstanbul Hatırası • '+done+'/25';
- const level=playerLevel(), lp=levelProgress();
- ui.innerHTML=`<div class="profilePage"><button class="profileBack" aria-label="Geri">←</button><div class="profileTitle">Türkiye Bulmacası<span>Profilim</span></div><div class="profilePaper"><div class="profileAvatar">★</div><input class="profileName" maxlength="20" value="${name}" aria-label="Oyuncu adı"><br><button class="profileSave">Adı Kaydet</button><div class="profileStats"><div class="profileStat"><b>★ ${stars}</b>Yıldız</div><div class="profileStat"><b>Seviye ${level}</b>${lp}/250 XP</div><div class="profileStat"><b>${done}/25</b>İstanbul</div><div class="profileStat"><b>${generalDone}</b>Genel Kültür</div><div class="profileStat"><b>${xp}</b>Toplam XP</div><div class="profileStat"><b>${done>=25?1:0}</b>Hatıra</div></div><div class="profileMemory ${done>=25?'':'locked'}">${memory}</div><button class="profileSettings">⚙ Ayarlar</button></div><div class="profileNav"><span>Ana Sayfa</span><span>Günlük</span><span>İlerleme</span><span>Koleksiyon</span><b>Profilim</b></div></div>`;
- ui.querySelector('.profileBack').onclick=home;
- ui.querySelector('.profileSave').onclick=()=>{const v=ui.querySelector('.profileName').value.trim().slice(0,20)||'Oyuncu';localStorage.setItem('tb_profile_name',v);msg('Oyuncu adı kaydedildi');};
- ui.querySelector('.profileSettings').onclick=settingsPage;
- const nav=ui.querySelector('.profileNav').children;nav[0].onclick=home;nav[1].onclick=dailyPage;nav[2].onclick=progressPage;nav[3].onclick=collectionPage;
+ bg.style.display='block';bg.style.objectFit='contain';bg.src='file_0000000088d08210b8015dc967623da1.jpg';
+ const name=(localStorage.getItem('tb_profile_name')||'Akın').replace(/[<>]/g,'');
+ ui.innerHTML=`
+ ${name!=='Akın'?'<div class="profileLiveName">'+name+'</div>':''}
+ <button class="refHot profileRefBack" aria-label="Geri"></button>
+ <button class="refHot profileRefEdit" aria-label="Profil adını düzenle"></button>
+ <button class="refHot profileRefAchievements" aria-label="Başarılarım"></button>
+ <button class="refHot profileRefProgress" aria-label="İstatistiklerim"></button>
+ <button class="refHot profileRefCollection" aria-label="Koleksiyonum"></button>
+ <button class="refHot profileRefSettings" aria-label="Ayarlar"></button>
+ <button class="refHot profileRefHome" aria-label="Ana Sayfa"></button>
+ <button class="refHot profileRefDaily" aria-label="Günlük"></button>
+ <button class="refHot profileRefProg" aria-label="İlerleme"></button>
+ <button class="refHot profileRefColl" aria-label="Koleksiyon"></button>
+ <button class="refHot profileRefProfile" aria-label="Profilim"></button>`;
+ ui.querySelector('.profileRefBack').onclick=home;
+ ui.querySelector('.profileRefEdit').onclick=()=>{const cur=localStorage.getItem('tb_profile_name')||'Akın';const next=prompt('Profil adını yaz:',cur);if(next===null)return;const v=next.trim().slice(0,20)||'Oyuncu';localStorage.setItem('tb_profile_name',v);profilePage();};
+ ui.querySelector('.profileRefAchievements').onclick=()=>{location.href='game.html?v=41#achievements';};
+ ui.querySelector('.profileRefProgress').onclick=progressPage;
+ ui.querySelector('.profileRefCollection').onclick=collectionPage;
+ ui.querySelector('.profileRefSettings').onclick=settingsPage;
+ ui.querySelector('.profileRefHome').onclick=home;
+ ui.querySelector('.profileRefDaily').onclick=dailyPage;
+ ui.querySelector('.profileRefProg').onclick=progressPage;
+ ui.querySelector('.profileRefColl').onclick=collectionPage;
+ ui.querySelector('.profileRefProfile').onclick=profilePage;
 }
 
-function getBoolSetting(key,def=true){const v=localStorage.getItem(key);return v===null?def:v==='1'}
-function setBoolSetting(key,val){localStorage.setItem(key,val?'1':'0')}
 function settingsPage(){
- bg.src=MAIN;
+ bg.style.display='none';
  const sfx=getBoolSetting('tb_sfx',true), music=getBoolSetting('tb_music',true), notif=getBoolSetting('tb_notif',true), dark=getBoolSetting('tb_dark',false);
  const font=localStorage.getItem('tb_font_size')||'Orta';
- ui.innerHTML=`<div class="settingsPage"><button class="settingsBack" aria-label="Geri">←</button><div class="settingsTitle">Türkiye Bulmacası<span>Ayarlar</span></div><div class="settingsPaper">
- <div class="settingRow"><div>Ses Efektleri<small>Buton ve doğru cevap sesleri</small></div><button class="toggleBtn sfx ${sfx?'on':''}">${sfx?'Açık':'Kapalı'}</button></div>
- <div class="settingRow"><div>Müzik<small>Nostaljik arka plan müziği</small></div><button class="toggleBtn music ${music?'on':''}">${music?'Açık':'Kapalı'}</button></div>
- <div class="settingRow"><div>Bildirimler<small>Günlük bulmaca hatırlatmaları</small></div><button class="toggleBtn notif ${notif?'on':''}">${notif?'Açık':'Kapalı'}</button></div>
- <div class="settingRow"><div>Yazı Boyutu</div><button class="choiceBtn font">${font}</button></div>
- <div class="settingRow"><div>Karanlık Mod</div><button class="toggleBtn dark ${dark?'on':''}">${dark?'Koyu':'Açık'}</button></div>
- <div class="settingRow"><div>Dil</div><button class="choiceBtn" disabled>Türkçe</button></div>
- <button class="settingsAction alt storeOpen">Mağaza & Reklamlar</button>
- <button class="settingsAction about">Hakkında • v1.0.0</button>
- <button class="settingsAction support">Destek</button>
- </div></div>`;
- ui.querySelector('.settingsBack').onclick=profilePage;
- const bindToggle=(sel,key,onText,offText)=>{ui.querySelector(sel).onclick=()=>{const n=!getBoolSetting(key,true);setBoolSetting(key,n);settingsPage();msg(n?onText:offText)}};
- bindToggle('.sfx','tb_sfx','Ses efektleri açıldı','Ses efektleri kapatıldı');
- bindToggle('.music','tb_music','Müzik açıldı','Müzik kapatıldı');
- bindToggle('.notif','tb_notif','Bildirimler açıldı','Bildirimler kapatıldı');
- ui.querySelector('.dark').onclick=()=>{const n=!getBoolSetting('tb_dark',false);setBoolSetting('tb_dark',n);settingsPage();msg(n?'Karanlık mod seçildi':'Açık mod seçildi')};
- ui.querySelector('.font').onclick=()=>{const vals=['Küçük','Orta','Büyük'];const cur=localStorage.getItem('tb_font_size')||'Orta';localStorage.setItem('tb_font_size',vals[(vals.indexOf(cur)+1)%vals.length]);settingsPage();};
- ui.querySelector('.storeOpen').onclick=storePage;
- ui.querySelector('.about').onclick=()=>msg('Türkiye Bulmacası • v1.0.0');
- ui.querySelector('.support').onclick=()=>msg('Destek bağlantısı Android sürümünde eklenecek');
+ ui.innerHTML=`<div class="settingsRefWrap">
+ <img class="settingsRefImg" src="file_000000003e988210879971eccb5a920b.jpg" alt="Ayarlar">
+ <button class="refHot settingsRefBack" aria-label="Geri"></button>
+ <button class="refHot settingsRefSfx" aria-label="Ses efektleri"></button>
+ <button class="refHot settingsRefMusic" aria-label="Müzik"></button>
+ <button class="refHot settingsRefNotif" aria-label="Bildirimler"></button>
+ <button class="refHot settingsRefFont" aria-label="Yazı boyutu"></button>
+ <button class="refHot settingsRefDark" aria-label="Karanlık mod"></button>
+ <button class="refHot settingsRefStore" aria-label="Mağaza ve reklamlar"></button>
+ <div class="settingsToast"></div>
+ </div>`;
+ const flash=t=>{const x=ui.querySelector('.settingsToast');x.textContent=t;x.classList.add('show');clearTimeout(flash.t);flash.t=setTimeout(()=>x.classList.remove('show'),1500)};
+ ui.querySelector('.settingsRefBack').onclick=profilePage;
+ ui.querySelector('.settingsRefSfx').onclick=()=>{const n=!sfx;setBoolSetting('tb_sfx',n);flash('Ses efektleri '+(n?'açık':'kapalı'));setTimeout(settingsPage,450)};
+ ui.querySelector('.settingsRefMusic').onclick=()=>{const n=!music;setBoolSetting('tb_music',n);flash('Müzik '+(n?'açık':'kapalı'));setTimeout(settingsPage,450)};
+ ui.querySelector('.settingsRefNotif').onclick=()=>{const n=!notif;setBoolSetting('tb_notif',n);flash('Bildirimler '+(n?'açık':'kapalı'));setTimeout(settingsPage,450)};
+ ui.querySelector('.settingsRefFont').onclick=()=>{const vals=['Küçük','Orta','Büyük'];localStorage.setItem('tb_font_size',vals[(vals.indexOf(font)+1)%vals.length]);flash('Yazı boyutu değiştirildi');setTimeout(settingsPage,450)};
+ ui.querySelector('.settingsRefDark').onclick=()=>{setBoolSetting('tb_dark',!dark);flash('Tema tercihi kaydedildi');setTimeout(settingsPage,450)};
+ ui.querySelector('.settingsRefStore').onclick=()=>storePage(true);
 }
+
 let storeReturn=settingsPage;
 function storePage(fromHome=false){
  storeReturn=fromHome?home:settingsPage;
