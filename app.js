@@ -33,7 +33,7 @@ const fullAppRoutes={
 
 function show(name){
   if(fullAppRoutes[name]){
-    location.href="fullapp.html#"+fullAppRoutes[name];
+    location.href="turkiye_bulmacasi_tum_sistem.html#"+fullAppRoutes[name];
     return;
   }
   hideAll();
