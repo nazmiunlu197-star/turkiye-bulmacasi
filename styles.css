@@ -268,3 +268,7 @@ body.tb-font-large .settings-row small{font-size:14px!important}
 body.tb-font-large .settings-action{font-size:20px!important}
 body.tb-font-large .settings-card h1{font-size:42px!important}
 body.tb-font-small .settings-card h1{font-size:31px!important}
+
+/* V48: use dedicated dark-home artwork; do not dim it again */
+body.tb-dark #home .reference-image{filter:none!important}
+body.tb-dark #home::after{display:none!important}
