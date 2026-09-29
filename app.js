@@ -1,5 +1,6 @@
 const appRoot=document.getElementById("app");
 const home=document.getElementById("home");
+const istanbulScreen=document.getElementById("istanbulScreen");
 const dailyScreen=document.getElementById("dailyScreen");
 const progressScreen=document.getElementById("progressScreen");
 const collectionScreen=document.getElementById("collectionScreen");
@@ -19,13 +20,14 @@ const labels={
 };
 
 function hideAll(){
-  [home,dailyScreen,progressScreen,collectionScreen,achievementsScreen,settingsScreen,profileScreen,placeholder].forEach(x=>x.hidden=true);
+  [home,istanbulScreen,dailyScreen,progressScreen,collectionScreen,achievementsScreen,settingsScreen,profileScreen,placeholder].forEach(x=>x.hidden=true);
   appRoot.classList.remove("settings-mode");
 }
 
 function show(name){
   hideAll();
   if(name==="home") home.hidden=false;
+  else if(name==="istanbul") istanbulScreen.hidden=false;
   else if(name==="daily") dailyScreen.hidden=false;
   else if(name==="progress") progressScreen.hidden=false;
   else if(name==="collection") collectionScreen.hidden=false;
