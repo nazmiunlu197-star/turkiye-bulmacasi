@@ -42,14 +42,6 @@ function syncApprovedScreens(){
   const newName=localStorage.getItem("turkiyeBulmacasiProfileName");
   const name=(newName||oldName||"Akın").trim().slice(0,20)||"Oyuncu";
   if(profileNameDisplay){profileNameDisplay.textContent=name;profileNameDisplay.classList.add("custom");}
-  let badge=collectionScreen.querySelector(".live-collection-count");
-  if(!badge){
-    badge=document.createElement("div");
-    badge.className="live-collection-count";
-    badge.style.cssText="position:absolute;left:35%;top:58.5%;width:30%;text-align:center;z-index:20;font:700 clamp(11px,1.6vh,17px) Georgia;color:#7b351b;pointer-events:none;text-shadow:0 1px #f5ddb0";
-    collectionScreen.appendChild(badge);
-  }
-  badge.textContent=done+"/25 tamamlandı";
 }
 
 function show(name){
