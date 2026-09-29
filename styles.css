@@ -49,16 +49,15 @@ button{font:inherit}
 
 /* Profil */
 .profile-back{left:5%;top:3.5%;width:12%;height:7%}
-.profile-name-wrap{position:absolute;left:33.5%;top:15.4%;width:34%;z-index:8;display:flex;align-items:center;gap:4px}
+.profile-name-wrap{position:absolute;left:34.8%;top:14.9%;width:31%;z-index:8;display:flex;align-items:center;gap:3px}
 .profile-name-input{
-  width:82%;border:0;background:rgba(239,210,157,.96);
-  color:#241208;font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(20px,4.4vw,32px);font-weight:700;
-  padding:0 4px 2px;line-height:1.05;outline:none;border-radius:4px
+  width:84%;border:0;background:transparent;color:#241208;
+  font-family:Georgia,"Times New Roman",serif;font-size:clamp(20px,4.2vw,31px);
+  font-weight:700;padding:0;line-height:1;outline:none;text-shadow:none
 }
 .profile-name-save{
-  width:28px;height:28px;border:1px solid #6b351b;background:#7b321e;color:#fff4d7;
-  border-radius:50%;padding:0;font-size:16px;font-weight:700;line-height:26px
+  width:24px;height:24px;border:0;background:rgba(93,45,20,.92);color:#f7e0ad;
+  border-radius:50%;padding:0;font-size:13px;font-weight:700;line-height:24px
 }
 .profile-achievements{left:8%;top:45.5%;width:88%;height:7.4%}
 .profile-progress{left:8%;top:53.8%;width:88%;height:7.4%}
