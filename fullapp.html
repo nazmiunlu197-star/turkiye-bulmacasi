@@ -121,6 +121,38 @@
 .progressRefProgress{left:41%;top:89%;width:19%;height:10%}
 .progressRefCollection{left:60%;top:89%;width:19%;height:10%}
 .progressRefProfile{left:79%;top:89%;width:17%;height:10%}
+</style><style id="progress-rebuild-v1">
+.progressRebuild{position:absolute;inset:0;z-index:100;background:#d4aa6a;color:#2c180c;font-family:Georgia,"Times New Roman",serif;overflow:auto;-webkit-overflow-scrolling:touch}
+.progressHero{position:relative;height:29%;min-height:250px;background:url('file_00000000578881f4a9fc0fc4775a3a3a.jpg') center 7%/cover no-repeat;border-bottom:2px solid #9b6428}
+.progressHero:after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,235,190,.08),rgba(62,31,12,.15))}
+.progressBackClean{position:absolute;left:6%;top:6%;z-index:3;width:58px;height:58px;border-radius:50%;border:1px solid #a36c2d;background:#efd39c;color:#2c180c;font:700 34px/1 Georgia;box-shadow:0 3px 8px #0005}
+.progressCoinClean{position:absolute;right:7%;top:7%;z-index:3;min-width:126px;height:48px;border:2px solid #b47721;border-radius:28px;background:#efd18a;display:flex;align-items:center;justify-content:center;gap:8px;font-size:23px;font-weight:700;box-shadow:0 3px 8px #0004}
+.progressCoinClean:before{content:'★';color:#c98a09}
+.progressTitleClean{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:3;width:54%;padding:10px 12px 9px;border:2px solid #a36c2d;border-radius:16px;background:#efd9aaee;text-align:center;box-shadow:0 3px 8px #0003}
+.progressTitleClean b{display:block;font-size:34px;line-height:1;color:#32180b}.progressTitleClean span{display:block;margin-top:4px;font-style:italic;font-size:15px}
+.progressBodyClean{padding:14px 5.5% 108px}
+.progressProfileClean{display:grid;grid-template-columns:122px 1fr;gap:14px;align-items:center;background:#ecd09a;border:2px solid #9b6428;border-radius:18px;padding:14px;box-shadow:0 5px 14px #0003}
+.progressLevelClean{width:112px;height:112px;border-radius:50%;border:7px solid #70421f;background:#e9cc8e;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 0 0 4px #b98239;text-align:center}
+.progressLevelClean b{font-size:42px;line-height:.95}.progressLevelClean span{font-size:15px;margin-top:5px}
+.progressProfileText h2{font-size:30px;margin:0 0 2px}.progressProfileText p{margin:0 0 10px;font-size:15px}
+.progressXpClean{height:17px;border-radius:12px;background:#ddbb7f;border:1px solid #aa7433;overflow:hidden}.progressXpClean i{display:block;height:100%;background:#b51412}
+.progressXpText{margin-top:5px;font-weight:700;font-size:14px;text-align:right}
+.progressStatsClean{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.progressStatClean{background:#efd8a7;border:1px solid #a97031;border-radius:14px;padding:12px 4px;text-align:center;min-height:86px;display:flex;flex-direction:column;justify-content:center}
+.progressStatClean b{font-size:28px;color:#8f160f;line-height:1}.progressStatClean span{font-size:11px;line-height:1.08;margin-top:5px}
+.progressSectionClean{margin-top:12px;background:#ecd09a;border:2px solid #9b6428;border-radius:18px;padding:14px;box-shadow:0 4px 12px #0002}
+.progressSectionClean h3{margin:0 0 12px;font-size:22px}
+.progressCompletionClean{display:grid;grid-template-columns:104px 1fr;gap:13px;align-items:center}
+.progressDonutClean{width:92px;height:92px;border-radius:50%;background:conic-gradient(#b51412 var(--pct),#d9b980 0);display:grid;place-items:center;margin:auto}
+.progressDonutClean:after{content:attr(data-pct);width:62px;height:62px;border-radius:50%;background:#efd8a7;display:grid;place-items:center;font-size:22px;font-weight:700}
+.progressRowsClean{display:flex;flex-direction:column;gap:10px}
+.progressRowClean{font-size:13px;font-weight:700}.progressRowCleanTop{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px}
+.progressTrackClean{height:10px;background:#d9b980;border:1px solid #aa7433;border-radius:8px;overflow:hidden}.progressTrackClean i{display:block;height:100%;background:#8b552e}
+.progressRecentClean{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.progressRecentCard{background:#efd8a7;border:1px solid #a97031;border-radius:12px;padding:10px;text-align:center;font-size:12px;min-height:74px;display:flex;flex-direction:column;justify-content:center}.progressRecentCard b{font-size:15px;margin-bottom:3px}
+.progressBottomClean{position:absolute;left:4%;right:4%;bottom:1.2%;height:8.7%;min-height:72px;z-index:105;background:#efd8a7;border-radius:28px;border:1px solid #b98239;display:grid;grid-template-columns:repeat(5,1fr);box-shadow:0 4px 12px #0004}
+.progressBottomClean button{border:0;background:transparent;color:#3a210f;font:700 11px/1.1 Georgia;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.progressBottomClean button b{font-size:25px;line-height:1}.progressBottomClean button.active{color:#a3130f}
+@media(max-width:420px){.progressHero{min-height:215px}.progressBackClean{width:50px;height:50px;font-size:29px}.progressTitleClean b{font-size:29px}.progressTitleClean span{font-size:13px}.progressProfileClean{grid-template-columns:100px 1fr}.progressLevelClean{width:94px;height:94px}.progressLevelClean b{font-size:36px}.progressProfileText h2{font-size:25px}.progressStatsClean{gap:6px}.progressStatClean b{font-size:24px}.progressStatClean span{font-size:9px}}
 </style></head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
@@ -134,20 +166,69 @@ function dailyPage(){
  const dn=ui.querySelector('.dailyNav'); const di=dn.children; di[0].onclick=home; di[2].onclick=progressPage; di[3].onclick=collectionPage; di[4].onclick=profilePage;
 }
 function progressPage(){
- bg.src='file_00000000578881f4a9fc0fc4775a3a3a.jpg';
- ui.innerHTML=`
- <button class="progressRefHot progressRefBack" aria-label="Geri"></button>
- <button class="progressRefHot progressRefHome" aria-label="Ana Sayfa"></button>
- <button class="progressRefHot progressRefDaily" aria-label="Günlük"></button>
- <button class="progressRefHot progressRefProgress" aria-label="İlerleme"></button>
- <button class="progressRefHot progressRefCollection" aria-label="Koleksiyon"></button>
- <button class="progressRefHot progressRefProfile" aria-label="Profilim"></button>`;
- ui.querySelector('.progressRefBack').onclick=home;
- ui.querySelector('.progressRefHome').onclick=home;
- ui.querySelector('.progressRefDaily').onclick=dailyPage;
- ui.querySelector('.progressRefProgress').onclick=progressPage;
- ui.querySelector('.progressRefCollection').onclick=collectionPage;
- ui.querySelector('.progressRefProfile').onclick=profilePage;
+ bg.src=MAIN;
+ const done=completedPuzzles.size;
+ const totalGeneral=Object.keys(GENERAL_PUZZLES||{}).length||100;
+ const generalDone=Math.max(0,Math.min(totalGeneral,parseInt(localStorage.getItem('tb_general_completed')||String(Math.max(0,(parseInt(localStorage.getItem('tb_general_next')||'1',10)-1))),10)||0));
+ const totalDone=done+generalDone;
+ const level=playerLevel();
+ const lp=levelProgress();
+ const xpPct=Math.round(lp/250*100);
+ const cityPct=Math.round(done/25*100);
+ const generalPct=Math.round(generalDone/totalGeneral*100);
+ const pname=(localStorage.getItem('tb_profile_name')||localStorage.getItem('turkiyeBulmacasiProfileName')||'Akın').trim()||'Akın';
+ const recent=[...completedPuzzles].sort((a,b)=>b-a).slice(0,4);
+ ui.innerHTML=`<div class="progressRebuild">
+   <div class="progressHero">
+     <button class="progressBackClean" aria-label="Geri">←</button>
+     <div class="progressCoinClean">${stars}</div>
+     <div class="progressTitleClean"><b>İlerleme</b><span>Yolculuğunuz devam ediyor...</span></div>
+   </div>
+   <div class="progressBodyClean">
+     <div class="progressProfileClean">
+       <div class="progressLevelClean"><b>${level}</b><span>Seviye</span></div>
+       <div class="progressProfileText">
+         <h2>${pname}</h2><p>Bulmaca Tutkunu</p>
+         <div class="progressXpClean"><i style="width:${xpPct}%"></i></div>
+         <div class="progressXpText">${lp} / 250 XP • Toplam ${xp} XP</div>
+       </div>
+     </div>
+     <div class="progressStatsClean">
+       <div class="progressStatClean"><b>${totalDone}</b><span>Tamamlanan<br>Bulmaca</span></div>
+       <div class="progressStatClean"><b>${done}</b><span>İstanbul<br>Tamamlanan</span></div>
+       <div class="progressStatClean"><b>${generalDone}</b><span>Genel Kültür<br>Tamamlanan</span></div>
+       <div class="progressStatClean"><b>${stars}</b><span>Toplam<br>Jeton</span></div>
+     </div>
+     <div class="progressSectionClean">
+       <h3>Bulmaca Tamamlama Oranım</h3>
+       <div class="progressCompletionClean">
+         <div class="progressDonutClean" style="--pct:${cityPct}%" data-pct="%${cityPct}"></div>
+         <div class="progressRowsClean">
+           <div class="progressRowClean"><div class="progressRowCleanTop"><span>İstanbul Bulmacaları</span><span>${done}/25</span></div><div class="progressTrackClean"><i style="width:${cityPct}%"></i></div></div>
+           <div class="progressRowClean"><div class="progressRowCleanTop"><span>Genel Kültür</span><span>${generalDone}/${totalGeneral}</span></div><div class="progressTrackClean"><i style="width:${generalPct}%"></i></div></div>
+         </div>
+       </div>
+     </div>
+     <div class="progressSectionClean">
+       <h3>Son Tamamlanan Bulmacalar</h3>
+       <div class="progressRecentClean">${recent.length?recent.map(n=>`<div class="progressRecentCard"><b>İstanbul - ${n}</b><span>✓ Tamamlandı</span></div>`).join(''):'<div class="progressRecentCard"><b>Henüz yok</b><span>İlk bulmacanı tamamla</span></div>'}</div>
+     </div>
+   </div>
+   <nav class="progressBottomClean">
+     <button data-p="home"><b>⌂</b>Ana Sayfa</button>
+     <button data-p="daily"><b>▣</b>Günlük</button>
+     <button class="active" data-p="progress"><b>▥</b>İlerleme</button>
+     <button data-p="collection"><b>★</b>Koleksiyon</button>
+     <button data-p="profile"><b>◉</b>Profilim</button>
+   </nav>
+ </div>`;
+ const root=ui.querySelector('.progressRebuild');
+ root.querySelector('.progressBackClean').onclick=home;
+ root.querySelector('[data-p="home"]').onclick=home;
+ root.querySelector('[data-p="daily"]').onclick=dailyPage;
+ root.querySelector('[data-p="progress"]').onclick=progressPage;
+ root.querySelector('[data-p="collection"]').onclick=collectionPage;
+ root.querySelector('[data-p="profile"]').onclick=profilePage;
 }
 const COLLECTION_ART='file_0000000038508210817f51c0db0e6023.png';
 function collectionPage(){
