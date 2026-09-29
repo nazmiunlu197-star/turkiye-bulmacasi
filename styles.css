@@ -1,90 +1,150 @@
 :root{
-  --paper:#ead2a0;--paper2:#f2dfb9;--ink:#2d160c;--red:#b50e13;--red2:#d7191c;
-  --brown:#4a2615;--gold:#d49a2f;--line:#b68a55;--shadow:rgba(60,31,14,.34)
+  --paper:#e9c98f;--paper2:#f2ddb0;--ink:#281209;--red:#b6070d;--brown:#4b2617;
+  --line:#b68545;--shadow:rgba(57,30,14,.38)
 }
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:#18110c;color:var(--ink)}
+html,body{margin:0;min-height:100%;background:#17100b;color:var(--ink)}
 body{font-family:Georgia,"Times New Roman",serif}
 button{font:inherit}
 .phone{
   width:min(100%,520px);min-height:100vh;margin:0 auto;position:relative;overflow:hidden;
   background:
-    radial-gradient(circle at 30% 0%,rgba(255,255,255,.35),transparent 28%),
-    linear-gradient(#efd8a8,#dfbd83);
-  box-shadow:0 0 45px #0008;padding-bottom:86px
+    radial-gradient(circle at 30% 0%,rgba(255,255,255,.34),transparent 30%),
+    linear-gradient(#efd6a3,#d9ad69);
+  box-shadow:0 0 45px #0009;padding-bottom:96px
 }
 .phone:before{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
-  background-image:
-  repeating-linear-gradient(0deg,rgba(76,42,18,.08) 0 1px,transparent 1px 4px),
-  repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px 7px)
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.15;
+  background:
+    repeating-linear-gradient(0deg,rgba(76,42,18,.08) 0 1px,transparent 1px 4px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 7px)
 }
 .home{position:relative;z-index:1}
 .masthead{
-  height:390px;position:relative;padding:28px 22px 0;
+  height:438px;position:relative;padding:20px 18px 0;
   background:
-    linear-gradient(to bottom,rgba(239,216,172,.30) 0%,rgba(230,194,132,.13) 48%,rgba(86,47,22,.2) 100%),
+    linear-gradient(to bottom,rgba(246,220,174,.57) 0 35%,rgba(239,204,145,.22) 52%,rgba(57,27,13,.06) 100%),
     url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg/1280px-Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg");
-  background-size:cover;background-position:center 57%;
-  border-bottom:1px solid rgba(88,45,19,.45)
+  background-size:cover;background-position:center 56%;
+  border-bottom:1px solid rgba(82,42,19,.4)
 }
-.masthead:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(245,222,180,.72) 0 38%,rgba(245,222,180,.16) 62%,rgba(55,28,14,.08));pointer-events:none}
-.brand{position:relative;z-index:2;text-align:center;padding-top:5px;text-shadow:0 1px 0 #f7e7c7}
-.brand-top{font-weight:700;font-size:clamp(62px,14vw,90px);line-height:.78;color:#b0000a;letter-spacing:-4px}
-.brand-bottom{font-weight:700;font-size:clamp(49px,11vw,72px);line-height:.95;color:#2a1209;letter-spacing:-2px}
-.ornament{font-size:22px;margin-top:4px}
-.motto{font-size:clamp(18px,4vw,26px);font-style:italic;margin-top:5px}
-.round{position:absolute;z-index:3;top:25px;left:22px;width:54px;height:54px;border-radius:50%;border:1px solid #b99059;background:#ecd5a5;box-shadow:0 5px 12px #0003;font-size:28px;color:#30170c}
-.wallet{position:absolute;z-index:3;top:25px;right:16px;height:54px;border-radius:18px;background:#efdcb5;border:1px solid #b99059;display:flex;align-items:center;gap:8px;padding-left:8px;box-shadow:0 5px 12px #0003}
-.wallet .coin{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:linear-gradient(#ffd95b,#e59a10);border:3px solid #c57b06;color:#fff;font-size:24px}
-.wallet b{font-size:25px}
-.wallet button{height:54px;width:50px;border:0;border-radius:0 18px 18px 0;background:#4b261a;color:#fff;font-size:34px}
+.masthead:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(247,224,181,.55) 0 37%,rgba(247,224,181,.07) 66%,rgba(63,28,12,.08))
+}
+.brand{position:relative;z-index:2;text-align:center;padding-top:12px;text-shadow:0 1px 0 #f9ebd0}
+.brand-top{
+  font-weight:700;font-size:clamp(67px,15vw,95px);line-height:.77;color:#b00008;
+  letter-spacing:-4px
+}
+.brand-bottom{
+  font-weight:700;font-size:clamp(52px,11.6vw,75px);line-height:.94;color:#251108;letter-spacing:-2px
+}
+.ornament{font-size:22px;margin-top:5px}
+.motto{font-size:clamp(19px,4.2vw,27px);font-style:italic;margin-top:3px}
+.round{
+  position:absolute;z-index:3;top:24px;left:22px;width:58px;height:58px;border-radius:50%;
+  border:1px solid #b98a4e;background:#ecd39d;box-shadow:0 5px 12px #0003;font-size:29px;color:#2d150b
+}
+.wallet{
+  position:absolute;z-index:3;top:25px;right:15px;height:56px;border-radius:18px;background:#efdcb5;
+  border:1px solid #b98a4e;display:flex;align-items:center;gap:7px;padding-left:8px;box-shadow:0 5px 12px #0003
+}
+.wallet .coin{
+  display:grid;place-items:center;width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(#ffd85d,#e6970c);border:3px solid #c67805;color:#fff;font-size:23px
+}
+.wallet b{font-size:27px}
+.wallet button{
+  height:56px;width:51px;border:0;border-radius:0 18px 18px 0;background:#4a2418;color:#fff;font-size:35px
+}
 
-.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px 12px;margin-top:-2px}
-.feature-card{height:290px;border-radius:22px;overflow:hidden;position:relative;border:5px solid #f0d8a7;box-shadow:0 7px 12px #0004;background-size:cover;background-position:center}
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px 10px}
+.feature-card{
+  height:287px;border-radius:22px;overflow:hidden;position:relative;border:5px solid #f3d7a3;
+  box-shadow:0 7px 12px #0004;background-size:cover;background-position:center
+}
 .feature-card.daily{
   background-image:url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg/1024px-Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg")
 }
 .feature-card.journey{
   background:
-    radial-gradient(circle at 75% 26%,transparent 0 27px,#6a421f 28px 30px,transparent 31px),
-    linear-gradient(140deg,rgba(228,194,131,.68),rgba(74,38,17,.72)),
+    radial-gradient(circle at 76% 27%,rgba(229,190,111,.05) 0 26px,#6a421f 28px 30px,transparent 32px),
+    linear-gradient(140deg,rgba(231,198,137,.57),rgba(73,37,16,.75)),
     url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg/1024px-Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg")
 }
-.shade{position:absolute;inset:0;background:linear-gradient(to right,rgba(21,10,4,.84),rgba(41,18,7,.22) 72%)}
-.feature-content{position:absolute;inset:0;padding:32px 22px 20px;color:#fff0cf;display:flex;flex-direction:column;align-items:flex-start}
-.feature-content h2{font-size:clamp(30px,7vw,44px);line-height:.95;margin:0;text-shadow:0 2px 2px #000}
-.feature-content p{font-size:18px;line-height:1.2;margin:14px 0 0;text-shadow:0 2px 2px #000}
+.shade{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,9,4,.85),rgba(42,18,7,.18) 75%)}
+.feature-content{
+  position:absolute;inset:0;padding:33px 22px 19px;color:#fff0d0;
+  display:flex;flex-direction:column;align-items:flex-start
+}
+.feature-content h2{
+  font-size:clamp(31px,7vw,45px);line-height:.94;margin:0;text-shadow:0 2px 2px #000
+}
+.feature-content p{font-size:18px;line-height:1.22;margin:14px 0 0;text-shadow:0 2px 2px #000}
 .feature-content .date{margin-top:18px;font-size:17px;font-weight:700}
-.feature-content button{margin-top:auto;width:100%;height:58px;border-radius:30px;border:2px solid #ff6868;background:linear-gradient(#df1c1f,#a8070a);color:#fff1d4;font-weight:700;font-size:25px;box-shadow:0 4px 0 #6f090a}
+.feature-content button{
+  margin-top:auto;width:100%;height:59px;border-radius:31px;border:2px solid #ff6a68;
+  background:linear-gradient(#e01c1f,#a50609);color:#fff1d5;font-weight:700;font-size:25px;
+  box-shadow:0 4px 0 #6e0809
+}
 .feature-content button span{font-size:34px;margin-left:14px}
 
-.city-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 16px 18px}
-.city-card{height:204px;border:0;padding:0;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 5px 9px #0003;background-size:cover;background-position:center top;text-align:left}
-.city-card:before{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(#f0d49de8,#efd49d)}
-.city-card span{position:absolute;z-index:2;left:12px;bottom:10px;font-weight:700;font-size:clamp(15px,3.5vw,22px);line-height:1.04;color:#2b1309}
-.city-card b{position:absolute;z-index:2;right:12px;bottom:18px;font:700 42px/1 Arial;color:#110803}
+.city-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 16px 20px
+}
+.city-card{
+  height:210px;border:0;padding:0;border-radius:16px;overflow:hidden;position:relative;
+  box-shadow:0 5px 9px #0003;background-size:cover;background-position:center top;text-align:left
+}
+.city-card:before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:72px;
+  background:linear-gradient(#efd39ce9,#efd39c)
+}
+.city-card span{
+  position:absolute;z-index:2;left:13px;bottom:12px;font-weight:700;
+  font-size:clamp(15px,3.5vw,22px);line-height:1.03;color:#2a1208
+}
+.city-card b{
+  position:absolute;z-index:2;right:12px;bottom:18px;font:700 42px/1 Arial;color:#0f0703
+}
 .istanbul{background-image:url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg/640px-Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg")}
-.ankara{background-image:url("https://commons.wikimedia.org/wiki/Special:FilePath/An%C4%B1tkabir%2C%20Ankara.jpg")}
-.izmir{background-image:url("https://commons.wikimedia.org/wiki/Special:FilePath/%C4%B0zmir%20clock%20tower.jpg")}
-.old{background-image:url("https://commons.wikimedia.org/wiki/Special:FilePath/Ey%C3%BCp%20%C4%B0skelesi%201880-1893.jpg")}
-.anatolia{background-image:linear-gradient(#9f7848aa,#4b2816aa),url("https://commons.wikimedia.org/wiki/Special:FilePath/An%C4%B1tkabir-Ankara.jpg")}
-.culture{background-image:linear-gradient(#5a3519aa,#28160daa),url("https://commons.wikimedia.org/wiki/Special:FilePath/%C4%B0zmir%20clock%20tower.jpg")}
+.ankara{background-image:linear-gradient(#9b724780,#9b724720),url("https://commons.wikimedia.org/wiki/Special:FilePath/An%C4%B1tkabir%2C%20Ankara.jpg")}
+.izmir{background-image:linear-gradient(#9b724760,#9b724720),url("https://commons.wikimedia.org/wiki/Special:FilePath/%C4%B0zmir%20clock%20tower.jpg")}
+.old{background-image:linear-gradient(#70422166,#25130955),url("https://commons.wikimedia.org/wiki/Special:FilePath/Ey%C3%BCp%20%C4%B0skelesi%201880-1893.jpg")}
+.anatolia{background-image:linear-gradient(#9f784880,#4b281655),url("https://commons.wikimedia.org/wiki/Special:FilePath/An%C4%B1tkabir-Ankara.jpg")}
+.culture{background-image:linear-gradient(#5a351980,#28160d66),url("https://commons.wikimedia.org/wiki/Special:FilePath/%C4%B0zmir%20clock%20tower.jpg")}
 
-.bottom-nav{position:fixed;z-index:20;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,520px);height:86px;background:#f0d8aaed;border-top:1px solid #b78e5b;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 8px max(8px,env(safe-area-inset-bottom))}
-.bottom-nav button{border:0;background:transparent;border-radius:18px;color:#6b513a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
-.bottom-nav button.active{background:#e4c58b;color:#b30b11}
-.bottom-nav button span{font-size:31px;font-weight:700;line-height:1}.bottom-nav small{font-size:11px}
-.placeholder{min-height:calc(100vh - 86px);padding:28px 20px;background:linear-gradient(#ebd2a0,#c79858);position:relative;z-index:3}
+.bottom-nav{
+  position:fixed;z-index:20;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,520px);height:96px;
+  background:#f0d7a9f4;border-top:1px solid #b78e5b;display:grid;grid-template-columns:repeat(5,1fr);
+  padding:8px 10px max(10px,env(safe-area-inset-bottom));border-radius:34px 34px 0 0
+}
+.bottom-nav button{
+  border:0;background:transparent;border-radius:18px;color:#60472f;display:flex;
+  align-items:center;justify-content:center
+}
+.bottom-nav button.active{color:#b30b11}
+.bottom-nav button span{font-size:39px;font-weight:700;line-height:1}
+
+.placeholder{
+  min-height:calc(100vh - 96px);padding:28px 20px;background:linear-gradient(#ebd2a0,#c79858);
+  position:relative;z-index:3
+}
 .back{width:50px;height:50px;border-radius:50%;border:1px solid #a56c2a;background:#f0d08d;font-size:28px}
-.paper{margin:35px auto;width:90%;padding:28px;border-radius:20px;background:#f2dca8;border:2px solid #936027;box-shadow:0 8px 18px #0004;text-align:center}
+.paper{
+  margin:35px auto;width:90%;padding:28px;border-radius:20px;background:#f2dca8;
+  border:2px solid #936027;box-shadow:0 8px 18px #0004;text-align:center
+}
 .paper h2{color:#a50d10;font-size:34px}
 
 @media(max-width:420px){
-  .masthead{height:330px}
-  .feature-card{height:245px}
-  .feature-content{padding:24px 16px 16px}
+  .masthead{height:365px}
+  .feature-card{height:252px}
+  .feature-content{padding:25px 16px 16px}
   .feature-content p{font-size:15px}
-  .feature-content button{height:50px;font-size:21px}
-  .city-card{height:174px}
+  .feature-content button{height:51px;font-size:21px}
+  .city-card{height:179px}
+  .bottom-nav{height:88px}
+  .bottom-nav button span{font-size:34px}
 }
