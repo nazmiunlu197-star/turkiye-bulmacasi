@@ -7,67 +7,77 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 <div class="app" id="app">
-  <main id="home" class="reference-screen" aria-label="Türkiye Bulmacası ana ekranı">
+  <main id="home" class="reference-screen">
     <img class="reference-image" src="file_0000000095d881f4a1713e208409ffb4.png" alt="Türkiye Bulmacası ana ekranı">
-    <button class="hotspot home-settings" data-action="settings" aria-label="Ayarlar"></button>
-    <button class="hotspot home-daily" data-action="daily" aria-label="Günün Bulmacası"></button>
-    <button class="hotspot home-journey" data-action="journey" aria-label="Türkiye Yolculuğu"></button>
-    <button class="hotspot home-istanbul" data-action="istanbul" aria-label="İstanbul Bulmacaları"></button>
-    <button class="hotspot home-ankara" data-action="ankara" aria-label="Ankara Bulmacaları"></button>
-    <button class="hotspot home-izmir" data-action="izmir" aria-label="İzmir Bulmacaları"></button>
-    <button class="hotspot home-old" data-action="old" aria-label="Eski Türkiye Bulmacaları"></button>
-    <button class="hotspot home-anatolia" data-action="anatolia" aria-label="Anadolu Bulmacaları"></button>
-    <button class="hotspot home-culture" data-action="culture" aria-label="Kültür ve Yaşam Bulmacaları"></button>
-    <button class="hotspot home-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
-    <button class="hotspot home-nav-daily" data-action="daily" aria-label="Günlük"></button>
-    <button class="hotspot home-nav-progress" data-action="progress" aria-label="İlerleme"></button>
-    <button class="hotspot home-nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
-    <button class="hotspot home-nav-achievements" data-action="achievements" aria-label="Başarılar"></button>
+    <button class="hotspot home-settings" data-action="settings"></button>
+    <button class="hotspot home-daily" data-action="daily"></button>
+    <button class="hotspot home-istanbul" data-action="istanbul"></button>
+    <button class="hotspot home-ankara" data-action="ankara"></button>
+    <button class="hotspot home-izmir" data-action="izmir"></button>
+    <button class="hotspot home-old" data-action="old"></button>
+    <button class="hotspot home-anatolia" data-action="anatolia"></button>
+    <button class="hotspot home-culture" data-action="culture"></button>
+    <button class="hotspot home-nav-home" data-action="home"></button>
+    <button class="hotspot home-nav-daily" data-action="daily"></button>
+    <button class="hotspot home-nav-progress" data-action="progress"></button>
+    <button class="hotspot home-nav-collection" data-action="collection"></button>
+    <button class="hotspot home-nav-achievements" data-action="achievements"></button>
   </main>
 
-  <section id="progressScreen" class="reference-screen" hidden aria-label="İlerleme ekranı">
-    <img class="reference-image" src="file_00000000578881f4a9fc0fc4775a3a3a.jpg" alt="Türkiye Bulmacası İlerleme ekranı">
-    <button class="hotspot progress-back" data-action="home" aria-label="Geri"></button>
-    <button class="hotspot progress-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
-    <button class="hotspot progress-nav-daily" data-action="daily" aria-label="Günlük"></button>
-    <button class="hotspot progress-nav-progress" data-action="progress" aria-label="İlerleme"></button>
-    <button class="hotspot progress-nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
-    <button class="hotspot progress-nav-profile" data-action="profile" aria-label="Profilim"></button>
+  <section id="dailyScreen" class="reference-screen" hidden>
+    <img class="reference-image" src="file_00000000643882109c5b6ce3407e10cd.jpg" alt="Günlük Bulmaca ekranı">
+    <button class="hotspot daily-back" data-action="home"></button>
+    <button class="hotspot daily-play" data-action="daily-play"></button>
+    <button class="hotspot daily-nav-home" data-action="home"></button>
+    <button class="hotspot daily-nav-daily" data-action="daily"></button>
+    <button class="hotspot daily-nav-progress" data-action="progress"></button>
+    <button class="hotspot daily-nav-collection" data-action="collection"></button>
+    <button class="hotspot daily-nav-profile" data-action="profile"></button>
   </section>
 
-  <section id="collectionScreen" class="reference-screen" hidden aria-label="Koleksiyon ekranı">
-    <img class="reference-image" src="file_0000000038508210817f51c0db0e6023.png" alt="Türkiye Bulmacası Koleksiyon ekranı">
-    <button class="hotspot collection-back" data-action="home" aria-label="Geri"></button>
-    <button class="hotspot collection-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
-    <button class="hotspot collection-nav-daily" data-action="daily" aria-label="Günlük"></button>
-    <button class="hotspot collection-nav-progress" data-action="progress" aria-label="İlerleme"></button>
-    <button class="hotspot collection-nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
-    <button class="hotspot collection-nav-profile" data-action="profile" aria-label="Profilim"></button>
+  <section id="progressScreen" class="reference-screen" hidden>
+    <img class="reference-image" src="file_00000000578881f4a9fc0fc4775a3a3a.jpg" alt="İlerleme ekranı">
+    <button class="hotspot progress-back" data-action="home"></button>
+    <button class="hotspot progress-nav-home" data-action="home"></button>
+    <button class="hotspot progress-nav-daily" data-action="daily"></button>
+    <button class="hotspot progress-nav-progress" data-action="progress"></button>
+    <button class="hotspot progress-nav-collection" data-action="collection"></button>
+    <button class="hotspot progress-nav-profile" data-action="profile"></button>
   </section>
 
-  <section id="achievementsScreen" class="reference-screen" hidden aria-label="Başarılar ekranı">
-    <img class="reference-image" src="file_00000000d8348210aa8429be7455cc1a.png" alt="Türkiye Bulmacası Başarılar ekranı">
-    <button class="hotspot achievements-back" data-action="home" aria-label="Geri"></button>
-    <button class="hotspot achievements-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
-    <button class="hotspot achievements-nav-daily" data-action="daily" aria-label="Günlük"></button>
-    <button class="hotspot achievements-nav-progress" data-action="progress" aria-label="İlerleme"></button>
-    <button class="hotspot achievements-nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
-    <button class="hotspot achievements-nav-achievements" data-action="achievements" aria-label="Başarılar"></button>
+  <section id="collectionScreen" class="reference-screen" hidden>
+    <img class="reference-image" src="file_0000000038508210817f51c0db0e6023.png" alt="Koleksiyon ekranı">
+    <button class="hotspot collection-back" data-action="home"></button>
+    <button class="hotspot collection-nav-home" data-action="home"></button>
+    <button class="hotspot collection-nav-daily" data-action="daily"></button>
+    <button class="hotspot collection-nav-progress" data-action="progress"></button>
+    <button class="hotspot collection-nav-collection" data-action="collection"></button>
+    <button class="hotspot collection-nav-profile" data-action="profile"></button>
   </section>
 
-  <section id="settingsScreen" class="reference-screen settings-screen" hidden aria-label="Ayarlar ekranı">
-    <img class="reference-image" src="file_000000003e988210879971eccb5a920b.jpg" alt="Türkiye Bulmacası Ayarlar ekranı">
-    <button class="hotspot settings-back" data-action="home" aria-label="Geri"></button>
-    <button class="hotspot settings-nav-home" data-action="home" aria-label="Ana Sayfa"></button>
-    <button class="hotspot settings-nav-daily" data-action="daily" aria-label="Günlük"></button>
-    <button class="hotspot settings-nav-progress" data-action="progress" aria-label="İlerleme"></button>
-    <button class="hotspot settings-nav-collection" data-action="collection" aria-label="Koleksiyon"></button>
-    <button class="hotspot settings-nav-achievements" data-action="achievements" aria-label="Başarılar"></button>
-    <button class="hotspot settings-nav-profile" data-action="profile" aria-label="Profilim"></button>
+  <section id="achievementsScreen" class="reference-screen" hidden>
+    <img class="reference-image" src="file_00000000d8348210aa8429be7455cc1a.png" alt="Başarılar ekranı">
+    <button class="hotspot achievements-back" data-action="home"></button>
+    <button class="hotspot achievements-nav-home" data-action="home"></button>
+    <button class="hotspot achievements-nav-daily" data-action="daily"></button>
+    <button class="hotspot achievements-nav-progress" data-action="progress"></button>
+    <button class="hotspot achievements-nav-collection" data-action="collection"></button>
+    <button class="hotspot achievements-nav-achievements" data-action="achievements"></button>
+  </section>
+
+  <section id="settingsScreen" class="reference-screen settings-screen" hidden>
+    <img class="reference-image" src="file_000000003e988210879971eccb5a920b.jpg" alt="Ayarlar ekranı">
+    <button class="hotspot settings-back" data-action="home"></button>
+    <button class="hotspot settings-nav-home" data-action="home"></button>
+    <button class="hotspot settings-nav-daily" data-action="daily"></button>
+    <button class="hotspot settings-nav-progress" data-action="progress"></button>
+    <button class="hotspot settings-nav-collection" data-action="collection"></button>
+    <button class="hotspot settings-nav-achievements" data-action="achievements"></button>
+    <button class="hotspot settings-nav-profile" data-action="profile"></button>
   </section>
 
   <section class="placeholder" id="placeholder" hidden>
@@ -78,6 +88,6 @@
     </div>
   </section>
 </div>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=10"></script>
 </body>
 </html>
