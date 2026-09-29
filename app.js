@@ -36,7 +36,7 @@ const fullAppRoutes={
 
 function show(name){
   if(fullAppRoutes[name]){
-    location.href="fullapp.html?v=40#"+fullAppRoutes[name];
+    location.href="fullapp.html?v=41#"+fullAppRoutes[name];
     return;
   }
   hideAll();
@@ -169,3 +169,5 @@ function initIstanbulCrossword(){
   });
 }
 initIstanbulCrossword();
+
+window.addEventListener('load',()=>{if(location.hash==='achievements')setTimeout(()=>show('achievements'),60);});
