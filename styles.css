@@ -5,13 +5,10 @@ button{font:inherit}
 .app{width:min(100%,560px);min-height:100vh;margin:0 auto;background:#17100b;position:relative}
 .reference-screen{position:relative;width:100%;line-height:0}
 .reference-image{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
-.hotspot{
-  position:absolute;border:0;background:transparent;padding:0;margin:0;cursor:pointer;
-  z-index:5;-webkit-tap-highlight-color:transparent
-}
+.hotspot{position:absolute;border:0;background:transparent;padding:0;margin:0;cursor:pointer;z-index:5;-webkit-tap-highlight-color:transparent}
 .hotspot:focus-visible{outline:3px solid rgba(255,0,0,.75);outline-offset:-3px}
 
-/* Ana ekran görünmez tıklama alanları */
+/* Ana ekran */
 .home-settings{left:4%;top:1.1%;width:12%;height:5.5%}
 .home-daily{left:4.2%;top:29.3%;width:92%;height:21.2%}
 .home-journey{display:none}
@@ -27,7 +24,7 @@ button{font:inherit}
 .home-nav-collection{left:59%;top:87.6%;width:19%;height:10.6%}
 .home-nav-achievements{left:78%;top:87.6%;width:19%;height:10.6%}
 
-/* Koleksiyon ekranı */
+/* Koleksiyon */
 .collection-back{left:5%;top:3.5%;width:12%;height:7%}
 .collection-nav-home{left:4%;top:89.2%;width:18%;height:9.5%}
 .collection-nav-daily{left:22%;top:89.2%;width:19%;height:9.5%}
@@ -35,18 +32,17 @@ button{font:inherit}
 .collection-nav-collection{left:60%;top:89.2%;width:19%;height:9.5%}
 .collection-nav-profile{left:79%;top:89.2%;width:17%;height:9.5%}
 
-.placeholder{
-  min-height:100vh;padding:28px 20px;background:linear-gradient(#ebd2a0,#c79858);
-  color:#2d160c
-}
-.back{
-  border:1px solid #9a652d;background:#f0d08d;border-radius:999px;padding:11px 16px;
-  color:#2d160c;font-weight:700
-}
-.paper{
-  margin:36px auto;width:92%;padding:30px 22px;border-radius:22px;background:#f2dca8;
-  border:2px solid #936027;box-shadow:0 8px 18px #0004;text-align:center
-}
+/* Başarılar */
+.achievements-back{left:5%;top:3.5%;width:12%;height:7%}
+.achievements-nav-home{left:4%;top:89.2%;width:18%;height:9.5%}
+.achievements-nav-daily{left:22%;top:89.2%;width:19%;height:9.5%}
+.achievements-nav-progress{left:41%;top:89.2%;width:19%;height:9.5%}
+.achievements-nav-collection{left:60%;top:89.2%;width:19%;height:9.5%}
+.achievements-nav-achievements{left:79%;top:89.2%;width:17%;height:9.5%}
+
+.placeholder{min-height:100vh;padding:28px 20px;background:linear-gradient(#ebd2a0,#c79858);color:#2d160c}
+.back{border:1px solid #9a652d;background:#f0d08d;border-radius:999px;padding:11px 16px;color:#2d160c;font-weight:700}
+.paper{margin:36px auto;width:92%;padding:30px 22px;border-radius:22px;background:#f2dca8;border:2px solid #936027;box-shadow:0 8px 18px #0004;text-align:center}
 .paper h2{color:#a50d10;font-size:34px;margin:0 0 14px}
 .paper p{font-size:18px;line-height:1.45;margin:0}
 @media(min-width:561px){.app{box-shadow:0 0 44px #0009}}
