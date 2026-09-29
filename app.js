@@ -1,6 +1,8 @@
+const appRoot=document.getElementById("app");
 const home=document.getElementById("home");
 const collectionScreen=document.getElementById("collectionScreen");
 const achievementsScreen=document.getElementById("achievementsScreen");
+const settingsScreen=document.getElementById("settingsScreen");
 const placeholder=document.getElementById("placeholder");
 const title=document.getElementById("placeholderTitle");
 
@@ -15,7 +17,9 @@ function hideAll(){
   home.hidden=true;
   collectionScreen.hidden=true;
   achievementsScreen.hidden=true;
+  settingsScreen.hidden=true;
   placeholder.hidden=true;
+  appRoot.classList.remove("settings-mode");
 }
 
 function show(name){
@@ -26,6 +30,9 @@ function show(name){
     collectionScreen.hidden=false;
   }else if(name==="achievements"){
     achievementsScreen.hidden=false;
+  }else if(name==="settings"){
+    settingsScreen.hidden=false;
+    appRoot.classList.add("settings-mode");
   }else{
     placeholder.hidden=false;
     title.textContent=labels[name]||"Türkiye Bulmacası";
