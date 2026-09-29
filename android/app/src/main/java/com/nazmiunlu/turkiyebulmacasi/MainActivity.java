@@ -4,18 +4,49 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.window.OnBackInvokedDispatcher;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.UserMessagingPlatform;
+
+import org.json.JSONObject;
+
 public class MainActivity extends Activity {
+    private static final String TAG = "TurkiyeBulmacasiAds";
+
     private WebView webView;
+    private RewardedAd rewardedAd;
+    private InterstitialAd interstitialAd;
+    private ConsentInformation consentInformation;
+    private boolean mobileAdsInitialized = false;
+    private int interstitialRequestCount = 0;
+
+    // Google test ad unit IDs. Production IDs are enabled only after testing is complete.
+    private static final String TEST_REWARDED_AD_UNIT_ID =
+        "ca-app-pub-3940256099942544/5224354917";
+    private static final String TEST_INTERSTITIAL_AD_UNIT_ID =
+        "ca-app-pub-3940256099942544/1033173712";
+
     private static final String APP_URL =
         "https://nazmiunlu197-star.github.io/turkiye-bulmacasi/index.html?v=53";
 
@@ -40,6 +71,9 @@ public class MainActivity extends Activity {
 
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
+        webView.addJavascriptInterface(new AdBridge(), "AndroidAds");
+
+        requestConsentAndInitializeAds();
 
         if (savedInstanceState == null) {
             webView.loadUrl(APP_URL);
@@ -58,6 +92,171 @@ public class MainActivity extends Activity {
         }
 
         hideSystemUi();
+    }
+
+    private void requestConsentAndInitializeAds() {
+        consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        ConsentRequestParameters params = new ConsentRequestParameters.Builder().build();
+
+        consentInformation.requestConsentInfoUpdate(
+            this,
+            params,
+            () -> UserMessagingPlatform.loadAndShowConsentFormIfRequired(
+                this,
+                formError -> {
+                    if (formError != null) {
+                        Log.w(TAG, "Consent form: " + formError.getMessage());
+                    }
+                    if (consentInformation.canRequestAds()) {
+                        initializeMobileAds();
+                    }
+                }
+            ),
+            requestConsentError -> {
+                Log.w(TAG, "Consent update: " + requestConsentError.getMessage());
+                if (consentInformation.canRequestAds()) {
+                    initializeMobileAds();
+                }
+            }
+        );
+
+        if (consentInformation.canRequestAds()) {
+            initializeMobileAds();
+        }
+    }
+
+    private synchronized void initializeMobileAds() {
+        if (mobileAdsInitialized) return;
+        mobileAdsInitialized = true;
+
+        MobileAds.initialize(this, initializationStatus -> {
+            loadRewardedAd();
+            loadInterstitialAd();
+        });
+    }
+
+    private void loadRewardedAd() {
+        RewardedAd.load(
+            this,
+            TEST_REWARDED_AD_UNIT_ID,
+            new AdRequest.Builder().build(),
+            new RewardedAdLoadCallback() {
+                @Override
+                public void onAdLoaded(RewardedAd ad) {
+                    rewardedAd = ad;
+                    Log.d(TAG, "Rewarded test ad loaded");
+                }
+
+                @Override
+                public void onAdFailedToLoad(LoadAdError adError) {
+                    rewardedAd = null;
+                    Log.w(TAG, "Rewarded ad failed: " + adError.getMessage());
+                }
+            }
+        );
+    }
+
+    private void loadInterstitialAd() {
+        InterstitialAd.load(
+            this,
+            TEST_INTERSTITIAL_AD_UNIT_ID,
+            new AdRequest.Builder().build(),
+            new InterstitialAdLoadCallback() {
+                @Override
+                public void onAdLoaded(InterstitialAd ad) {
+                    interstitialAd = ad;
+                    Log.d(TAG, "Interstitial test ad loaded");
+                }
+
+                @Override
+                public void onAdFailedToLoad(LoadAdError adError) {
+                    interstitialAd = null;
+                    Log.w(TAG, "Interstitial ad failed: " + adError.getMessage());
+                }
+            }
+        );
+    }
+
+    private void showRewardedAd(String rewardKey) {
+        if (rewardedAd == null) {
+            notifyAdUnavailable(rewardKey);
+            loadRewardedAd();
+            return;
+        }
+
+        RewardedAd ad = rewardedAd;
+        rewardedAd = null;
+        ad.setFullScreenContentCallback(new FullScreenContentCallback() {
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                loadRewardedAd();
+                hideSystemUi();
+            }
+
+            @Override
+            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                notifyAdUnavailable(rewardKey);
+                loadRewardedAd();
+                hideSystemUi();
+            }
+        });
+
+        ad.show(this, rewardItem -> notifyRewardEarned(rewardKey));
+    }
+
+    private void maybeShowInterstitialAd() {
+        interstitialRequestCount++;
+        if (interstitialRequestCount % 3 != 0) return;
+
+        if (interstitialAd == null) {
+            loadInterstitialAd();
+            return;
+        }
+
+        InterstitialAd ad = interstitialAd;
+        interstitialAd = null;
+        ad.setFullScreenContentCallback(new FullScreenContentCallback() {
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                loadInterstitialAd();
+                hideSystemUi();
+            }
+
+            @Override
+            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                loadInterstitialAd();
+                hideSystemUi();
+            }
+        });
+        ad.show(this);
+    }
+
+    private void notifyRewardEarned(String rewardKey) {
+        if (webView == null) return;
+        String script =
+            "window.onAdRewardEarned && window.onAdRewardEarned(" +
+            JSONObject.quote(rewardKey) + ");";
+        webView.evaluateJavascript(script, null);
+    }
+
+    private void notifyAdUnavailable(String rewardKey) {
+        if (webView == null) return;
+        String script =
+            "window.onAdUnavailable && window.onAdUnavailable(" +
+            JSONObject.quote(rewardKey) + ");";
+        webView.evaluateJavascript(script, null);
+    }
+
+    public class AdBridge {
+        @JavascriptInterface
+        public void showRewarded(String rewardKey) {
+            runOnUiThread(() -> showRewardedAd(rewardKey));
+        }
+
+        @JavascriptInterface
+        public void maybeShowInterstitial() {
+            runOnUiThread(MainActivity.this::maybeShowInterstitialAd);
+        }
     }
 
     private void hideSystemUi() {
