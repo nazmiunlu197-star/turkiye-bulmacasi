@@ -1,5 +1,6 @@
 const appRoot=document.getElementById("app");
 const home=document.getElementById("home");
+const progressScreen=document.getElementById("progressScreen");
 const collectionScreen=document.getElementById("collectionScreen");
 const achievementsScreen=document.getElementById("achievementsScreen");
 const settingsScreen=document.getElementById("settingsScreen");
@@ -15,6 +16,7 @@ const labels={
 
 function hideAll(){
   home.hidden=true;
+  progressScreen.hidden=true;
   collectionScreen.hidden=true;
   achievementsScreen.hidden=true;
   settingsScreen.hidden=true;
@@ -26,6 +28,8 @@ function show(name){
   hideAll();
   if(name==="home"){
     home.hidden=false;
+  }else if(name==="progress"){
+    progressScreen.hidden=false;
   }else if(name==="collection"){
     collectionScreen.hidden=false;
   }else if(name==="achievements"){
