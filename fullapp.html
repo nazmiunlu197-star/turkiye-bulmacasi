@@ -121,38 +121,6 @@
 .progressRefProgress{left:41%;top:89%;width:19%;height:10%}
 .progressRefCollection{left:60%;top:89%;width:19%;height:10%}
 .progressRefProfile{left:79%;top:89%;width:17%;height:10%}
-</style><style id="progress-dynamic-v1">
-.progressDyn{position:absolute;z-index:94;color:#2b170b;font-family:Georgia,serif;font-weight:700;text-align:center;pointer-events:none}
-.progressLiveLevel{
- left:13.8%;top:26.2%;width:17.2%;height:10.8%;border-radius:50%;
- background:#efd39f;display:flex;flex-direction:column;align-items:center;justify-content:center;
- box-shadow:inset 0 0 0 2px #9a652d
-}
-.progressLiveLevel b{font-size:clamp(26px,5.5vw,40px);line-height:1}
-.progressLiveLevel span{font-size:clamp(9px,2vw,14px);margin-top:4px}
-.progressLiveXp{
- left:12.2%;top:40.8%;width:53.5%;height:4.4%;background:#efd39f;border-radius:14px;
- box-shadow:inset 0 0 0 1px #b27b3c;overflow:hidden
-}
-.progressLiveXpBar{position:absolute;left:3%;top:27%;width:66%;height:46%;background:#ead3a7;border-radius:10px;overflow:hidden;border:1px solid #b27b3c}
-.progressLiveXpFill{height:100%;background:#b51612}
-.progressLiveXpText{position:absolute;right:3.5%;top:0;height:100%;display:flex;align-items:center;font-size:clamp(10px,2.4vw,17px)}
-.progressLiveStats{
- left:10.9%;top:45.7%;width:78.2%;height:10.4%;
- display:grid;grid-template-columns:repeat(4,1fr);gap:.8%;
-}
-.progressLiveStat{background:#efd39f;border:1px solid #b27b3c;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.progressLiveStat b{font-size:clamp(19px,4.2vw,30px);line-height:1}
-.progressLiveStat span{font-size:clamp(8px,1.75vw,12px);line-height:1.05;margin-top:4px}
-.progressLiveCompletion{
- left:10.8%;top:57.1%;width:78.5%;height:10.7%;background:#efd39f;border:1px solid #b27b3c;border-radius:10px;
- display:grid;grid-template-columns:23% 1fr;align-items:center;padding:1.3% 2.5%;
-}
-.progressLivePct{width:72%;aspect-ratio:1;border-radius:50%;background:#e8c98d;display:flex;align-items:center;justify-content:center;font-size:clamp(18px,4.5vw,32px);margin:auto;border:7px solid #b51612}
-.progressLiveRows{display:flex;flex-direction:column;gap:8px;text-align:left;font-size:clamp(9px,2vw,14px)}
-.progressLiveRow{display:grid;grid-template-columns:1fr 42%;gap:8px;align-items:center}
-.progressLiveTrack{height:9px;border-radius:8px;background:#d7b67e;overflow:hidden;border:1px solid #b27b3c}
-.progressLiveFill{height:100%;background:#8a542d}
 </style></head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
@@ -167,33 +135,7 @@ function dailyPage(){
 }
 function progressPage(){
  bg.src='file_00000000578881f4a9fc0fc4775a3a3a.jpg';
- const done=completedPuzzles.size;
- const totalGeneral=Object.keys(GENERAL_PUZZLES||{}).length||100;
- const generalDone=Math.max(0,Math.min(totalGeneral,parseInt(localStorage.getItem('tb_general_completed')||String(Math.max(0,(parseInt(localStorage.getItem('tb_general_next')||'1',10)-1))),10)||0));
- const totalDone=done+generalDone;
- const level=playerLevel();
- const lp=levelProgress();
- const pct=Math.round(done/25*100);
- const generalPct=Math.round((generalDone/totalGeneral)*100);
  ui.innerHTML=`
- <div class="progressDyn progressLiveLevel"><b>${level}</b><span>Seviye</span></div>
- <div class="progressDyn progressLiveXp">
-   <div class="progressLiveXpBar"><div class="progressLiveXpFill" style="width:${Math.round(lp/250*100)}%"></div></div>
-   <div class="progressLiveXpText">${lp} / 250 XP</div>
- </div>
- <div class="progressDyn progressLiveStats">
-   <div class="progressLiveStat"><b>${totalDone}</b><span>Tamamlanan<br>Bulmaca</span></div>
-   <div class="progressLiveStat"><b>${completedPuzzles.size}</b><span>İstanbul<br>Tamamlanan</span></div>
-   <div class="progressLiveStat"><b>${generalDone}</b><span>Genel Kültür<br>Tamamlanan</span></div>
-   <div class="progressLiveStat"><b>${stars}</b><span>Toplam<br>Jeton</span></div>
- </div>
- <div class="progressDyn progressLiveCompletion">
-   <div class="progressLivePct">%${pct}</div>
-   <div class="progressLiveRows">
-     <div class="progressLiveRow"><span>İstanbul Bulmacaları ${done}/25</span><div class="progressLiveTrack"><div class="progressLiveFill" style="width:${pct}%"></div></div></div>
-     <div class="progressLiveRow"><span>Genel Kültür ${generalDone}/${totalGeneral}</span><div class="progressLiveTrack"><div class="progressLiveFill" style="width:${generalPct}%"></div></div></div>
-   </div>
- </div>
  <button class="progressRefHot progressRefBack" aria-label="Geri"></button>
  <button class="progressRefHot progressRefHome" aria-label="Ana Sayfa"></button>
  <button class="progressRefHot progressRefDaily" aria-label="Günlük"></button>
