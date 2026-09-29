@@ -8,6 +8,9 @@
         android:usesCleartextTraffic="false"
         android:theme="@style/Theme.TurkiyeBulmacasi"
         android:label="Türkiye Bulmacası">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5772142203025370~2096815680" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
