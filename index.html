@@ -11,13 +11,19 @@
   <main class="home" id="home">
     <section class="masthead">
       <button class="round gear" data-action="settings" aria-label="Ayarlar">⚙</button>
+
       <div class="brand">
         <div class="brand-top">Türkiye</div>
         <div class="brand-bottom">Bulmacası</div>
         <div class="ornament">— ❧ —</div>
         <div class="motto">Geçmiş, hatırladıkça yeniden yaşar.</div>
       </div>
-      <div class="wallet"><span class="coin">★</span><b>320</b><button>+</button></div>
+
+      <div class="wallet">
+        <span class="coin">★</span>
+        <b>320</b>
+        <button aria-label="Yıldız ekle">+</button>
+      </div>
     </section>
 
     <section class="feature-row">
@@ -25,7 +31,7 @@
         <div class="shade"></div>
         <div class="feature-content">
           <h2>Günün<br>Bulmacası</h2>
-          <p class="date">▣ 29 Eylül 2026</p>
+          <p class="date">▣ 28 Eylül 2026</p>
           <button data-action="daily">Oyna <span>→</span></button>
         </div>
       </article>
@@ -44,6 +50,7 @@
       <button class="city-card istanbul" data-action="istanbul"><span>İstanbul<br>Bulmacaları</span><b>›</b></button>
       <button class="city-card ankara" data-action="ankara"><span>Ankara<br>Bulmacaları</span><b>›</b></button>
       <button class="city-card izmir" data-action="izmir"><span>İzmir<br>Bulmacaları</span><b>›</b></button>
+
       <button class="city-card old" data-action="old"><span>Eski Türkiye<br>Bulmacaları</span><b>›</b></button>
       <button class="city-card anatolia" data-action="anatolia"><span>Anadolu<br>Bulmacaları</span><b>›</b></button>
       <button class="city-card culture" data-action="culture"><span>Kültür ve Yaşam<br>Bulmacaları</span><b>›</b></button>
@@ -54,16 +61,16 @@
     <button class="back" data-action="home">←</button>
     <div class="paper">
       <h2 id="placeholderTitle">Yakında</h2>
-      <p>Bu ekranı onayladığımız tasarıma göre sırayla bağlıyoruz.</p>
+      <p>Bu ekranı onaylanan tasarıma göre sırayla bağlıyoruz.</p>
     </div>
   </section>
 
-  <nav class="bottom-nav">
-    <button class="active" data-action="home"><span>⌂</span><small>Ana Sayfa</small></button>
-    <button data-action="daily"><span>▣</span><small>Günlük</small></button>
-    <button data-action="progress"><span>▥</span><small>İlerleme</small></button>
-    <button data-action="collection"><span>★</span><small>Koleksiyon</small></button>
-    <button data-action="profile"><span>◉</span><small>Profil</small></button>
+  <nav class="bottom-nav" aria-label="Ana menü">
+    <button class="active" data-action="home" aria-label="Ana Sayfa"><span>⌂</span></button>
+    <button data-action="daily" aria-label="Günlük Bulmaca"><span>▣</span></button>
+    <button data-action="progress" aria-label="İlerleme"><span>▥</span></button>
+    <button data-action="collection" aria-label="Koleksiyon"><span>★</span></button>
+    <button data-action="profile" aria-label="Profil"><span>◉</span></button>
   </nav>
 </div>
 <script src="app.js"></script>
