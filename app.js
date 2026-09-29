@@ -45,7 +45,7 @@ function syncApprovedScreens(){
 }
 
 function show(name){
-  if(fullAppRoutes[name]){location.href="fullapp.html?v=42#"+fullAppRoutes[name];return;}
+  if(fullAppRoutes[name]){location.href="fullapp.html?v=43#"+fullAppRoutes[name];return;}
   hideAll();
   if(name==="home") home.hidden=false;
   else if(name==="istanbul") istanbulScreen.hidden=false;
@@ -75,27 +75,51 @@ editProfileName.addEventListener("click",()=>{
   profileNameDisplay.classList.add("custom");
 });
 
-function settingsToast(text){
-  let t=settingsScreen.querySelector(".settings-live-toast");
-  if(!t){t=document.createElement("div");t.className="settings-live-toast";t.style.cssText="position:absolute;left:50%;bottom:10%;transform:translateX(-50%);z-index:40;background:#5f2c18e8;color:#fff0c9;border-radius:18px;padding:8px 14px;font:700 13px Georgia;white-space:nowrap;pointer-events:none";settingsScreen.appendChild(t);}
-  t.textContent=text;t.hidden=false;clearTimeout(settingsToast.timer);settingsToast.timer=setTimeout(()=>t.hidden=true,1200);
+let musicCtx=null,musicTimer=null,musicStep=0;
+function musicEnabled(){const v=localStorage.getItem("tb_music");return v===null?true:v==="1";}
+function setMusicEnabled(on){localStorage.setItem("tb_music",on?"1":"0");if(on)startBackgroundMusic();else stopBackgroundMusic();updateSettingsUI();}
+function startBackgroundMusic(){
+  if(!musicEnabled()) return;
+  if(musicTimer) return;
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC) return;
+  if(!musicCtx) musicCtx=new AC();
+  if(musicCtx.state==="suspended") musicCtx.resume();
+  const notes=[261.63,293.66,329.63,392,440,392,329.63,293.66,246.94,293.66,349.23,392];
+  const play=()=>{
+    if(!musicEnabled()||!musicCtx) return;
+    const osc=musicCtx.createOscillator(),gain=musicCtx.createGain();
+    osc.type="sine";osc.frequency.value=notes[musicStep%notes.length];
+    gain.gain.setValueAtTime(0.0001,musicCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.035,musicCtx.currentTime+0.04);
+    gain.gain.exponentialRampToValueAtTime(0.0001,musicCtx.currentTime+0.65);
+    osc.connect(gain);gain.connect(musicCtx.destination);osc.start();osc.stop(musicCtx.currentTime+0.7);
+    musicStep++;
+  };
+  play();musicTimer=setInterval(play,760);
 }
-function addSettingHit(top,key,onText,offText,def=true){
-  const b=document.createElement("button");b.type="button";b.setAttribute("aria-label",onText+" / "+offText);
-  b.style.cssText=`position:absolute;right:12%;top:${top}%;width:22%;height:6%;z-index:30;border:0;background:transparent;touch-action:manipulation`;
-  b.addEventListener("click",e=>{e.stopPropagation();const cur=localStorage.getItem(key);const on=cur===null?def:cur==="1";const next=!on;localStorage.setItem(key,next?"1":"0");settingsToast(next?onText:offText);});
-  settingsScreen.appendChild(b);
+function stopBackgroundMusic(){if(musicTimer){clearInterval(musicTimer);musicTimer=null;}}
+function settingBool(key,def=true){const v=localStorage.getItem(key);return v===null?def:v==="1";}
+function setSettingBool(key,val){localStorage.setItem(key,val?"1":"0");}
+function settingMessage(t){const m=document.getElementById("settingsMessage");if(!m)return;m.textContent=t;clearTimeout(settingMessage.t);settingMessage.t=setTimeout(()=>m.textContent="",1300);}
+function updateSettingsUI(){
+  const map=[["musicToggle","tb_music",true],["sfxToggle","tb_sfx",true],["notifToggle","tb_notif",true],["darkToggle","tb_dark",false]];
+  map.forEach(([id,key,def])=>{const b=document.getElementById(id);if(!b)return;const on=settingBool(key,def);b.textContent=on?"Açık":"Kapalı";b.classList.toggle("on",on);});
+  const f=document.getElementById("fontToggle");if(f)f.textContent=localStorage.getItem("tb_font_size")||"Orta";
+  const star=document.getElementById("settingsStars");if(star){const save=readLegacySave();star.textContent=Number.isFinite(+save.stars)?+save.stars:320;}
 }
 function initSettingsControls(){
-  if(settingsScreen.dataset.liveControls)return;settingsScreen.dataset.liveControls="1";
-  addSettingHit(32.8,"tb_sfx","Ses efektleri açık","Ses efektleri kapalı",true);
-  addSettingHit(39.2,"tb_music","Müzik açık","Müzik kapalı",true);
-  addSettingHit(45.5,"tb_notif","Bildirimler açık","Bildirimler kapalı",true);
-  addSettingHit(58.5,"tb_dark","Karanlık mod açık","Karanlık mod kapalı",false);
-  const font=document.createElement("button");font.type="button";font.setAttribute("aria-label","Yazı boyutu");font.style.cssText="position:absolute;right:12%;top:52%;width:22%;height:6%;z-index:30;border:0;background:transparent;touch-action:manipulation";
-  font.addEventListener("click",e=>{e.stopPropagation();const vals=["Küçük","Orta","Büyük"];const cur=localStorage.getItem("tb_font_size")||"Orta";const next=vals[(vals.indexOf(cur)+1)%vals.length];localStorage.setItem("tb_font_size",next);settingsToast("Yazı boyutu: "+next);});settingsScreen.appendChild(font);
-  const store=document.createElement("button");store.type="button";store.setAttribute("aria-label","Mağaza ve reklamlar");store.style.cssText="position:absolute;left:23%;top:69%;width:54%;height:6%;z-index:30;border:0;background:transparent;touch-action:manipulation";store.addEventListener("click",e=>{e.stopPropagation();show("store")});settingsScreen.appendChild(store);
+  const music=document.getElementById("musicToggle");if(!music)return;
+  music.onclick=()=>{const next=!settingBool("tb_music",true);setMusicEnabled(next);settingMessage(next?"Müzik açıldı":"Müzik kapatıldı");};
+  document.getElementById("sfxToggle").onclick=()=>{const n=!settingBool("tb_sfx",true);setSettingBool("tb_sfx",n);updateSettingsUI();settingMessage(n?"Ses efektleri açıldı":"Ses efektleri kapatıldı");};
+  document.getElementById("notifToggle").onclick=()=>{const n=!settingBool("tb_notif",true);setSettingBool("tb_notif",n);updateSettingsUI();settingMessage(n?"Bildirimler açıldı":"Bildirimler kapatıldı");};
+  document.getElementById("darkToggle").onclick=()=>{const n=!settingBool("tb_dark",false);setSettingBool("tb_dark",n);updateSettingsUI();settingMessage(n?"Karanlık mod seçildi":"Açık mod seçildi");};
+  document.getElementById("fontToggle").onclick=()=>{const vals=["Küçük","Orta","Büyük"];const cur=localStorage.getItem("tb_font_size")||"Orta";const n=vals[(vals.indexOf(cur)+1)%vals.length];localStorage.setItem("tb_font_size",n);updateSettingsUI();settingMessage("Yazı boyutu: "+n);};
+  document.getElementById("aboutBtn").onclick=()=>settingMessage("Türkiye Bulmacası • v1.0.0");
+  document.getElementById("supportBtn").onclick=()=>settingMessage("Destek bölümü APK sürümünde aktif olacak");
+  updateSettingsUI();
 }
+document.addEventListener("pointerdown",()=>{if(musicEnabled())startBackgroundMusic();},{once:true});
 initSettingsControls();syncApprovedScreens();
 
 function initIstanbulCrossword(){
