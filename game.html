@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=24">
+<link rel="stylesheet" href="styles.css?v=26">
 </head>
 <body>
 <div class="app" id="app">
@@ -33,6 +33,19 @@
   </main>
   <section id="istanbulScreen" class="reference-screen" hidden>
     <img class="reference-image" src="file_0000000091ec821083759393667ca560.png" alt="İstanbul Bulmacası - 1 ekranı">
+    <div id="istanbulPlayable" class="istanbul-playable" aria-label="Oynanabilir İstanbul bulmacası">
+      <div class="cw-word cw-1" data-answer="GALATA" data-number="1"></div>
+      <div class="cw-word cw-4" data-answer="BOĞAZİÇİ" data-number="4"></div>
+      <div class="cw-word cw-6" data-answer="BALAT" data-number="6"></div>
+      <div class="cw-word cw-7" data-answer="TOPKAPI" data-number="7"></div>
+      <div class="cw-word cw-8" data-answer="TAKSİM" data-number="8"></div>
+      <button id="cwHint" class="cw-side cw-hint" type="button">İpucu</button>
+      <button id="cwLetter" class="cw-side cw-letter" type="button">Harf Aç</button>
+      <button id="cwWord" class="cw-side cw-word-open" type="button">Kelime Aç</button>
+      <button id="cwCheck" class="cw-check" type="button">Kontrol</button>
+      <div id="cwMessage" class="cw-message" aria-live="polite"></div>
+      <div id="cwKeyboard" class="cw-keyboard"></div>
+    </div>
     <button class="hotspot istanbul-back" data-action="home" aria-label="Geri"></button>
     <button class="hotspot istanbul-nav-home" data-action="home"></button>
     <button class="hotspot istanbul-nav-daily" data-action="daily"></button>
@@ -122,6 +135,6 @@
     </div>
   </section>
 </div>
-<script src="app.js?v=24"></script>
+<script src="app.js?v=26"></script>
 </body>
 </html>
