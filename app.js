@@ -1,5 +1,6 @@
 const home=document.getElementById("home");
 const collectionScreen=document.getElementById("collectionScreen");
+const achievementsScreen=document.getElementById("achievementsScreen");
 const placeholder=document.getElementById("placeholder");
 const title=document.getElementById("placeholderTitle");
 
@@ -13,6 +14,7 @@ const labels={
 function hideAll(){
   home.hidden=true;
   collectionScreen.hidden=true;
+  achievementsScreen.hidden=true;
   placeholder.hidden=true;
 }
 
@@ -22,6 +24,8 @@ function show(name){
     home.hidden=false;
   }else if(name==="collection"){
     collectionScreen.hidden=false;
+  }else if(name==="achievements"){
+    achievementsScreen.hidden=false;
   }else{
     placeholder.hidden=false;
     title.textContent=labels[name]||"Türkiye Bulmacası";
