@@ -34,7 +34,7 @@ const fullAppRoutes={
 
 function show(name){
   if(fullAppRoutes[name]){
-    location.href="fullapp.html#"+fullAppRoutes[name];
+    location.href="fullapp.html?v=33#"+fullAppRoutes[name];
     return;
   }
   hideAll();
