@@ -45,7 +45,7 @@ function syncApprovedScreens(){
 }
 
 function show(name){
-  if(fullAppRoutes[name]){location.href="fullapp.html?v=43#"+fullAppRoutes[name];return;}
+  if(fullAppRoutes[name]){location.href="fullapp.html?v=44#"+fullAppRoutes[name];return;}
   hideAll();
   if(name==="home") home.hidden=false;
   else if(name==="istanbul") istanbulScreen.hidden=false;
@@ -75,30 +75,46 @@ editProfileName.addEventListener("click",()=>{
   profileNameDisplay.classList.add("custom");
 });
 
-let musicCtx=null,musicTimer=null,musicStep=0;
+let musicCtx=null,musicTimer=null,musicStep=0,musicMaster=null;
 function musicEnabled(){const v=localStorage.getItem("tb_music");return v===null?true:v==="1";}
 function setMusicEnabled(on){localStorage.setItem("tb_music",on?"1":"0");if(on)startBackgroundMusic();else stopBackgroundMusic();updateSettingsUI();}
 function startBackgroundMusic(){
-  if(!musicEnabled()) return;
-  if(musicTimer) return;
+  if(!musicEnabled()||musicTimer) return;
   const AC=window.AudioContext||window.webkitAudioContext;
   if(!AC) return;
   if(!musicCtx) musicCtx=new AC();
   if(musicCtx.state==="suspended") musicCtx.resume();
-  const notes=[261.63,293.66,329.63,392,440,392,329.63,293.66,246.94,293.66,349.23,392];
+  if(!musicMaster){
+    musicMaster=musicCtx.createGain();
+    musicMaster.gain.value=0.22;
+    musicMaster.connect(musicCtx.destination);
+  }
+  const melody=[329.63,392,440,523.25,493.88,440,392,329.63,293.66,329.63,392,440,392,349.23,329.63,293.66];
+  const bass=[130.81,130.81,146.83,146.83,174.61,174.61,146.83,146.83];
+  const playVoice=(freq,type,vol,dur,delay=0)=>{
+    const t=musicCtx.currentTime+delay;
+    const osc=musicCtx.createOscillator(),gain=musicCtx.createGain();
+    osc.type=type;osc.frequency.setValueAtTime(freq,t);
+    gain.gain.setValueAtTime(0.0001,t);
+    gain.gain.exponentialRampToValueAtTime(vol,t+0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    osc.connect(gain);gain.connect(musicMaster);
+    osc.start(t);osc.stop(t+dur+0.05);
+  };
   const play=()=>{
     if(!musicEnabled()||!musicCtx) return;
-    const osc=musicCtx.createOscillator(),gain=musicCtx.createGain();
-    osc.type="sine";osc.frequency.value=notes[musicStep%notes.length];
-    gain.gain.setValueAtTime(0.0001,musicCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.035,musicCtx.currentTime+0.04);
-    gain.gain.exponentialRampToValueAtTime(0.0001,musicCtx.currentTime+0.65);
-    osc.connect(gain);gain.connect(musicCtx.destination);osc.start();osc.stop(musicCtx.currentTime+0.7);
+    const i=musicStep%melody.length;
+    playVoice(melody[i],"triangle",0.55,0.58);
+    if(i%2===0) playVoice(bass[Math.floor(i/2)%bass.length],"sine",0.24,1.05);
+    if(i%4===0){
+      playVoice(melody[i]/2,"sine",0.10,1.3,0.08);
+      playVoice(melody[i]*1.25,"triangle",0.08,0.85,0.16);
+    }
     musicStep++;
   };
-  play();musicTimer=setInterval(play,760);
+  play();musicTimer=setInterval(play,640);
 }
-function stopBackgroundMusic(){if(musicTimer){clearInterval(musicTimer);musicTimer=null;}}
+function stopBackgroundMusic(){if(musicTimer){clearInterval(musicTimer);musicTimer=null;}if(musicMaster&&musicCtx){musicMaster.gain.cancelScheduledValues(musicCtx.currentTime);musicMaster.gain.setTargetAtTime(0.0001,musicCtx.currentTime,0.05);setTimeout(()=>{if(musicMaster){try{musicMaster.disconnect()}catch(e){}musicMaster=null;}},180);}}
 function settingBool(key,def=true){const v=localStorage.getItem(key);return v===null?def:v==="1";}
 function setSettingBool(key,val){localStorage.setItem(key,val?"1":"0");}
 function settingMessage(t){const m=document.getElementById("settingsMessage");if(!m)return;m.textContent=t;clearTimeout(settingMessage.t);settingMessage.t=setTimeout(()=>m.textContent="",1300);}
