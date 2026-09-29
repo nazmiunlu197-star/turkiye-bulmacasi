@@ -34,11 +34,12 @@ button{font:inherit}
 }
 .brand{position:relative;z-index:2;text-align:center;padding-top:12px;text-shadow:0 1px 0 #f9ebd0}
 .brand-top{
-  font-weight:700;font-size:clamp(67px,15vw,95px);line-height:.77;color:#b00008;
-  letter-spacing:-4px
+  font-weight:700;font-size:clamp(58px,13.2vw,86px);line-height:.80;color:#b00008;
+  letter-spacing:-3px;white-space:nowrap
 }
 .brand-bottom{
-  font-weight:700;font-size:clamp(52px,11.6vw,75px);line-height:.94;color:#251108;letter-spacing:-2px
+  font-weight:700;font-size:clamp(47px,10.4vw,69px);line-height:.98;color:#251108;
+  letter-spacing:-1.5px;white-space:nowrap
 }
 .ornament{font-size:22px;margin-top:5px}
 .motto{font-size:clamp(19px,4.2vw,27px);font-style:italic;margin-top:3px}
@@ -79,7 +80,8 @@ button{font:inherit}
   display:flex;flex-direction:column;align-items:flex-start
 }
 .feature-content h2{
-  font-size:clamp(31px,7vw,45px);line-height:.94;margin:0;text-shadow:0 2px 2px #000
+  font-size:clamp(28px,6.1vw,40px);line-height:.96;margin:0;text-shadow:0 2px 2px #000;
+  max-width:100%;word-break:normal
 }
 .feature-content p{font-size:18px;line-height:1.22;margin:14px 0 0;text-shadow:0 2px 2px #000}
 .feature-content .date{margin-top:18px;font-size:17px;font-weight:700}
@@ -102,11 +104,12 @@ button{font:inherit}
   background:linear-gradient(#efd39ce9,#efd39c)
 }
 .city-card span{
-  position:absolute;z-index:2;left:13px;bottom:12px;font-weight:700;
-  font-size:clamp(15px,3.5vw,22px);line-height:1.03;color:#2a1208
+  position:absolute;z-index:2;left:11px;right:36px;bottom:11px;font-weight:700;
+  font-size:clamp(14px,3.1vw,20px);line-height:1.02;color:#2a1208;
+  overflow-wrap:normal;word-break:normal
 }
 .city-card b{
-  position:absolute;z-index:2;right:12px;bottom:18px;font:700 42px/1 Arial;color:#0f0703
+  position:absolute;z-index:2;right:10px;bottom:17px;font:700 38px/1 Arial;color:#0f0703
 }
 .istanbul{background-image:url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg/640px-Pascal_S%C3%A9bah_-_F%C4%B1nd%C4%B1kl%C4%B1_-_Google_Art_Project.jpg")}
 .ankara{background-image:linear-gradient(#9b724780,#9b724720),url("https://commons.wikimedia.org/wiki/Special:FilePath/An%C4%B1tkabir%2C%20Ankara.jpg")}
@@ -116,16 +119,16 @@ button{font:inherit}
 .culture{background-image:linear-gradient(#5a351980,#28160d66),url("https://commons.wikimedia.org/wiki/Special:FilePath/%C4%B0zmir%20clock%20tower.jpg")}
 
 .bottom-nav{
-  position:fixed;z-index:20;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,520px);height:96px;
-  background:#f0d7a9f4;border-top:1px solid #b78e5b;display:grid;grid-template-columns:repeat(5,1fr);
-  padding:8px 10px max(10px,env(safe-area-inset-bottom));border-radius:34px 34px 0 0
+  position:fixed;z-index:20;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,520px);height:92px;
+  background:#f3dcaef7;border-top:1px solid #b78e5b;display:grid;grid-template-columns:repeat(5,1fr);
+  padding:7px 12px max(9px,env(safe-area-inset-bottom));border-radius:34px 34px 0 0;
+  box-shadow:0 -5px 14px rgba(65,34,16,.18)
 }
 .bottom-nav button{
-  border:0;background:transparent;border-radius:18px;color:#60472f;display:flex;
-  align-items:center;justify-content:center
+  border:0;background:transparent;border-radius:18px;color:#5d4937;display:flex;align-items:center;justify-content:center
 }
 .bottom-nav button.active{color:#b30b11}
-.bottom-nav button span{font-size:39px;font-weight:700;line-height:1}
+.bottom-nav button span{font-size:34px;font-weight:700;line-height:1}
 
 .placeholder{
   min-height:calc(100vh - 96px);padding:28px 20px;background:linear-gradient(#ebd2a0,#c79858);
@@ -147,4 +150,25 @@ button{font:inherit}
   .city-card{height:179px}
   .bottom-nav{height:88px}
   .bottom-nav button span{font-size:34px}
+}
+.city-card{
+  background-position:center 30%;
+  filter:saturate(.72) sepia(.22) contrast(.96);
+}
+.city-card:after{
+  content:"";position:absolute;inset:0 0 72px 0;pointer-events:none;
+  background:linear-gradient(rgba(106,66,34,.08),rgba(96,53,25,.18));
+}
+.feature-card{
+  filter:saturate(.78) sepia(.12);
+}
+.masthead{
+  filter:saturate(.72) sepia(.18);
+}
+.masthead .brand,.masthead .round,.masthead .wallet{filter:none}
+@media(max-width:420px){
+  .brand-top{font-size:clamp(55px,13vw,72px)}
+  .brand-bottom{font-size:clamp(44px,10.2vw,60px)}
+  .feature-content h2{font-size:clamp(27px,6vw,34px)}
+  .city-card span{font-size:clamp(13px,3vw,17px)}
 }
