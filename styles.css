@@ -274,11 +274,29 @@ body.tb-dark #home .reference-image{filter:none!important}
 body.tb-dark #home::after{display:none!important}
 
 
-/* V51: ana ekran telefon maketini kırp — uygulama kenardan kenara görünür */
-.app{overflow:hidden}
-#home{
-  width:109%;
-  margin-left:-4.5%;
-  margin-top:-8%;
-  overflow:hidden;
+
+
+/* V67: Ana sayfa telefon maketini tamamen kırp — geri dönüşte tam ekran */
+#home.reference-screen{
+  position:relative!important;
+  width:100vw!important;
+  height:100vh!important;
+  max-width:none!important;
+  margin:0!important;
+  overflow:hidden!important;
+  background:#ead2a2!important;
+}
+#home .reference-image{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:auto!important;
+  height:112vh!important;
+  max-width:none!important;
+  transform:translate(-50%,-50%)!important;
+  object-fit:cover!important;
+}
+#home .main-bottom-nav-bg,
+#home .main-bottom-nav{
+  z-index:60!important;
 }
