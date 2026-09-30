@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
         "ca-app-pub-3940256099942544/1033173712";
 
     private static final String APP_URL =
-        "https://nazmiunlu197-star.github.io/turkiye-bulmacasi/index.html?v=66";
+        "https://nazmiunlu197-star.github.io/turkiye-bulmacasi/index.html?v=72";
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -84,10 +84,7 @@ public class MainActivity extends Activity {
         if (Build.VERSION.SDK_INT >= 33) {
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
                 OnBackInvokedDispatcher.PRIORITY_DEFAULT,
-                () -> {
-                    if (webView.canGoBack()) webView.goBack();
-                    else finish();
-                }
+                () -> handleBackNavigation()
             );
         }
 
@@ -290,10 +287,29 @@ public class MainActivity extends Activity {
         if (hasFocus) hideSystemUi();
     }
 
+    private void handleBackNavigation() {
+        if (webView == null) {
+            finish();
+            return;
+        }
+
+        String url = webView.getUrl();
+        if (url != null && (url.contains("fullapp.html") || url.contains("game.html"))) {
+            webView.loadUrl(APP_URL);
+            return;
+        }
+
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            finish();
+        }
+    }
+
     @Override
     public void onBackPressed() {
-        if (Build.VERSION.SDK_INT < 33 && webView != null && webView.canGoBack()) {
-            webView.goBack();
+        if (Build.VERSION.SDK_INT < 33) {
+            handleBackNavigation();
         } else {
             super.onBackPressed();
         }
