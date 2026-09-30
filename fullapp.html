@@ -277,50 +277,45 @@ body.tb-font-large .key{transform:scale(1.04)}
 }
 </style>
 
-<style id="v58-keyboard-bottom-panel">
-/* V58: klavyeyi alt menüden ayır, üç sırayı dengeli ve temiz tut */
+
+<style id="v59-keyboard-bottom-panel-final">
+/* V59: tek klavye, alt menüye taşma yok, eski basılı satır görünmez */
 .keyboardCover{
-  left:7.0%!important;
-  top:72.35%!important;
-  width:86.0%!important;
-  height:14.10%!important;
+  left:6.8%!important;
+  top:71.15%!important;
+  width:86.4%!important;
+  height:16.15%!important;
+  background:linear-gradient(180deg,#efd59f 0%,#e7c98d 100%)!important;
+  border:1px solid #bf8d4e!important;
   border-radius:12px!important;
-  overflow:hidden!important;
+  box-shadow:none!important;
+  z-index:18!important;
 }
 .keyrow.r1{
-  left:8.9%!important; top:73.35%!important;
-  width:82.2%!important; height:3.55%!important;
-  gap:.70%!important;
+  left:8.9%!important; top:73.20%!important;
+  width:82.2%!important; height:3.45%!important;
+  gap:.68%!important;
 }
 .keyrow.r2{
-  left:11.45%!important; top:77.35%!important;
-  width:77.1%!important; height:3.55%!important;
-  gap:.78%!important;
+  left:11.45%!important; top:77.15%!important;
+  width:77.1%!important; height:3.45%!important;
+  gap:.76%!important;
 }
 .keyrow.r3{
-  left:14.85%!important; top:81.35%!important;
-  width:72.8%!important; height:3.65%!important;
-  gap:.82%!important;
+  left:14.85%!important; top:81.10%!important;
+  width:72.8%!important; height:3.55%!important;
+  gap:.80%!important;
 }
 .key{
   border-radius:8px!important;
-  font-size:clamp(13px,1.85vh,21px)!important;
+  font-size:clamp(13px,1.82vh,21px)!important;
   box-shadow:0 1.5px 3px rgba(0,0,0,.28)!important;
 }
 .key.backspace{font-size:clamp(15px,2vh,23px)!important}
-.bottomPanelGuard{
-  position:absolute;
-  left:5.8%;
-  top:86.55%;
-  width:88.4%;
-  height:.45%;
-  z-index:29;
-  background:#b98545;
-  border-radius:6px;
-  pointer-events:none;
-  opacity:.75;
-}
+.bottomPanelGuard{display:none!important}
+.sourceCover{display:none!important}
 </style>
+
 </head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
