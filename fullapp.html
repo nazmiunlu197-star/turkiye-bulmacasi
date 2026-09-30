@@ -190,7 +190,15 @@ body.tb-font-large .key{transform:scale(1.04)}
  }
  apply();window.addEventListener('storage',apply);window.addEventListener('pageshow',apply);
 })();
-</script></head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
+</script>
+<style id="v55-key-hitbox-align">
+/* V55: görünmez tuş alanlarını arka plandaki klavyenin gerçek konumuna hizala */
+.keyrow.r1{left:8.9%!important;top:73.45%!important;width:82.5%!important;height:3.75%!important;gap:.72%!important}
+.keyrow.r2{left:11.3%!important;top:77.60%!important;width:77.4%!important;height:3.95%!important;gap:.78%!important}
+.keyrow.r3{left:14.8%!important;top:81.95%!important;width:73.0%!important;height:4.15%!important;gap:.85%!important}
+.key{touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
+</style>
+</head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
 const MAIN='file_0000000095d881f4a1713e208409ffb4.png', GAME='file_0000000091ec821083759393667ca560.png'; const bg=document.getElementById('bg'),ui=document.getElementById('ui'),toast=document.getElementById('toast');
