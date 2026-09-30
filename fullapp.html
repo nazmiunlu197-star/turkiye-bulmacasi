@@ -193,134 +193,75 @@ body.tb-font-large .key{transform:scale(1.04)}
 </script>
 
 
-<style id="v56-keyboard-stable">
-/* V56: arka plandaki basılı klavyeyi kapat ve tek gerçek klavye göster */
+
+<style id="v66-ui-clean">
+/* Tek kaynak: oyun klavyesi + skor alanı */
 .keyboardCover{
   position:absolute;
-  left:7.0%;
-  top:73.15%;
-  width:86.0%;
-  height:14.35%;
+  left:6.6%;
+  top:70.85%;
+  width:86.8%;
+  height:16.45%;
   z-index:18;
-  background:linear-gradient(180deg,#efd59f 0%,#e7c98d 100%);
-  border:1px solid #bf8d4e;
+  background:linear-gradient(180deg,#efd59f 0%,#e8ca8e 100%);
+  border:1px solid #bd8a49;
   border-radius:12px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+  box-shadow:none;
   pointer-events:none;
 }
-.keys{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:30}
+.keys{position:absolute;inset:0;pointer-events:none;z-index:30}
 .keyrow{position:absolute;display:grid;pointer-events:auto;z-index:31}
-.keyrow.r1{left:8.7%;top:74.05%;width:82.6%;height:3.95%;grid-template-columns:repeat(12,1fr);gap:.65%}
-.keyrow.r2{left:11.25%;top:78.15%;width:77.5%;height:4.00%;grid-template-columns:repeat(11,1fr);gap:.72%}
-.keyrow.r3{left:14.65%;top:82.35%;width:73.15%;height:4.10%;grid-template-columns:repeat(10,1fr);gap:.78%}
+.keyrow.r1{left:8.8%;top:72.75%;width:82.4%;height:3.55%;grid-template-columns:repeat(12,1fr);gap:.68%}
+.keyrow.r2{left:11.35%;top:76.75%;width:77.3%;height:3.55%;grid-template-columns:repeat(11,1fr);gap:.76%}
+.keyrow.r3{left:14.75%;top:80.75%;width:73.0%;height:3.65%;grid-template-columns:repeat(10,1fr);gap:.80%}
 .key{
   border:1px solid #b37b3d!important;
   background:linear-gradient(#f6dfa9,#e7c383)!important;
   color:#2c170b!important;
-  font:bold clamp(14px,2.0vh,23px) Georgia!important;
+  font:bold clamp(13px,1.82vh,21px) Georgia!important;
   line-height:1!important;
-  border-radius:7px!important;
-  box-shadow:0 2px 3px rgba(0,0,0,.30)!important;
+  border-radius:8px!important;
+  box-shadow:0 1.5px 3px rgba(0,0,0,.28)!important;
   display:flex!important;align-items:center!important;justify-content:center!important;
-  touch-action:manipulation!important;
-  -webkit-tap-highlight-color:transparent!important;
-  user-select:none!important;-webkit-user-select:none!important;
-  padding:0!important;
+  touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important;
+  user-select:none!important;-webkit-user-select:none!important;padding:0!important;
 }
 .key:active{transform:translateY(1px);background:#dfb971!important}
-.key.backspace{
-  background:#3b2415!important;color:#fff0c9!important;
-  font-size:clamp(16px,2.2vh,25px)!important;
-}
-</style>
+.key.backspace{background:#3b2415!important;color:#fff0c9!important;font-size:clamp(15px,2vh,23px)!important}
 
-<style id="v57-star-keyboard-cleanup">
-/* V57: eski basılı sayaç ve klavye satırını tamamen kapat */
-.keyboardCover{
-  left:7.0%!important;
-  top:71.95%!important;
-  width:86.0%!important;
-  height:15.55%!important;
-  background:linear-gradient(180deg,#efd59f 0%,#e7c98d 100%)!important;
-  border:1px solid #bf8d4e!important;
-  border-radius:12px!important;
-  z-index:18!important;
-}
+/* Arka plan görselindeki çift sayaçları tek temiz skor kartıyla kapat */
 .sourceCover{
   position:absolute;
-  right:6.7%;
-  top:9.85%;
-  width:23.8%;
-  height:4.65%;
+  right:5.8%;
+  top:4.15%;
+  width:26.5%;
+  height:10.3%;
   z-index:24;
-  background:linear-gradient(180deg,#efd39a,#e8c581);
-  border-radius:12px;
+  background:linear-gradient(180deg,#efd39a 0%,#e8c581 100%);
+  border:1px solid #b78135;
+  border-radius:22px;
+  box-shadow:0 2px 5px #0004;
   pointer-events:none;
 }
 .starcount{
-  right:6.8%!important;
-  top:4.55%!important;
-  width:23.7%!important;
-  height:5.15%!important;
-  background:#efd08a!important;
-  border:2px solid #a66a18!important;
-  box-shadow:0 2px 5px #0005!important;
-  border-radius:28px!important;
-  font-size:clamp(17px,2.35vh,27px)!important;
-  z-index:30!important;
+  position:absolute!important;
+  right:7.6%!important;
+  top:6.55%!important;
+  width:22.9%!important;
+  height:5.0%!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;
+  color:#2d1609!important;font:bold clamp(17px,2.35vh,27px) Georgia!important;
+  z-index:30!important;pointer-events:none!important;
 }
-.starcount:before{
-  content:'★';
-  margin-right:7px;
-  color:#b8780d;
-  font-size:1.05em;
-}
-</style>
-
-
-<style id="v59-keyboard-bottom-panel-final">
-/* V59: tek klavye, alt menüye taşma yok, eski basılı satır görünmez */
-.keyboardCover{
-  left:6.8%!important;
-  top:71.15%!important;
-  width:86.4%!important;
-  height:16.15%!important;
-  background:linear-gradient(180deg,#efd59f 0%,#e7c98d 100%)!important;
-  border:1px solid #bf8d4e!important;
-  border-radius:12px!important;
-  box-shadow:none!important;
-  z-index:18!important;
-}
-.keyrow.r1{
-  left:8.9%!important; top:73.20%!important;
-  width:82.2%!important; height:3.45%!important;
-  gap:.68%!important;
-}
-.keyrow.r2{
-  left:11.45%!important; top:77.15%!important;
-  width:77.1%!important; height:3.45%!important;
-  gap:.76%!important;
-}
-.keyrow.r3{
-  left:14.85%!important; top:81.10%!important;
-  width:72.8%!important; height:3.55%!important;
-  gap:.80%!important;
-}
-.key{
-  border-radius:8px!important;
-  font-size:clamp(13px,1.82vh,21px)!important;
-  box-shadow:0 1.5px 3px rgba(0,0,0,.28)!important;
-}
-.key.backspace{font-size:clamp(15px,2vh,23px)!important}
+.starcount:before{content:'★';margin-right:7px;color:#b8780d;font-size:1.05em}
 .bottomPanelGuard{display:none!important}
-.sourceCover{display:none!important}
 </style>
-
 </head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
 const MAIN='file_0000000095d881f4a1713e208409ffb4.png', GAME='file_0000000091ec821083759393667ca560.png'; const bg=document.getElementById('bg'),ui=document.getElementById('ui'),toast=document.getElementById('toast');
-function home(){location.href='game.html?v=47';}
+function home(){location.href='index.html?v=66';}
 function dailyPage(){
  bg.src=MAIN;
  ui.innerHTML=`<div class="dailyPage"><button class="dailyBack" aria-label="Geri">←</button><div class="dailyTitle">Türkiye Bulmacası<span>Günlük Bulmaca</span></div><div class="dailyPaper"><div class="dailyBadge">28 Eylül</div><h2>Bugünün İstanbul Bulmacası</h2><p>Her gün yeni bir kısa bulmaca seni bekliyor.</p><div class="dailyReward">★ Günlük ödül: +25 yıldız</div><button class="dailyStart">Günün Bulmacasını Oyna</button></div><div class="dailyNav"><span>Ana Sayfa</span><b>Günlük</b><span>İlerleme</span><span>Koleksiyon</span><span>Profilim</span></div></div>`;
