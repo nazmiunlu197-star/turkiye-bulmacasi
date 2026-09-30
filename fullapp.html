@@ -258,17 +258,14 @@ body.tb-font-large .key{transform:scale(1.04)}
 .bottomPanelGuard{display:none!important}
 </style>
 
-<style id="v69-puzzle-fullscreen-crop">
-/* Bulmaca arka planındaki gömülü telefon kasasını ekran dışına kırp */
-.bg[src*="file_0000000091ec821083759393667ca560.png"]{
-  position:absolute!important;
-  left:50%!important;
-  top:50%!important;
-  width:108.5%!important;
-  height:108.5%!important;
-  max-width:none!important;
-  object-fit:cover!important;
-  transform:translate(-50%,-50%)!important;
+
+<style id="v70-puzzle-screen-crop">
+/* Bulmaca ekranını komple büyüt: telefon kasası/çentik kırpılır, dokunma alanları hizalı kalır */
+html,body{overflow:hidden!important}
+.app{overflow:hidden!important}
+.screen{
+  transform:scale(1.118)!important;
+  transform-origin:center center!important;
 }
 </style>
 </head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
