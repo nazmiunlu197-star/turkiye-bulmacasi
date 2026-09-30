@@ -190,68 +190,7 @@ body.tb-font-large .key{transform:scale(1.04)}
  }
  apply();window.addEventListener('storage',apply);window.addEventListener('pageshow',apply);
 })();
-</script>
-<style id="v52-keyboard-counter-fix">
-/* V52: gerçek tıklanabilir klavye + tek sayaç */
-.keyrow{gap:1.1%!important}
-.key{
-  font:bold clamp(15px,2.05vh,23px) Georgia!important;
-  color:#2c170b!important;
-  background:#f1d7a0!important;
-  border:1px solid #b98545!important;
-  border-radius:7px!important;
-  box-shadow:0 2px 3px #0004!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-}
-.key:active{transform:translateY(1px)!important;background:#e4c484!important}
-.key.backspace{background:#3d2617!important;color:#fff0cb!important}
-.keyrow.r1{left:8.8%!important;top:74.65%!important;width:82.4%!important;height:3.75%!important}
-.keyrow.r2{left:11.3%!important;top:78.65%!important;width:77.4%!important;height:3.75%!important}
-.keyrow.r3{left:14.7%!important;top:82.65%!important;width:73.1%!important;height:3.75%!important}
-.starcount{
-  right:7.2%!important;
-  top:10.55%!important;
-  width:20.5%!important;
-  height:3.6%!important;
-  border-radius:12px!important;
-  box-shadow:0 2px 4px #0005!important;
-  font-size:clamp(14px,1.9vh,22px)!important;
-  z-index:45!important;
-}
-</style>
-
-<style id="v54-keyboard-modal-fix">
-/* V54: arka plandaki tek klavye görünür; üstüne yalnızca görünmez dokunma alanları bindirilir */
-.keyboardMask{display:none!important}
-.keys{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:40!important}
-.keyrow{position:absolute;display:grid;gap:.55%;pointer-events:auto;z-index:41!important}
-.keyrow.r1{left:9.0%!important;top:74.7%!important;width:82.2%!important;height:3.8%!important;grid-template-columns:repeat(12,1fr)}
-.keyrow.r2{left:11.6%!important;top:78.7%!important;width:77.1%!important;height:3.8%!important;grid-template-columns:repeat(11,1fr)}
-.keyrow.r3{left:15.0%!important;top:82.7%!important;width:72.8%!important;height:3.8%!important;grid-template-columns:repeat(10,1fr)}
-.key{
-  border:0!important;background:transparent!important;color:transparent!important;
-  font:0/0 a!important;box-shadow:none!important;border-radius:0!important;
-  cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;outline:none!important;
-}
-.key:focus,.key:focus-visible,.key:active{outline:none!important;box-shadow:none!important;background:transparent!important}
-.tbChoiceOverlay{
-  position:absolute;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;
-  background:rgba(31,17,8,.58);padding:7%;
-}
-.tbChoiceCard{
-  width:86%;background:#efd8a3;border:2px solid #955a22;border-radius:20px;
-  box-shadow:0 12px 34px #0008;color:#321b0d;text-align:center;padding:20px 18px 16px;font-family:Georgia,serif;
-}
-.tbChoiceTitle{font:bold clamp(22px,3vh,34px) Georgia;color:#9f1711;margin-bottom:10px}
-.tbChoiceText{font:600 clamp(14px,1.8vh,20px) Georgia;line-height:1.35;white-space:pre-line}
-.tbChoiceActions{display:flex;gap:10px;margin-top:18px}
-.tbChoiceActions button{flex:1;min-height:46px;border:0;border-radius:14px;font:bold clamp(14px,1.75vh,20px) Georgia;box-shadow:0 3px 0 #0003}
-.tbChoicePaid{background:#7d271d;color:#fff1cf}
-.tbChoiceAd{background:#d5aa5e;color:#2b170c}
-</style>
-</head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
+</script></head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
 const MAIN='file_0000000095d881f4a1713e208409ffb4.png', GAME='file_0000000091ec821083759393667ca560.png'; const bg=document.getElementById('bg'),ui=document.getElementById('ui'),toast=document.getElementById('toast');
@@ -723,32 +662,22 @@ function checkActive(){if(!activeDef||!activeDef.answer)return false;const cs=ce
 function press(k){if(!selected||!activeDef)return;const word=cellsFor(activeDef),i=word.indexOf(selected);if(k==='⌫'){word.forEach(c=>c.classList.remove('ok','bad'));if(selected.textContent)selected.textContent='';else if(i>0){select(word[i-1]);selected.textContent=''}saveDraft();return}selected.textContent=k;selected.classList.remove('ok','bad');saveDraft();if(i+1<word.length)select(word[i+1]);else checkActive()}
 function adBridgeReady(){return !!(window.AndroidAds&&typeof window.AndroidAds.showRewarded==='function')}
 let pendingRewardAction=null;
-function showRewardChoice(action,onAd,onPaid){
-  const cfg={
-    hint:{title:'İpucu',text:'İpucunu reklam izleyerek ücretsiz açabilirsin.',paid:'10 Yıldız Kullan'},
-    letter:{title:'Harf Aç',text:'Bir harfi reklam izleyerek ücretsiz açabilirsin.',paid:'15 Yıldız Kullan'},
-    word:{title:'Kelime Aç',text:'Kelimeyi reklam izleyerek ücretsiz açabilirsin.',paid:'30 Yıldız Kullan'}
-  }[action]||{title:'Ödül',text:'Reklam izleyerek ücretsiz kullanabilirsin.',paid:'Yıldız Kullan'};
-  const o=document.createElement('div');
-  o.className='tbChoiceOverlay';
-  o.innerHTML=`<div class="tbChoiceCard"><div class="tbChoiceTitle">${cfg.title}</div><div class="tbChoiceText">${cfg.text}</div><div class="tbChoiceActions"><button type="button" class="tbChoicePaid">${cfg.paid}</button><button type="button" class="tbChoiceAd">Reklam İzle</button></div></div>`;
-  const close=()=>o.remove();
-  o.querySelector('.tbChoicePaid').onclick=()=>{close();onPaid();};
-  o.querySelector('.tbChoiceAd').onclick=()=>{close();onAd();};
-  o.onclick=e=>{if(e.target===o){close();}};
-  ui.appendChild(o);
-}
 function requestRewardedOrStars(action,paidFallback){
-  if(!adBridgeReady()){paidFallback();return;}
-  showRewardChoice(
-    action,
-    ()=>{
+  const labels={
+    hint:'İpucunu reklam izleyerek ücretsiz açmak ister misin?\nİptal: 10 yıldız kullan.',
+    letter:'Bir harfi reklam izleyerek ücretsiz açmak ister misin?\nİptal: 15 yıldız kullan.',
+    word:'Kelimeyi reklam izleyerek ücretsiz açmak ister misin?\nİptal: 30 yıldız kullan.'
+  };
+  if(adBridgeReady()){
+    const watch=window.confirm(labels[action]||'Reklam izleyerek ücretsiz kullanmak ister misin?');
+    if(watch){
       pendingRewardAction=action;
       msg('Ödüllü reklam hazırlanıyor...');
       try{window.AndroidAds.showRewarded(action)}catch(e){pendingRewardAction=null;msg('Reklam açılamadı. Tekrar deneyebilirsin.')}
-    },
-    paidFallback
-  );
+      return;
+    }
+  }
+  paidFallback();
 }
 window.onAdRewardEarned=function(action){
   pendingRewardAction=null;
