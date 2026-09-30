@@ -396,6 +396,14 @@ function loadSave(){
 }
 let save=loadSave();
 let stars=save.stars, completedPuzzles=new Set(save.completed), currentPuzzle=save.currentPuzzle;
+try{
+  const fixKey='tb_v68_letter_overcharge_fixed';
+  if(stars===5 && !localStorage.getItem(fixKey)){
+    stars=35;
+    localStorage.setItem(fixKey,'1');
+    localStorage.setItem(SAVE_KEY,JSON.stringify({stars,completed:[...completedPuzzles].sort((a,b)=>a-b),currentPuzzle,xp:save.xp}));
+  }
+}catch(e){}
 let xp=(save.xp===null?completedPuzzles.size*50:save.xp);
 function playerLevel(){return Math.floor(xp/250)+1}
 function levelProgress(){return xp%250}
@@ -727,9 +735,15 @@ function checkPuzzleComplete(){
 
 function checkActive(){if(!activeDef||!activeDef.answer)return false;const cs=cellsFor(activeDef);if(cs.some(c=>!c.textContent))return false;cs.forEach(c=>c.classList.remove('ok','bad'));const typed=normalize(cs.map(c=>c.textContent).join(''));if(typed===normalize(activeDef.answer)){cs.forEach(c=>c.classList.add('ok'));msg('Doğru! ✓');setTimeout(checkPuzzleComplete,250);return true}cs.forEach(c=>c.classList.add('bad'));msg('Henüz doğru değil.');setTimeout(()=>cs.forEach(c=>c.classList.remove('bad')),650);return false}
 function press(k){if(!selected||!activeDef)return;const word=cellsFor(activeDef),i=word.indexOf(selected);if(k==='⌫'||k==='BACKSPACE'){word.forEach(c=>c.classList.remove('ok','bad'));if(selected.textContent)selected.textContent='';else if(i>0){select(word[i-1]);selected.textContent=''}saveDraft();return}selected.textContent=k;selected.classList.remove('ok','bad');saveDraft();if(i+1<word.length)select(word[i+1]);else checkActive()}
-function useHint(){if(!activeDef||!activeDef.answer){msg('Bu kare için ipucu tanımlı değil.');return}if(!spend(10))return;msg('İpucu: '+activeDef.clue.replace(/\s*\(\d+\)\s*$/,''))}
-function ensureHintWord(){if(activeDef&&activeDef.answer)return activeDef;const w=WORDS.find(w=>cellsFor(w).some(c=>!c.textContent));if(w){activeDef=w;direction=w.dir;const cs=cellsFor(w);cs.forEach(c=>c.classList.add('word'));if(cs[0]){selected=cs[0];cs[0].classList.add('sel')}}return w||null}let lastLetterHintAt=0;function revealLetter(){const now=Date.now();if(now-lastLetterHintAt<1000)return;lastLetterHintAt=now;const w=ensureHintWord();if(!w){msg('Açılacak harf kalmadı.');return}const cs=cellsFor(w),ans=[...w.answer];const blanks=[];cs.forEach((c,i)=>{if(c&&!c.textContent)blanks.push(i)});if(!blanks.length){msg('Bu kelimede boş harf kalmadı.');return}const idx=blanks[0];if(!spend(15))return;const target=cs[idx];target.textContent=ans[idx];target.classList.add('revealed');saveDraft();msg('15 yıldız kullanıldı • 1 harf açıldı.')}
-function revealWord(){const w=ensureHintWord();if(!w){msg('Açılacak kelime kalmadı.');return}if(!spend(30))return;const cs=cellsFor(w);[...w.answer].forEach((ch,i)=>{if(cs[i])cs[i].textContent=ch});cs.forEach(c=>c.classList.add('ok'));saveDraft();msg('30 yıldız kullanıldı • Kelime açıldı. ✓');setTimeout(checkPuzzleComplete,250)}
+function useHint(){withHintLock(()=>{if(!activeDef||!activeDef.answer){msg('Bu kare için ipucu tanımlı değil.');return}if(!spend(10))return;msg('10 yıldız kullanıldı • Kalan: '+stars+' ★');setTimeout(()=>msg('İpucu: '+activeDef.clue.replace(/\s*\(\d+\)\s*$/,'')),450)})}
+function ensureHintWord(){if(activeDef&&activeDef.answer)return activeDef;const w=WORDS.find(w=>cellsFor(w).some(c=>!c.textContent));if(w){activeDef=w;direction=w.dir;const cs=cellsFor(w);cs.forEach(c=>c.classList.add('word'));if(cs[0]){selected=cs[0];cs[0].classList.add('sel')}}return w||null}let lastLetterHintAt=0, hintActionBusy=false;
+function withHintLock(fn){
+  if(hintActionBusy)return;
+  hintActionBusy=true;
+  try{fn();}finally{setTimeout(()=>{hintActionBusy=false},650)}
+}
+function revealLetter(){withHintLock(()=>{const now=Date.now();if(now-lastLetterHintAt<650)return;lastLetterHintAt=now;const w=ensureHintWord();if(!w){msg('Açılacak harf kalmadı.');return}const cs=cellsFor(w),ans=[...w.answer];const blanks=[];cs.forEach((c,i)=>{if(c&&!c.textContent)blanks.push(i)});if(!blanks.length){msg('Bu kelimede boş harf kalmadı.');return}const idx=blanks[0];if(!spend(15))return;const target=cs[idx];target.textContent=ans[idx];target.classList.add('revealed');saveDraft();msg('15 yıldız kullanıldı • Kalan: '+stars+' ★');})}
+function revealWord(){withHintLock(()=>{const w=ensureHintWord();if(!w){msg('Açılacak kelime kalmadı.');return}if(!spend(30))return;const cs=cellsFor(w);[...w.answer].forEach((ch,i)=>{if(cs[i])cs[i].textContent=ch});cs.forEach(c=>c.classList.add('ok'));saveDraft();msg('30 yıldız kullanıldı • Kalan: '+stars+' ★');setTimeout(checkPuzzleComplete,250)})}
 
 function runRegressionTests(){
  const errors=[];
