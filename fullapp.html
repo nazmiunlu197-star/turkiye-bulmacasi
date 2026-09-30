@@ -221,6 +221,63 @@ body.tb-font-large .key{transform:scale(1.04)}
   z-index:45!important;
 }
 </style>
+
+<style id="v53-keyboard-modal-fix">
+/* V53: eski görsel klavyeyi kapat, tek çalışan klavye bırak */
+.keyboardMask{
+  position:absolute;
+  left:7.2%;
+  top:73.9%;
+  width:85.6%;
+  height:13.4%;
+  z-index:18;
+  background:linear-gradient(180deg,#edd39a 0%,#e6c586 100%);
+  border:1px solid #bd8a49;
+  border-radius:12px;
+  box-shadow:inset 0 1px 0 #fff5,0 2px 5px #0002;
+  pointer-events:none;
+}
+.keys{z-index:20!important}
+.keyrow{z-index:21!important}
+.key{
+  font:bold clamp(14px,1.95vh,22px) Georgia!important;
+  color:#2b180d!important;
+  background:linear-gradient(#f6dfaa,#e9c98b)!important;
+  border:1px solid #b37a39!important;
+  border-radius:7px!important;
+  box-shadow:0 2px 3px #0004!important;
+}
+.key.backspace{background:#3b2517!important;color:#ffecc4!important}
+
+/* Oyun içi özel onay kutusu */
+.tbChoiceOverlay{
+  position:absolute;inset:0;z-index:120;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(31,17,8,.58);
+  padding:7%;
+}
+.tbChoiceCard{
+  width:86%;
+  background:#efd8a3;
+  border:2px solid #955a22;
+  border-radius:20px;
+  box-shadow:0 12px 34px #0008;
+  color:#321b0d;
+  text-align:center;
+  padding:20px 18px 16px;
+  font-family:Georgia,serif;
+}
+.tbChoiceTitle{font:bold clamp(22px,3vh,34px) Georgia;color:#9f1711;margin-bottom:10px}
+.tbChoiceText{font:600 clamp(14px,1.8vh,20px) Georgia;line-height:1.35;white-space:pre-line}
+.tbChoiceActions{display:flex;gap:10px;margin-top:18px}
+.tbChoiceActions button{
+  flex:1;min-height:46px;border:0;border-radius:14px;
+  font:bold clamp(14px,1.75vh,20px) Georgia;
+  box-shadow:0 3px 0 #0003;
+}
+.tbChoicePaid{background:#7d271d;color:#fff1cf}
+.tbChoiceAd{background:#d5aa5e;color:#2b170c}
+</style>
 </head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
@@ -639,7 +696,7 @@ function anyWord(cell,dir){return wordFor(cell,dir)||fallbackWord(cell,dir)}
 function normalize(t){return (t||'').toLocaleUpperCase('tr-TR')}
 function updateStars(){const el=ui.querySelector('.starcount');if(el)el.textContent=stars}
 function spend(n){if(stars<n){msg('Yeterli yıldızın yok.');return false}stars-=n;persistSave();updateStars();return true}
-function game(){puzzleCompleted=false;persistSave();const puzzle=gameMode==='general'?(GENERAL_PUZZLES[generalNumber]||GENERAL_PUZZLES[1]):(PUZZLES[currentPuzzle]||PUZZLES[1]);pattern=puzzle.pattern||BASE_PATTERN;WORDS=puzzle.words;bg.src=GAME;let h='<button class="hot back"></button><div class="starcount">${stars}</div><div class="grid">';for(let r=0;r<8;r++)for(let c=0;c<10;c++){let b=pattern[r][c]=='#';h+=`<div class="cell ${b?'block':''}" data-r="${r}" data-c="${c}"></div>`}h+='</div><button class="hint" aria-label="İpucu"></button><button class="letterhint" aria-label="Harf Aç"></button><button class="wordhint" aria-label="Kelime Aç"></button><div class="cluecover left">'+WORDS.filter(w=>w.dir==='across').map(w=>`<div>${w.id.replace('A','')}. ${w.clue}</div>`).join('')+'</div><div class="cluecover right">'+WORDS.filter(w=>w.dir==='down').map(w=>`<div>${w.id.replace('D','')}. ${w.clue}</div>`).join('')+'</div><div class="keys">';const rows=['QWERTYUIOPĞÜ','ASDFGHJKLŞİ','ZXCVBNMÖÇ⌫'];rows.forEach((row,ri)=>{h+=`<div class="keyrow r${ri+1}">`;for(const k of row)h+=`<button class="key ${k==='⌫'?'backspace':''}" data-k="${k}" aria-label="${k}">${k}</button>`;h+='</div>'});h+='</div>';h+=`<div class="puzzleTitle2"><b>${gameMode==='general'?'Genel Kültür':'İstanbul'}</b>Bulmacası - ${gameMode==='general'?generalNumber:currentPuzzle}</div>`;ui.innerHTML=h;ui.querySelector('.back').onclick=home;ui.querySelectorAll('.cell:not(.block)').forEach(x=>x.onclick=()=>tapCell(x));ui.querySelectorAll('.key').forEach(x=>x.onclick=()=>press(x.dataset.k));const bindOnce=(el,fn)=>{el.onclick=null;el.ontouchstart=null;el.onpointerup=(e)=>{e.preventDefault();e.stopPropagation();fn()}};bindOnce(ui.querySelector('.hint'),useHint);bindOnce(ui.querySelector('.letterhint'),revealLetter);bindOnce(ui.querySelector('.wordhint'),revealWord);
+function game(){puzzleCompleted=false;persistSave();const puzzle=gameMode==='general'?(GENERAL_PUZZLES[generalNumber]||GENERAL_PUZZLES[1]):(PUZZLES[currentPuzzle]||PUZZLES[1]);pattern=puzzle.pattern||BASE_PATTERN;WORDS=puzzle.words;bg.src=GAME;let h='<button class="hot back"></button><div class="starcount">${stars}</div><div class="grid">';for(let r=0;r<8;r++)for(let c=0;c<10;c++){let b=pattern[r][c]=='#';h+=`<div class="cell ${b?'block':''}" data-r="${r}" data-c="${c}"></div>`}h+='</div><button class="hint" aria-label="İpucu"></button><button class="letterhint" aria-label="Harf Aç"></button><button class="wordhint" aria-label="Kelime Aç"></button><div class="cluecover left">'+WORDS.filter(w=>w.dir==='across').map(w=>`<div>${w.id.replace('A','')}. ${w.clue}</div>`).join('')+'</div><div class="cluecover right">'+WORDS.filter(w=>w.dir==='down').map(w=>`<div>${w.id.replace('D','')}. ${w.clue}</div>`).join('')+'</div><div class="keyboardMask"></div><div class="keys">';const rows=['QWERTYUIOPĞÜ','ASDFGHJKLŞİ','ZXCVBNMÖÇ⌫'];rows.forEach((row,ri)=>{h+=`<div class="keyrow r${ri+1}">`;for(const k of row)h+=`<button class="key ${k==='⌫'?'backspace':''}" data-k="${k}" aria-label="${k}">${k}</button>`;h+='</div>'});h+='</div>';h+=`<div class="puzzleTitle2"><b>${gameMode==='general'?'Genel Kültür':'İstanbul'}</b>Bulmacası - ${gameMode==='general'?generalNumber:currentPuzzle}</div>`;ui.innerHTML=h;ui.querySelector('.back').onclick=home;ui.querySelectorAll('.cell:not(.block)').forEach(x=>x.onclick=()=>tapCell(x));ui.querySelectorAll('.key').forEach(x=>x.onclick=()=>press(x.dataset.k));const bindOnce=(el,fn)=>{el.onclick=null;el.ontouchstart=null;el.onpointerup=(e)=>{e.preventDefault();e.stopPropagation();fn()}};bindOnce(ui.querySelector('.hint'),useHint);bindOnce(ui.querySelector('.letterhint'),revealLetter);bindOnce(ui.querySelector('.wordhint'),revealWord);
   const starts=puzzle.starts;
   Object.entries(starts).forEach(([pos,n])=>{const [r,c]=pos.split(',');const el=cellAt(r,c);if(el){el.dataset.num=n;el.classList.add('numbered')}});
   loadDraft();
@@ -693,22 +750,32 @@ function checkActive(){if(!activeDef||!activeDef.answer)return false;const cs=ce
 function press(k){if(!selected||!activeDef)return;const word=cellsFor(activeDef),i=word.indexOf(selected);if(k==='⌫'){word.forEach(c=>c.classList.remove('ok','bad'));if(selected.textContent)selected.textContent='';else if(i>0){select(word[i-1]);selected.textContent=''}saveDraft();return}selected.textContent=k;selected.classList.remove('ok','bad');saveDraft();if(i+1<word.length)select(word[i+1]);else checkActive()}
 function adBridgeReady(){return !!(window.AndroidAds&&typeof window.AndroidAds.showRewarded==='function')}
 let pendingRewardAction=null;
+function showRewardChoice(action,onAd,onPaid){
+  const cfg={
+    hint:{title:'İpucu',text:'İpucunu reklam izleyerek ücretsiz açabilirsin.',paid:'10 Yıldız Kullan'},
+    letter:{title:'Harf Aç',text:'Bir harfi reklam izleyerek ücretsiz açabilirsin.',paid:'15 Yıldız Kullan'},
+    word:{title:'Kelime Aç',text:'Kelimeyi reklam izleyerek ücretsiz açabilirsin.',paid:'30 Yıldız Kullan'}
+  }[action]||{title:'Ödül',text:'Reklam izleyerek ücretsiz kullanabilirsin.',paid:'Yıldız Kullan'};
+  const o=document.createElement('div');
+  o.className='tbChoiceOverlay';
+  o.innerHTML=`<div class="tbChoiceCard"><div class="tbChoiceTitle">${cfg.title}</div><div class="tbChoiceText">${cfg.text}</div><div class="tbChoiceActions"><button type="button" class="tbChoicePaid">${cfg.paid}</button><button type="button" class="tbChoiceAd">Reklam İzle</button></div></div>`;
+  const close=()=>o.remove();
+  o.querySelector('.tbChoicePaid').onclick=()=>{close();onPaid();};
+  o.querySelector('.tbChoiceAd').onclick=()=>{close();onAd();};
+  o.onclick=e=>{if(e.target===o){close();}};
+  ui.appendChild(o);
+}
 function requestRewardedOrStars(action,paidFallback){
-  const labels={
-    hint:'İpucunu reklam izleyerek ücretsiz açmak ister misin?\nİptal: 10 yıldız kullan.',
-    letter:'Bir harfi reklam izleyerek ücretsiz açmak ister misin?\nİptal: 15 yıldız kullan.',
-    word:'Kelimeyi reklam izleyerek ücretsiz açmak ister misin?\nİptal: 30 yıldız kullan.'
-  };
-  if(adBridgeReady()){
-    const watch=window.confirm(labels[action]||'Reklam izleyerek ücretsiz kullanmak ister misin?');
-    if(watch){
+  if(!adBridgeReady()){paidFallback();return;}
+  showRewardChoice(
+    action,
+    ()=>{
       pendingRewardAction=action;
       msg('Ödüllü reklam hazırlanıyor...');
       try{window.AndroidAds.showRewarded(action)}catch(e){pendingRewardAction=null;msg('Reklam açılamadı. Tekrar deneyebilirsin.')}
-      return;
-    }
-  }
-  paidFallback();
+    },
+    paidFallback
+  );
 }
 window.onAdRewardEarned=function(action){
   pendingRewardAction=null;
