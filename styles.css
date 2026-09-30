@@ -300,3 +300,73 @@ body.tb-dark #home::after{display:none!important}
 #home .main-bottom-nav{
   z-index:60!important;
 }
+
+
+/* V74 PHONE FIT — all reference screens fill the real Android viewport */
+html,body{
+  width:100%!important;
+  min-height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#17100b!important;
+}
+.app{
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  height:100dvh!important;
+  min-height:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+.reference-screen{
+  position:absolute!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  height:100dvh!important;
+  max-width:none!important;
+  margin:0!important;
+  overflow:hidden!important;
+  line-height:0!important;
+}
+.reference-screen .reference-image{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:fill!important;
+  transform:none!important;
+}
+#home.reference-screen{
+  position:absolute!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  height:100dvh!important;
+  margin:0!important;
+}
+#home .reference-image{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  transform:none!important;
+  object-fit:fill!important;
+}
+.settings-portrait{
+  position:absolute!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  height:100dvh!important;
+  overflow:auto!important;
+  margin:0!important;
+}
+@supports not (height:100dvh){
+  .app,.reference-screen,#home.reference-screen,.settings-portrait{height:100vh!important}
+}
