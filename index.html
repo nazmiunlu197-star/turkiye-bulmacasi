@@ -33,6 +33,23 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
 #home .hotspot,#home .home-star-badge,#home .main-bottom-nav,#home .main-bottom-nav-bg{transform:none!important}
 @supports not (height:100dvh){#home.reference-screen{height:100vh!important}}
 </style>
+
+<style id="v77-clean-home-crop">
+/* Remove the phone mockup/status bar baked into the old home reference. */
+#home{background:#ead2a2!important}
+#home .reference-image{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:translateY(-3.2%) scale(1.14)!important;
+  transform-origin:center center!important;
+  image-rendering:auto!important;
+  filter:contrast(1.07) saturate(1.02)!important;
+}
+</style>
 </head>
 <body>
 <div class="app" id="app">
@@ -40,7 +57,6 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
     <img class="reference-image" src="file_0000000095d881f4a1713e208409ffb4.png" alt="Türkiye Bulmacası ana ekranı">
     <button class="hotspot home-settings" data-action="settings"></button>
     <button class="hotspot home-store" data-action="store" aria-label="Mağaza"></button>
-    <div class="home-star-badge" aria-label="Yıldız bakiyesi">★ <span id="homeStars">360</span></div>
     <button class="hotspot home-daily" data-action="daily"></button>
     <button class="hotspot home-istanbul" data-action="istanbul"></button>
     <button class="hotspot home-ankara" data-action="ankara"></button>
