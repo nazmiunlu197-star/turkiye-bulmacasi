@@ -93,8 +93,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cp android/app/build/outputs/apk/debug/app-debug.apk Turkiye-Bulmacasi-v86.apk
-          gh release delete v86 --yes --cleanup-tag || true
-          gh release create v86 Turkiye-Bulmacasi-v86.apk \
-            --title "Türkiye Bulmacası V86" \
-            --notes "Android APK - V86"
+          cp android/app/build/outputs/apk/debug/app-debug.apk Turkiye-Bulmacasi-v87.apk
+          gh release delete v87 --yes --cleanup-tag || true
+          gh release create v87 Turkiye-Bulmacasi-v87.apk \
+            --title "Türkiye Bulmacası V87" \
+            --notes "Android APK - V87"
