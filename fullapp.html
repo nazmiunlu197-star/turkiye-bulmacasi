@@ -409,6 +409,52 @@ radial-gradient(circle at 77% 33%,#9c5a1c 0,#5c3013 25%,#28140a 61%,#150b06 100%
 .storeHitArchive{left:51.1%;top:91.2%;width:22.5%;height:6.2%}
 .storeHitBosphorus{left:75%;top:91.2%;width:22%;height:6.2%}
 </style>
+
+<style id="store-asset-v82-fix">
+.storeAssetScreen{
+  position:absolute!important; inset:0!important; z-index:240!important;
+  background:#d7aa65!important; overflow-y:auto!important; overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.storeAssetStage{
+  position:relative!important; width:100%!important; margin:0!important; padding:0!important;
+}
+.storeAssetImg{
+  position:relative!important; inset:auto!important; display:block!important;
+  width:100%!important; height:auto!important; object-fit:contain!important;
+  pointer-events:none!important; user-select:none!important; -webkit-user-select:none!important;
+}
+.storeLiveStars{
+  position:absolute!important; z-index:246!important;
+  left:72.8%!important; top:2.15%!important; width:20.5%!important; height:3.2%!important;
+  display:flex!important; align-items:center!important; justify-content:center!important;
+  color:#ffe7aa!important; font:bold clamp(12px,1.6vh,18px) Georgia,serif!important;
+  text-shadow:0 2px 1px #000!important; pointer-events:none!important; white-space:nowrap!important;
+}
+.storeAssetHit{
+  position:absolute!important; z-index:245!important; border:0!important; background:transparent!important;
+  color:transparent!important; padding:0!important; margin:0!important; outline:0!important;
+  box-shadow:none!important; -webkit-tap-highlight-color:transparent!important;
+  tap-highlight-color:transparent!important; touch-action:manipulation!important;
+  appearance:none!important; -webkit-appearance:none!important;
+}
+.storeAssetHit:active,.storeAssetHit:focus,.storeAssetHit:focus-visible{
+  background:transparent!important; outline:0!important; box-shadow:none!important;
+  filter:none!important; transform:none!important; opacity:1!important;
+}
+.storeHitBack{left:0.8%!important;top:1.1%!important;width:13.5%!important;height:7%!important}
+.storeHitStarter{left:6.5%!important;top:33.2%!important;width:56%!important;height:5.8%!important}
+.storeHitDaily{left:4.5%!important;top:57.6%!important;width:27%!important;height:5.8%!important}
+.storeHitReward{left:36.5%!important;top:57.6%!important;width:27%!important;height:5.8%!important}
+.storeHitRemove{left:68.2%!important;top:57.6%!important;width:27%!important;height:5.8%!important}
+.storeHit250{left:4.5%!important;top:75.1%!important;width:27%!important;height:5.6%!important}
+.storeHit600{left:36.5%!important;top:75.1%!important;width:27%!important;height:5.6%!important}
+.storeHit1500{left:68.2%!important;top:75.1%!important;width:27%!important;height:5.6%!important}
+.storeHitSepia{left:3.5%!important;top:94.0%!important;width:21.5%!important;height:4.5%!important}
+.storeHitNight{left:27.4%!important;top:94.0%!important;width:21.5%!important;height:4.5%!important}
+.storeHitArchive{left:51.2%!important;top:94.0%!important;width:21.5%!important;height:4.5%!important}
+.storeHitBosphorus{left:75.1%!important;top:94.0%!important;width:21.3%!important;height:4.5%!important}
+</style>
 </head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
@@ -521,8 +567,8 @@ function storePage(fromHome=false){
  bg.style.display='none';
  const today=new Date().toISOString().slice(0,10);
  const dailyOpened=localStorage.getItem('tb_daily_chest')===today;
- ui.innerHTML=`<div class="storeAssetScreen">
-  <img class="storeAssetImg" src="store_final.svg?v=81" alt="">
+ ui.innerHTML=`<div class="storeAssetScreen"><div class="storeAssetStage">
+  <img class="storeAssetImg" src="store_final.svg?v=82" alt="">
   <div class="storeLiveStars">${stars} yıldız</div>
   <button class="storeAssetHit storeHitBack" aria-label="Geri"></button>
   <button class="storeAssetHit storeHitStarter" aria-label="Başlangıç Paketi"></button>
@@ -536,7 +582,7 @@ function storePage(fromHome=false){
   <button class="storeAssetHit storeHitNight" aria-label="Gece İstanbul"></button>
   <button class="storeAssetHit storeHitArchive" aria-label="Osmanlı Arşiv"></button>
   <button class="storeAssetHit storeHitBosphorus" aria-label="Boğaz Gecesi"></button>
- </div>`;
+ </div></div>`;
 
  ui.querySelector('.storeHitBack').onclick=()=>{bg.style.display='block';storeReturn();};
  ui.querySelector('.storeHitStarter').onclick=()=>msg('Başlangıç Paketi: 600 ★ + 5 ipucu + özel tema');
