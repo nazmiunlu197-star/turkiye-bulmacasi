@@ -109,12 +109,29 @@
 .settingRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 4px;border-bottom:1px solid #c59a58;font-weight:bold}.settingRow:last-child{border-bottom:0}.settingRow small{display:block;font-weight:normal;opacity:.78;margin-top:3px}
 .toggleBtn,.choiceBtn{border:1px solid #9b6428;border-radius:18px;background:#efd08a;color:#321b0d;padding:7px 11px;font:bold 14px Georgia}.toggleBtn.on{background:#a3130f;color:#fff2ce}
 .settingsAction{width:100%;margin-top:12px;padding:12px;border:0;border-radius:22px;background:#a3130f;color:#fff3d1;font:bold 16px Georgia}.settingsAction.alt{background:#6f4a24}.settingsAction.danger{background:#6e2a22}
-.storeBalance{text-align:center;background:linear-gradient(#49301a,#24150b);color:#ffe4a1;border:2px solid #b77a22;border-radius:18px;padding:10px;margin-bottom:12px;font:bold 20px Georgia;box-shadow:inset 0 0 0 2px #e1b35f,0 3px 7px #0005}
-.storeHero{position:relative;background:linear-gradient(135deg,#2b180d,#71451f 55%,#2d180c);border:2px solid #b77a22;border-radius:18px;padding:16px 14px 14px;margin-bottom:12px;color:#fff0c6;box-shadow:0 5px 12px #0005;overflow:hidden}.storeHero:after{content:'✨';position:absolute;right:12px;top:8px;font-size:34px}.storeHero h3{margin:0 0 5px;color:#ffd67a;font-size:24px}.storeHero p{margin:4px 0 10px;line-height:1.25}.heroChest{font-size:56px;float:right;margin:-2px 0 4px 10px;filter:drop-shadow(0 3px 3px #0008)}.heroReward{display:flex;gap:9px;flex-wrap:wrap;font-weight:bold;font-size:13px}.heroReward span{background:#0005;border:1px solid #c9943d;border-radius:14px;padding:5px 8px}
-.storeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.storeCard{background:linear-gradient(#faedc9,#edd09a);border:1.5px solid #b77a22;border-radius:16px;padding:10px;text-align:center;box-shadow:0 3px 7px #0003}.storeIcon{font-size:38px;display:block;margin-bottom:4px}.storeCard b{display:block;color:#a3130f;font-size:1.17em;margin-bottom:4px}.storeCard small{display:block;min-height:30px;line-height:1.2}.storeCard button,.storeHero button{width:100%;margin-top:8px;padding:9px;border:0;border-radius:18px;background:linear-gradient(#c51b16,#8d100d);color:#fff2ce;font:bold 14px Georgia;box-shadow:0 2px 0 #67100d}.storeCard button.secondary{background:linear-gradient(#805b31,#5a391f)}
-.packChest{font-size:44px;display:block;filter:drop-shadow(0 2px 2px #0005)}
-.storeSectionTitle{text-align:center;color:#7d160f;font:bold 20px Georgia;margin:16px 0 8px}.themeGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.themeCard{border:1.5px solid #a7732c;border-radius:14px;padding:8px;background:#f8e5b8;text-align:center}.themeArt{height:70px;border-radius:10px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-size:34px;border:1px solid #9b6428}.themeArt.sepia{background:linear-gradient(#e8c88e,#8c5a2b)}.themeArt.night{background:linear-gradient(#071b39,#163b6b)}.themeArt.archive{background:linear-gradient(#c7a46b,#6b4827)}.themeArt.bosphorus{background:linear-gradient(#102a4a,#b56c2c)}.themeCard.locked{filter:saturate(.55);opacity:.82}.themeCard b{font-size:13px}.themeCard button{margin-top:6px;padding:6px 8px;font-size:12px}
-.storeNote{font-size:12px;line-height:1.35;margin-top:12px;opacity:.82;text-align:center}
+.storeBalance{margin:0 auto 14px;width:82%;text-align:center;background:linear-gradient(180deg,#3a210f,#17100a);color:#ffe39c;border:3px solid #c58a2d;border-radius:24px;padding:11px 12px;font:bold 21px Georgia;box-shadow:inset 0 0 0 2px #f0c56c,0 5px 12px #0005;text-shadow:0 1px 1px #000}
+.storeHero{position:relative;min-height:255px;background:radial-gradient(circle at 76% 35%,#9a5b1e 0,#5a3014 28%,#2a170d 62%,#170d08 100%);border:3px solid #b97820;border-radius:24px;padding:20px 16px 18px;color:#fff0c9;box-shadow:inset 0 0 0 2px #e4b557,0 7px 18px #0006;overflow:hidden}
+.storeHero:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0007 0 46%,transparent 72%);pointer-events:none}
+.storeHero h3,.storeHero p,.heroReward,.storeHero button{position:relative;z-index:3}
+.storeHero h3{margin:0 42% 8px 0;color:#ffd873;font-size:clamp(25px,3.6vh,36px);line-height:1.02;text-shadow:0 2px 2px #000}
+.storeHero p{width:52%;margin:0 0 12px;font-size:clamp(14px,1.9vh,18px);line-height:1.25}
+.heroReward{display:flex;gap:7px;flex-wrap:wrap;width:56%}.heroReward span{background:#1b0e08cc;border:1.5px solid #c78a2f;border-radius:17px;padding:6px 9px;font:bold 13px Georgia;color:#ffe6a9}
+.treasureChest{position:absolute;right:5%;top:16%;width:38%;height:44%;z-index:2;filter:drop-shadow(0 8px 8px #0008)}
+.treasureChest .lid{position:absolute;left:5%;top:0;width:90%;height:36%;border-radius:40% 40% 16% 16%;background:linear-gradient(#d3932f,#75420f);border:3px solid #e6b550;box-shadow:inset 0 -10px 0 #5a2f0b}
+.treasureChest .box{position:absolute;left:0;bottom:0;width:100%;height:66%;border-radius:10px;background:linear-gradient(#a76316,#5c2e0c);border:3px solid #e6b550;box-shadow:inset 0 0 0 6px #713a0e}
+.treasureChest .band{position:absolute;left:43%;top:5%;width:14%;height:88%;background:linear-gradient(#ffd765,#a96813);border:2px solid #6b3b0d;z-index:4}
+.treasureChest .lock{position:absolute;left:39%;top:51%;width:22%;height:23%;border-radius:50%;background:#f2c14f;border:3px solid #6b3b0d;z-index:5}
+.treasureGlow{position:absolute;right:5%;top:8%;width:42%;height:48%;background:radial-gradient(circle,#fff4a8 0 3%,#ffd55a55 4% 18%,transparent 55%);filter:blur(1px);z-index:1}
+.storeHero button{width:58%;margin-top:14px;padding:11px;border:0;border-radius:22px;background:linear-gradient(#d7251e,#8d0f0c);color:#fff4d1;font:bold 16px Georgia;box-shadow:0 3px 0 #5e0b08,inset 0 0 0 2px #ef695d}
+.storeSectionTitle{text-align:center;color:#8f1711;font:bold 24px Georgia;margin:18px 0 10px;text-shadow:0 1px #f7dfb5}
+.storeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.storeCard{position:relative;background:linear-gradient(#fff2cf,#efd39a);border:2px solid #b97c28;border-radius:18px;padding:12px 10px;text-align:center;box-shadow:inset 0 0 0 2px #ffe7b5,0 4px 9px #0003;min-height:188px}
+.storeCard b{display:block;color:#a3130f;font-size:1.22em;margin:5px 0}.storeCard small{display:block;min-height:34px;line-height:1.25;font-size:13px}
+.storeCard button,.themeCard button{width:100%;margin-top:9px;padding:9px;border:0;border-radius:18px;background:linear-gradient(#cc211a,#8f100d);color:#fff2ce;font:bold 14px Georgia;box-shadow:0 2px 0 #68100d}.storeCard button.secondary,.themeCard button.secondary{background:linear-gradient(#7d5b32,#52351f)}
+.miniChest{position:relative;width:78px;height:60px;margin:0 auto 4px;filter:drop-shadow(0 4px 4px #0004)}.miniChest:before{content:'';position:absolute;left:9px;top:0;width:60px;height:24px;border-radius:22px 22px 7px 7px;background:linear-gradient(#d89931,#7a440f);border:2px solid #d9a64a}.miniChest:after{content:'';position:absolute;left:4px;bottom:0;width:70px;height:38px;border-radius:7px;background:linear-gradient(#a76416,#63310d);border:2px solid #d9a64a;box-shadow:inset 0 0 0 4px #7d4010}
+.cardSymbol{width:74px;height:58px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:linear-gradient(#67431f,#2a180d);border:2px solid #b97c28;color:#ffe19a;font:bold 30px Georgia;box-shadow:inset 0 0 0 2px #d7a14a}
+.themeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.themeCard{border:2px solid #b47c2d;border-radius:16px;padding:8px;background:#f8e7bc;text-align:center;box-shadow:0 3px 7px #0002}.themePreview{height:92px;border-radius:11px;margin-bottom:7px;border:1px solid #8d5c23;background-image:url('file_0000000095d881f4a1713e208409ffb4.png');background-size:cover;background-position:center 8%;overflow:hidden}.themePreview.night{filter:brightness(.45) saturate(1.4) hue-rotate(165deg)}.themePreview.archive{filter:sepia(1) contrast(1.12) brightness(.83)}.themePreview.bosphorus{background-image:url('file_00000000643882109c5b6ce3407e10cd.jpg');filter:brightness(.55) saturate(1.25) hue-rotate(165deg)}.themeCard b{font-size:13px}.themeCard.locked{opacity:.9}.themeCard.locked button{background:linear-gradient(#7d684d,#5b4a38)}
+.storeNote{font-size:12px;line-height:1.35;margin-top:14px;opacity:.8;text-align:center}
 .homeStoreBtn{position:absolute;right:7.5%;top:11.8%;z-index:35;border:1.5px solid #9b6428;border-radius:18px;background:#6f4a24;color:#fff2ce;padding:7px 12px;font:bold clamp(11px,1.4vh,15px) Georgia;box-shadow:0 2px 5px #0005;cursor:pointer}
 </style>
 <style id="progress-reference-v1">
@@ -400,39 +417,55 @@ function storePage(fromHome=false){
   const today=new Date().toISOString().slice(0,10);
   const dailyOpened=localStorage.getItem('tb_daily_chest')===today;
   const theme=localStorage.getItem('tb_theme')||'sepia';
-  ui.innerHTML=`<div class="storePage"><button class="storeBack" aria-label="Geri">←</button><div class="storeTitle">Türkiye Bulmacası<span>Mağaza & Hazineler</span></div><div class="storePaper">
-   <div class="storeBalance">★ ${stars} yıldız</div>
-   <div class="storeHero"><span class="heroChest">🧰</span><h3>Özel Hazine Sandığı</h3><p>Bol yıldız ve yardımcılarla bulmacalarda hız kazan.</p><div class="heroReward"><span>★ 600</span><span>💡 5 İpucu</span><span>🎨 Özel Tema</span></div><button class="starterPack">Başlangıç Paketi</button></div>
-   <div class="storeGrid">
-    <div class="storeCard"><span class="storeIcon">🎁</span><b>Günlük Sandık</b><small>${dailyOpened?'Bugünkü ödül alındı':'Her gün ücretsiz sürpriz yıldız'}</small><button class="dailyChest" ${dailyOpened?'disabled':''}>${dailyOpened?'Açıldı ✓':'Ücretsiz Aç'}</button></div>
-    <div class="storeCard"><span class="storeIcon">🎬</span><b>Ödüllü Reklam</b><small>Reklamı tamamla<br>+20 ★</small><button class="rewardAd">Reklam İzle</button></div>
-    <div class="storeCard"><span class="storeIcon">🚫</span><b>Reklamları Kaldır</b><small>${adFree?'Satın alındı':'Tüm zorunlu reklamlardan kurtul'}</small><button class="removeAds">${adFree?'Aktif ✓':'Satın Al'}</button></div>
-    <div class="storeCard"><span class="packChest">💰</span><b>250 ★</b><small>Küçük Yıldız Sandığı</small><button class="pack" data-pack="250">Satın Al</button></div>
-    <div class="storeCard"><span class="packChest">🧰</span><b>600 ★</b><small>Orta Yıldız Sandığı</small><button class="pack" data-pack="600">Satın Al</button></div>
-    <div class="storeCard"><span class="packChest">🏆</span><b>1500 ★</b><small>Büyük Yıldız Sandığı</small><button class="pack" data-pack="1500">Satın Al</button></div>
+  ui.innerHTML=`<div class="storePage">
+   <button class="storeBack" aria-label="Geri">←</button>
+   <div class="storeTitle">Türkiye Bulmacası<span>Mağaza & Hazineler</span></div>
+   <div class="storePaper">
+    <div class="storeBalance">★ ${stars} yıldız</div>
+
+    <div class="storeHero">
+      <div class="treasureGlow"></div>
+      <div class="treasureChest"><div class="lid"></div><div class="box"></div><div class="band"></div><div class="lock"></div></div>
+      <h3>Özel Hazine Sandığı</h3>
+      <p>Bol yıldız ve yardımcılarla bulmacalarda güçlü bir başlangıç yap.</p>
+      <div class="heroReward"><span>★ 600</span><span>5 İpucu</span><span>Özel Tema</span></div>
+      <button class="starterPack">Başlangıç Paketi</button>
+    </div>
+
+    <div class="storeSectionTitle">Günlük & Avantajlar</div>
+    <div class="storeGrid">
+      <div class="storeCard"><div class="miniChest"></div><b>Günlük Sandık</b><small>${dailyOpened?'Bugünkü ödül alındı':'Her gün ücretsiz sürpriz yıldız'}</small><button class="dailyChest" ${dailyOpened?'disabled':''}>${dailyOpened?'Açıldı ✓':'Ücretsiz Aç'}</button></div>
+      <div class="storeCard"><div class="cardSymbol">▶</div><b>Ödüllü Reklam</b><small>Reklamı tamamla<br>+20 ★</small><button class="rewardAd">Reklam İzle</button></div>
+      <div class="storeCard"><div class="cardSymbol">×</div><b>Reklamları Kaldır</b><small>${adFree?'Satın alındı':'Tüm zorunlu reklamlardan kurtul'}</small><button class="removeAds">${adFree?'Aktif ✓':'Satın Al'}</button></div>
+      <div class="storeCard"><div class="miniChest"></div><b>250 ★</b><small>Küçük Yıldız Sandığı</small><button class="pack" data-pack="250">Satın Al</button></div>
+      <div class="storeCard"><div class="miniChest"></div><b>600 ★</b><small>Orta Yıldız Sandığı</small><button class="pack" data-pack="600">Satın Al</button></div>
+      <div class="storeCard"><div class="miniChest"></div><b>1500 ★</b><small>Büyük Yıldız Sandığı</small><button class="pack" data-pack="1500">Satın Al</button></div>
+    </div>
+
+    <div class="storeSectionTitle">Özel Temalar</div>
+    <div class="themeGrid">
+      <div class="themeCard"><div class="themePreview"></div><b>Sepya Klasik</b><button class="themeBtn secondary" data-theme="sepia">${theme==='sepia'?'Seçili ✓':'Seç'}</button></div>
+      <div class="themeCard locked"><div class="themePreview night"></div><b>Gece İstanbul</b><button class="themeLocked">Paketle Açılır</button></div>
+      <div class="themeCard locked"><div class="themePreview archive"></div><b>Osmanlı Arşiv</b><button class="themeLocked">Paketle Açılır</button></div>
+      <div class="themeCard locked"><div class="themePreview bosphorus"></div><b>Boğaz Gecesi</b><button class="themeLocked">Paketle Açılır</button></div>
+    </div>
+
+    <div class="storeNote">Ödüllü reklam Android test sürümünde çalışır. Ücretli paketler Google Play ödeme sistemine bağlandığında gerçek satın alma açılacaktır.</div>
    </div>
-   <div class="storeSectionTitle">Özel Temalar</div>
-   <div class="themeGrid">
-    <div class="themeCard"><div class="themeArt sepia">🏛️</div><b>Sepya Klasik</b><button class="themeBtn secondary" data-theme="sepia">${theme==='sepia'?'Seçili ✓':'Seç'}</button></div>
-    <div class="themeCard locked"><div class="themeArt night">🌙</div><b>Gece İstanbul</b><button class="themeLocked">🔒 Paketle Açılır</button></div>
-    <div class="themeCard locked"><div class="themeArt archive">📜</div><b>Osmanlı Arşiv</b><button class="themeLocked">🔒 Paketle Açılır</button></div>
-    <div class="themeCard locked"><div class="themeArt bosphorus">🌉</div><b>Boğaz Gecesi</b><button class="themeLocked">🔒 Paketle Açılır</button></div>
-   </div>
-   <div class="storeNote">Ödüllü reklam Android test sürümünde çalışır. Ücretli paketler Google Play ödeme sistemine bağlandığında gerçek satın alma açılacaktır.</div>
-  </div></div>`;
+  </div>`;
+
   ui.querySelector('.storeBack').onclick=storeReturn;
   ui.querySelector('.dailyChest').onclick=()=>{
     if(localStorage.getItem('tb_daily_chest')===today){msg('Bugünkü sandığı zaten açtın.');return;}
-    const reward=10;
-    stars+=reward;persistSave();localStorage.setItem('tb_daily_chest',today);msg('Günlük sandık: +'+reward+' ★');setTimeout(()=>storePage(fromHome),500);
+    stars+=10;persistSave();localStorage.setItem('tb_daily_chest',today);msg('Günlük sandık: +10 ★');setTimeout(()=>storePage(fromHome),450);
   };
   ui.querySelector('.rewardAd').onclick=()=>{
-   if(window.AndroidAds&&typeof window.AndroidAds.showRewardedAd==='function'){msg('Reklam hazırlanıyor…');window.AndroidAds.showRewardedAd();}
-   else msg('Ödüllü reklam yalnızca Android uygulamasında çalışır');
+    if(window.AndroidAds&&typeof window.AndroidAds.showRewardedAd==='function'){msg('Reklam hazırlanıyor…');window.AndroidAds.showRewardedAd();}
+    else msg('Ödüllü reklam yalnızca Android uygulamasında çalışır');
   };
   ui.querySelector('.removeAds').onclick=()=>msg(adFree?'Reklamlar zaten kaldırılmış':'Google Play satın alma bağlantısı hazırlanıyor');
   ui.querySelectorAll('.pack').forEach(b=>b.onclick=()=>msg(b.dataset.pack+' yıldız sandığı Google Play bağlantısı hazırlanıyor'));
-  ui.querySelector('.starterPack').onclick=()=>msg('Başlangıç Paketi: 250 ★ + 3 ipucu + özel tema');
+  ui.querySelector('.starterPack').onclick=()=>msg('Başlangıç Paketi: 600 ★ + 5 ipucu + özel tema');
   ui.querySelector('.themeBtn').onclick=()=>{localStorage.setItem('tb_theme','sepia');msg('Sepya Klasik seçildi');};
   ui.querySelectorAll('.themeLocked').forEach(b=>b.onclick=()=>msg('Bu tema Başlangıç Paketi ile açılacak'));
 }
