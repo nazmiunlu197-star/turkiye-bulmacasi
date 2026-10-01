@@ -462,7 +462,7 @@ radial-gradient(circle at 77% 33%,#9c5a1c 0,#5c3013 25%,#28140a 61%,#150b06 100%
 .storeExactImg{display:block;width:100%;height:auto;pointer-events:none;user-select:none;-webkit-user-select:none}
 .storeExactHit{position:absolute;z-index:304;border:0!important;background:transparent!important;color:transparent!important;padding:0!important;margin:0!important;outline:0!important;box-shadow:none!important;-webkit-tap-highlight-color:transparent!important;tap-highlight-color:transparent!important;touch-action:manipulation!important}
 .storeExactHit:active,.storeExactHit:focus,.storeExactHit:focus-visible{background:transparent!important;outline:0!important;box-shadow:none!important;filter:none!important;transform:none!important;opacity:1!important}
-.storeExactStars{position:absolute;z-index:305;left:74.5%;top:2.65%;width:20%;height:3.15%;display:flex;align-items:center;justify-content:center;background:#2a160d;color:#ffe6a5;font:bold clamp(12px,1.6vh,17px) Georgia,serif;text-shadow:0 2px 1px #000;pointer-events:none;white-space:nowrap;border-radius:12px}
+.storeExactStars{position:absolute;z-index:305;left:79.0%;top:2.10%;width:15.5%;height:3.15%;display:flex;align-items:center;justify-content:center;background:transparent;color:#ffe6a5;font:bold clamp(11px,1.45vh,16px) Georgia,serif;text-shadow:0 2px 1px #000;pointer-events:none;white-space:nowrap}
 .exBack{left:1.5%;top:1.0%;width:12%;height:6.3%}
 .exStarter{left:6.5%;top:33.5%;width:51.5%;height:4.7%}
 .exDaily{left:4.5%;top:56.1%;width:29%;height:4.0%}
@@ -628,7 +628,7 @@ function storePage(fromHome=false){
  </div></div>`;
 
  const storeImg=ui.querySelector('.storeExactImg');
- if(storeImg) storeImg.src='store_final.svg?v=84';
+ if(storeImg) storeImg.src='store_final.svg?v=90';
 
  ui.querySelector('.exBack').onclick=()=>{bg.style.display='block';storeReturn();};
  ui.querySelector('.exStarter').onclick=()=>msg('Başlangıç Paketi: 600 ★ + 5 ipucu + özel tema');
