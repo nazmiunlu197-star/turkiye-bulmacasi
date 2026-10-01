@@ -389,6 +389,26 @@ radial-gradient(circle at 77% 33%,#9c5a1c 0,#5c3013 25%,#28140a 61%,#150b06 100%
 .storeBack::after{inset:-10px!important}
 .rewardAd::after,.dailyChest::after,.removeAds::after,.starterPack::after,.pack::after,.themeBtn::after,.themeLocked::after{inset:-8px!important}
 </style>
+
+<style id="store-asset-v81">
+.storeAssetScreen{position:absolute;inset:0;z-index:220;background:#d7aa65;overflow:hidden;font-family:Georgia,serif}
+.storeAssetImg{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;pointer-events:none;user-select:none;-webkit-user-select:none}
+.storeAssetHit{position:absolute;z-index:225;border:0!important;background:transparent!important;color:transparent!important;padding:0!important;margin:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important;-webkit-tap-highlight-color:transparent!important;tap-highlight-color:transparent!important;touch-action:manipulation!important;appearance:none!important;-webkit-appearance:none!important}
+.storeAssetHit:active,.storeAssetHit:focus,.storeAssetHit:focus-visible{background:transparent!important;outline:0!important;box-shadow:none!important;filter:none!important;transform:none!important;opacity:1!important}
+.storeLiveStars{position:absolute;z-index:226;left:71.5%;top:2.65%;width:23%;height:3.2%;display:flex;align-items:center;justify-content:center;color:#ffe7aa;font:bold clamp(13px,1.8vh,19px) Georgia,serif;text-shadow:0 2px 1px #000;pointer-events:none;white-space:nowrap}
+.storeHitBack{left:1.6%;top:1.4%;width:12%;height:6.5%}
+.storeHitStarter{left:6%;top:33.4%;width:57%;height:6%}
+.storeHitDaily{left:4%;top:57.5%;width:29%;height:6.5%}
+.storeHitReward{left:35.5%;top:57.5%;width:29%;height:6.5%}
+.storeHitRemove{left:67%;top:57.5%;width:29%;height:6.5%}
+.storeHit250{left:4%;top:75.2%;width:29%;height:6.5%}
+.storeHit600{left:35.5%;top:75.2%;width:29%;height:6.5%}
+.storeHit1500{left:67%;top:75.2%;width:29%;height:6.5%}
+.storeHitSepia{left:3.3%;top:91.2%;width:22.5%;height:6.2%}
+.storeHitNight{left:27.2%;top:91.2%;width:22.5%;height:6.2%}
+.storeHitArchive{left:51.1%;top:91.2%;width:22.5%;height:6.2%}
+.storeHitBosphorus{left:75%;top:91.2%;width:22%;height:6.2%}
+</style>
 </head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
@@ -497,93 +517,47 @@ function settingsPage(){
 
 let storeReturn=settingsPage;
 function storePage(fromHome=false){
-  storeReturn=fromHome?home:settingsPage;
-  bg.src=MAIN;
-  const adFree=localStorage.getItem('tb_ad_free')==='1';
-  const today=new Date().toISOString().slice(0,10);
-  const dailyOpened=localStorage.getItem('tb_daily_chest')===today;
-  const theme=localStorage.getItem('tb_theme')||'sepia';
+ storeReturn=fromHome?home:settingsPage;
+ bg.style.display='none';
+ const today=new Date().toISOString().slice(0,10);
+ const dailyOpened=localStorage.getItem('tb_daily_chest')===today;
+ ui.innerHTML=`<div class="storeAssetScreen">
+  <img class="storeAssetImg" src="store_final.svg?v=81" alt="">
+  <div class="storeLiveStars">${stars} yıldız</div>
+  <button class="storeAssetHit storeHitBack" aria-label="Geri"></button>
+  <button class="storeAssetHit storeHitStarter" aria-label="Başlangıç Paketi"></button>
+  <button class="storeAssetHit storeHitDaily" aria-label="Günlük Sandık"></button>
+  <button class="storeAssetHit storeHitReward" aria-label="Ödüllü Reklam"></button>
+  <button class="storeAssetHit storeHitRemove" aria-label="Reklamları Kaldır"></button>
+  <button class="storeAssetHit storeHit250" aria-label="250 yıldız"></button>
+  <button class="storeAssetHit storeHit600" aria-label="600 yıldız"></button>
+  <button class="storeAssetHit storeHit1500" aria-label="1500 yıldız"></button>
+  <button class="storeAssetHit storeHitSepia" aria-label="Sepya Klasik"></button>
+  <button class="storeAssetHit storeHitNight" aria-label="Gece İstanbul"></button>
+  <button class="storeAssetHit storeHitArchive" aria-label="Osmanlı Arşiv"></button>
+  <button class="storeAssetHit storeHitBosphorus" aria-label="Boğaz Gecesi"></button>
+ </div>`;
 
-  const chestSvg=`<svg class="chestSvg" viewBox="0 0 260 210" aria-hidden="true">
-    <defs>
-      <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d28a27"/><stop offset=".55" stop-color="#8a4b12"/><stop offset="1" stop-color="#4c2609"/></linearGradient>
-      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff09b"/><stop offset=".4" stop-color="#e7b83f"/><stop offset="1" stop-color="#8c5610"/></linearGradient>
-      <filter id="glow"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    </defs>
-    <ellipse cx="130" cy="190" rx="102" ry="15" fill="#000" opacity=".35"/>
-    <path d="M32 83 Q40 30 130 24 Q220 30 228 83 L220 105 H40 Z" fill="url(#wood)" stroke="#e0b14d" stroke-width="7"/>
-    <path d="M42 93 H218 V182 Q218 194 206 194 H54 Q42 194 42 182 Z" fill="url(#wood)" stroke="#e0b14d" stroke-width="7"/>
-    <rect x="117" y="32" width="26" height="160" rx="8" fill="url(#gold)" stroke="#73420a" stroke-width="4"/>
-    <path d="M50 120 H210" stroke="#e0b14d" stroke-width="8"/>
-    <circle cx="130" cy="137" r="19" fill="url(#gold)" stroke="#6f400b" stroke-width="5"/>
-    <rect x="121" y="131" width="18" height="27" rx="5" fill="#5a3109"/>
-    <g filter="url(#glow)" fill="#ffd84e">
-      <polygon points="70,90 78,108 98,110 82,122 87,142 70,132 52,142 58,122 42,110 62,108"/>
-      <polygon points="180,73 188,91 208,93 192,105 197,125 180,115 162,125 168,105 152,93 172,91"/>
-      <polygon points="153,103 159,117 174,119 162,128 166,143 153,135 140,143 144,128 132,119 147,117"/>
-    </g>
-  </svg>`;
-
-  const miniChest=(label)=>`<svg class="cardSvg" viewBox="0 0 120 92" aria-hidden="true">
-    <defs><linearGradient id="w${label}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d79a31"/><stop offset="1" stop-color="#6d350d"/></linearGradient><linearGradient id="g${label}"><stop offset="0" stop-color="#ffef8a"/><stop offset="1" stop-color="#a76611"/></linearGradient></defs>
-    <path d="M17 38 Q24 12 60 10 Q96 12 103 38 L98 48 H22 Z" fill="url(#w${label})" stroke="#d8a13e" stroke-width="5"/>
-    <rect x="18" y="42" width="84" height="42" rx="8" fill="url(#w${label})" stroke="#d8a13e" stroke-width="5"/>
-    <rect x="54" y="14" width="12" height="69" rx="4" fill="url(#g${label})"/>
-    <circle cx="60" cy="59" r="10" fill="url(#g${label})" stroke="#75430c" stroke-width="3"/>
-  </svg>`;
-
-  ui.innerHTML=`<div class="storePage">
-   <button class="storeBack" aria-label="Geri">←</button>
-   <div class="storeTitle">Türkiye Bulmacası<span>Mağaza & Hazineler</span></div>
-   <div class="storePaper">
-    <div class="storeBalance">★ ${stars} yıldız</div>
-
-    <div class="storeHero">
-      <div class="heroBadge">EN POPÜLER</div>
-      <span class="starSpark s1">✦</span><span class="starSpark s2">✦</span><span class="starSpark s3">✦</span>
-      ${chestSvg}
-      <h3>Özel Hazine Sandığı</h3>
-      <p>Bol yıldız ve yardımcılarla bulmacalarda güçlü bir başlangıç yap.</p>
-      <div class="heroReward"><span>★ 600</span><span>💡 5 İpucu</span><span>🎨 Özel Tema</span></div>
-      <button class="starterPack">Başlangıç Paketi • ₺149,99</button>
-    </div>
-
-    <div class="storeSectionTitle">Günlük & Avantajlar</div>
-    <div class="storeGrid">
-      <div class="storeCard">${miniChest('d')}<b>Günlük Sandık</b><small>${dailyOpened?'Bugünkü ödül alındı':'Her gün ücretsiz sürpriz yıldız'}</small><button class="dailyChest" ${dailyOpened?'disabled':''}>${dailyOpened?'Açıldı ✓':'Ücretsiz Aç'}</button></div>
-      <div class="storeCard"><div class="cardSymbol">▶</div><b>Ödüllü Reklam</b><small>Reklamı tamamla<br>+20 ★</small><button class="rewardAd">Reklam İzle</button></div>
-      <div class="storeCard"><div class="cardSymbol">ADS<br>×</div><b>Reklamları Kaldır</b><small>${adFree?'Satın alındı':'Tüm reklamlardan kalıcı olarak kurtul'}</small><button class="removeAds">${adFree?'Aktif ✓':'Satın Al'}<span class="price">₺79,99</span></button></div>
-      <div class="storeCard">${miniChest('s')}<b>250 ★</b><small>Küçük Yıldız Sandığı</small><button class="pack" data-pack="250">Satın Al • ₺49,99</button></div>
-      <div class="storeCard">${miniChest('m')}<b>600 ★</b><small>Orta Yıldız Sandığı</small><button class="pack" data-pack="600">Satın Al • ₺99,99</button></div>
-      <div class="storeCard">${miniChest('l')}<b>1500 ★</b><small>Büyük Yıldız Sandığı</small><button class="pack" data-pack="1500">Satın Al • ₺199,99</button></div>
-    </div>
-
-    <div class="storeSectionTitle">Özel Temalar</div>
-    <div class="themeGrid">
-      <div class="themeCard"><div class="themePreview"></div><b>Sepya Klasik</b><button class="themeBtn secondary" data-theme="sepia">${theme==='sepia'?'Seçili ✓':'Seç'}</button></div>
-      <div class="themeCard locked"><div class="themePreview night"></div><b>Gece İstanbul</b><button class="themeLocked">🔒 Paketle Açılır</button></div>
-      <div class="themeCard locked"><div class="themePreview archive"></div><b>Osmanlı Arşiv</b><button class="themeLocked">🔒 Paketle Açılır</button></div>
-      <div class="themeCard locked"><div class="themePreview bosphorus"></div><b>Boğaz Gecesi</b><button class="themeLocked">🔒 Paketle Açılır</button></div>
-    </div>
-
-    <div class="storeNote">Ödüllü reklam Android test sürümünde çalışır. Ücretli paketler Google Play ödeme sistemine bağlandığında gerçek satın alma açılacaktır.</div>
-   </div>
-  </div>`;
-
-  ui.querySelector('.storeBack').onclick=storeReturn;
-  ui.querySelector('.dailyChest').onclick=()=>{
-    if(localStorage.getItem('tb_daily_chest')===today){msg('Bugünkü sandığı zaten açtın.');return;}
-    stars+=10;persistSave();localStorage.setItem('tb_daily_chest',today);msg('Günlük sandık: +10 ★');setTimeout(()=>storePage(fromHome),450);
-  };
-  ui.querySelector('.rewardAd').onclick=()=>{
-    if(window.AndroidAds&&typeof window.AndroidAds.showRewardedAd==='function'){msg('Reklam hazırlanıyor…');window.AndroidAds.showRewardedAd();}
-    else msg('Ödüllü reklam yalnızca Android uygulamasında çalışır');
-  };
-  ui.querySelector('.removeAds').onclick=()=>msg(adFree?'Reklamlar zaten kaldırılmış':'Google Play satın alma bağlantısı hazırlanıyor');
-  ui.querySelectorAll('.pack').forEach(b=>b.onclick=()=>msg(b.dataset.pack+' yıldız sandığı Google Play bağlantısı hazırlanıyor'));
-  ui.querySelector('.starterPack').onclick=()=>msg('Başlangıç Paketi: 600 ★ + 5 ipucu + özel tema');
-  ui.querySelector('.themeBtn').onclick=()=>{localStorage.setItem('tb_theme','sepia');msg('Sepya Klasik seçildi');};
-  ui.querySelectorAll('.themeLocked').forEach(b=>b.onclick=()=>msg('Bu tema Başlangıç Paketi ile açılacak'));
+ ui.querySelector('.storeHitBack').onclick=()=>{bg.style.display='block';storeReturn();};
+ ui.querySelector('.storeHitStarter').onclick=()=>msg('Başlangıç Paketi: 600 ★ + 5 ipucu + özel tema');
+ ui.querySelector('.storeHitDaily').onclick=()=>{
+   if(dailyOpened){msg('Bugünkü sandığı zaten açtın.');return;}
+   stars+=10; persistSave(); localStorage.setItem('tb_daily_chest',today);
+   const s=ui.querySelector('.storeLiveStars'); if(s)s.textContent=stars+' yıldız';
+   msg('Günlük sandık: +10 ★');
+ };
+ ui.querySelector('.storeHitReward').onclick=()=>{
+   if(window.AndroidAds&&typeof window.AndroidAds.showRewardedAd==='function'){window.AndroidAds.showRewardedAd();}
+   else msg('Ödüllü reklam yalnızca Android uygulamasında çalışır');
+ };
+ ui.querySelector('.storeHitRemove').onclick=()=>msg('Reklamları kaldırma Google Play satın alımıyla açılacak');
+ ui.querySelector('.storeHit250').onclick=()=>msg('250 yıldız paketi Google Play ile açılacak');
+ ui.querySelector('.storeHit600').onclick=()=>msg('600 yıldız paketi Google Play ile açılacak');
+ ui.querySelector('.storeHit1500').onclick=()=>msg('1500 yıldız paketi Google Play ile açılacak');
+ ui.querySelector('.storeHitSepia').onclick=()=>{localStorage.setItem('tb_theme','sepia');msg('Sepya Klasik seçildi');};
+ ui.querySelector('.storeHitNight').onclick=()=>msg('Gece İstanbul, Başlangıç Paketi ile açılır');
+ ui.querySelector('.storeHitArchive').onclick=()=>msg('Osmanlı Arşiv, Başlangıç Paketi ile açılır');
+ ui.querySelector('.storeHitBosphorus').onclick=()=>msg('Boğaz Gecesi, Başlangıç Paketi ile açılır');
 }
 
 const BASE_PATTERN=['######.###','#.......##','##......##','###.....##','######.###','##########','##########','##########'];let pattern=BASE_PATTERN;
