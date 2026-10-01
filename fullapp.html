@@ -350,6 +350,45 @@ radial-gradient(circle at 77% 33%,#9c5a1c 0,#5c3013 25%,#28140a 61%,#150b06 100%
  .themePreview{height:64px!important}
 }
 </style>
+
+<style id="store-touch-v80">
+/* Mağaza dokunma davranışı: tıklama sırasında görsel değişiklik/ripple yok. */
+.storePage button,
+.storePage [role="button"],
+.storePage .storeCard,
+.storePage .themeCard{
+  -webkit-tap-highlight-color:transparent!important;
+  tap-highlight-color:transparent!important;
+  outline:none!important;
+}
+.storePage button:active,
+.storePage button:focus,
+.storePage button:focus-visible{
+  transform:none!important;
+  filter:none!important;
+  outline:none!important;
+}
+.storePage button:active{
+  opacity:1!important;
+}
+/* Görünen butonların çevresinde daha geniş, rahat dokunma alanı. */
+.storePage button{
+  position:relative!important;
+  touch-action:manipulation!important;
+  min-height:44px!important;
+}
+.storePage button::after{
+  content:''!important;
+  position:absolute!important;
+  inset:-7px!important;
+  background:transparent!important;
+  border:0!important;
+  pointer-events:auto!important;
+}
+/* Geri tuşu ve ana aksiyonlar için daha geniş hitbox. */
+.storeBack::after{inset:-10px!important}
+.rewardAd::after,.dailyChest::after,.removeAds::after,.starterPack::after,.pack::after,.themeBtn::after,.themeLocked::after{inset:-8px!important}
+</style>
 </head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
