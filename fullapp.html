@@ -627,9 +627,8 @@ function storePage(fromHome=false){
    <button class="storeExactHit exBosphorus" aria-label="Boğaz Gecesi"></button>
  </div></div>`;
 
- Promise.all([0,1,2,3,4,5].map(i=>fetch('storeimg/part'+i+'.txt?v=83').then(r=>r.text())))
-   .then(parts=>{const im=ui.querySelector('.storeExactImg');if(im)im.src='data:image/webp;base64,'+parts.join('');})
-   .catch(()=>msg('Mağaza görseli yüklenemedi'));
+ const storeImg=ui.querySelector('.storeExactImg');
+ if(storeImg) storeImg.src='store_final.svg?v=84';
 
  ui.querySelector('.exBack').onclick=()=>{bg.style.display='block';storeReturn();};
  ui.querySelector('.exStarter').onclick=()=>msg('Başlangıç Paketi: 600 ★ + 5 ipucu + özel tema');
