@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=81">
+<link rel="stylesheet" href="styles.css?v=82">
 <style id="full-screen-phone-crop">
 html,body{margin:0!important;padding:0!important;overflow:hidden!important;background:#17100b!important}
 .app{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;margin:0!important;overflow:hidden!important}
@@ -44,21 +44,11 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
 @supports not (height:100dvh){#home.reference-screen{height:100vh!important}}
 </style>
 
-<style id="v77-clean-home-crop">
-/* Remove the phone mockup/status bar baked into the old home reference. */
+<style id="v82-home-final">
 #home{background:#ead2a2!important}
-#home .reference-image{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:cover!important;
-  object-position:center center!important;
-  transform:translateY(-3.2%) scale(1.14)!important;
-  transform-origin:center center!important;
-  image-rendering:auto!important;
-  filter:contrast(1.07) saturate(1.02)!important;
-}
+#home .home-canvas{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;transform:none!important}
+#home .reference-image{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;object-position:center center!important;transform:none!important;filter:none!important;image-rendering:auto!important}
+#home .main-bottom-nav,#home .main-bottom-nav-bg{opacity:0!important;background:transparent!important;box-shadow:none!important;border:none!important}
 </style>
 </head>
 <body>
@@ -228,6 +218,6 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
     </div>
   </section>
 </div>
-<script src="app.js?v=81"></script>
+<script src="app.js?v=82"></script>
 </body>
 </html>
