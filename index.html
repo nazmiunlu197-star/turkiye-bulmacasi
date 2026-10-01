@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=76">
+<link rel="stylesheet" href="styles.css?v=77">
 <style id="full-screen-phone-crop">
 html,body{margin:0!important;padding:0!important;overflow:hidden!important;background:#17100b!important}
 .app{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;margin:0!important;overflow:hidden!important}
@@ -16,10 +16,27 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
 .settings-portrait{width:100vw!important;height:100dvh!important;margin:0!important}
 .home-star-badge{position:absolute;left:5.2%;top:11.2%;z-index:52;min-width:112px;padding:8px 14px;border:3px solid #b97c28;border-radius:22px;background:linear-gradient(#3b210f,#160d08);color:#ffe09a;font:bold clamp(14px,1.9vh,19px) Georgia,serif;text-align:center;box-shadow:inset 0 0 0 2px #e6b45b,0 4px 8px #0006;text-shadow:0 1px 1px #000}
 </style>
+
+<style id="v77-clean-home-frame">
+/* V77: crop the phone mockup/status area as one canvas so hotspots remain aligned. */
+#home.reference-screen{position:absolute!important;inset:0!important;width:100vw!important;height:100dvh!important;overflow:hidden!important;background:#ead2a2!important}
+#home .home-canvas{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  transform:translateY(-3.8%) scale(1.115,1.085)!important;
+  transform-origin:50% 50%!important;
+}
+#home .reference-image{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  object-fit:cover!important;object-position:center center!important;
+  transform:none!important;image-rendering:auto!important;
+}
+#home .hotspot,#home .home-star-badge,#home .main-bottom-nav,#home .main-bottom-nav-bg{transform:none!important}
+@supports not (height:100dvh){#home.reference-screen{height:100vh!important}}
+</style>
 </head>
 <body>
 <div class="app" id="app">
-  <main id="home" class="reference-screen">
+  <main id="home" class="reference-screen"><div class="home-canvas">
     <img class="reference-image" src="file_0000000095d881f4a1713e208409ffb4.png" alt="Türkiye Bulmacası ana ekranı">
     <button class="hotspot home-settings" data-action="settings"></button>
     <button class="hotspot home-store" data-action="store" aria-label="Mağaza"></button>
@@ -40,6 +57,7 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
       <button data-action="collection"><span class="nav-icon">★</span><span>Koleksiyon</span></button>
       <button data-action="profile"><span class="nav-icon">◉</span><span>Profilim</span></button>
     </nav>
+    </div>
   </main>
   <section id="istanbulScreen" class="reference-screen" hidden>
     <img class="reference-image" src="file_0000000091ec821083759393667ca560.png" alt="İstanbul Bulmacası - 1 ekranı">
@@ -184,6 +202,6 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
     </div>
   </section>
 </div>
-<script src="app.js?v=76"></script>
+<script src="app.js?v=77"></script>
 </body>
 </html>
