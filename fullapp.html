@@ -308,6 +308,48 @@ body{position:fixed;inset:0}
 button,.cell,.key{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 @supports not (height:100dvh){.app,.screen{height:100vh!important}}
 </style>
+
+<style id="store-v79-final">
+.storePage{position:absolute!important;inset:0!important;z-index:180!important;overflow-y:auto!important;background:
+linear-gradient(#edd39b,#d1a45f)!important;padding:5.5% 3.5% 5%!important;color:#321b0d!important}
+.storeBack{left:3.2%!important;top:2.7%!important;width:10.5%!important;height:5.6%!important;border:2px solid #a76e24!important;background:#f2d58f!important;box-shadow:0 3px 7px #0004!important}
+.storeTitle{margin:2.3% 13% 1.7%!important;font-size:clamp(25px,3.5vh,39px)!important;line-height:.92!important;text-shadow:0 1px #f8e6bb}
+.storeTitle span{font-size:.53em!important;margin-top:7px!important;color:#3a200f!important}
+.storePaper{width:97%!important;margin:1% auto 3%!important;padding:2.2%!important;border:2.5px solid #98601f!important;border-radius:19px!important;background:
+linear-gradient(#f6e3b5dd,#edcf91ee)!important;box-shadow:inset 0 0 0 2px #ffe9ba,0 5px 16px #0004!important}
+.storeBalance{width:32%!important;min-width:175px!important;margin:0 2% 9px auto!important;padding:8px 10px!important;border-radius:18px!important;font-size:clamp(16px,2.1vh,21px)!important}
+.storeHero{min-height:235px!important;padding:15px 14px 14px!important;border-radius:18px!important;background:
+radial-gradient(circle at 77% 33%,#9c5a1c 0,#5c3013 25%,#28140a 61%,#150b06 100%)!important}
+.storeHero h3{font-size:clamp(24px,3.3vh,35px)!important;margin-right:43%!important;margin-bottom:8px!important}
+.storeHero p{font-size:clamp(13px,1.65vh,17px)!important;width:51%!important}
+.heroReward{width:58%!important;gap:5px!important}
+.heroReward span{font-size:11px!important;padding:5px 7px!important}
+.storeHero button{width:60%!important;margin-top:10px!important;padding:9px!important;font-size:14px!important}
+.heroBadge{right:2.8%!important;top:3.2%!important;font-size:10px!important;padding:5px 7px!important}
+.chestSvg{right:2%!important;top:18%!important;width:43%!important}
+.storeSectionTitle{font-size:clamp(22px,3vh,31px)!important;margin:13px 0 8px!important}
+.storeGrid{grid-template-columns:repeat(3,1fr)!important;gap:7px!important}
+.storeCard{min-height:184px!important;padding:8px 6px 8px!important;border-radius:13px!important}
+.storeCard b{font-size:clamp(14px,1.75vh,18px)!important;margin:3px 0!important;line-height:1.05!important}
+.storeCard small{font-size:clamp(10px,1.3vh,13px)!important;line-height:1.15!important;min-height:29px!important}
+.storeCard button{font-size:clamp(10px,1.25vh,13px)!important;padding:7px 4px!important;margin-top:6px!important;border-radius:15px!important}
+.storeCard .price{font-size:10px!important;color:#ffe6b1!important;margin-top:2px!important}
+.cardSvg{width:66px!important;height:53px!important;margin-bottom:1px!important}
+.cardSymbol{width:65px!important;height:50px!important;font-size:24px!important;margin-bottom:3px!important;border-radius:12px!important}
+.themeGrid{grid-template-columns:repeat(4,1fr)!important;gap:6px!important}
+.themeCard{padding:6px 4px!important;border-radius:12px!important}
+.themePreview{height:72px!important;margin-bottom:5px!important;border-radius:8px!important}
+.themeCard b{font-size:clamp(9px,1.15vh,12px)!important;line-height:1.05!important;min-height:24px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.themeCard button{font-size:9px!important;padding:6px 2px!important;margin-top:4px!important;border-radius:13px!important;line-height:1.05!important}
+.storeNote{font-size:10px!important;margin:9px 1% 0!important}
+@media(max-width:420px){
+ .storeGrid{gap:5px!important}
+ .storeCard{min-height:172px!important;padding:7px 4px!important}
+ .cardSvg{width:58px!important;height:47px!important}
+ .cardSymbol{width:58px!important;height:46px!important}
+ .themePreview{height:64px!important}
+}
+</style>
 </head><body><div class="app"><div class="screen" id="s"><img class="bg" id="bg"><div id="ui"></div><div class="toast" id="toast"></div></div></div><script>
 // GRID_FIX_FINAL: Bulmaca 7-25 grids rebuilt and cross-validated; runtime unchanged.
 
@@ -464,17 +506,17 @@ function storePage(fromHome=false){
       <h3>Özel Hazine Sandığı</h3>
       <p>Bol yıldız ve yardımcılarla bulmacalarda güçlü bir başlangıç yap.</p>
       <div class="heroReward"><span>★ 600</span><span>💡 5 İpucu</span><span>🎨 Özel Tema</span></div>
-      <button class="starterPack">Başlangıç Paketi <span class="price">₺149,99</span></button>
+      <button class="starterPack">Başlangıç Paketi • ₺149,99</button>
     </div>
 
     <div class="storeSectionTitle">Günlük & Avantajlar</div>
     <div class="storeGrid">
       <div class="storeCard">${miniChest('d')}<b>Günlük Sandık</b><small>${dailyOpened?'Bugünkü ödül alındı':'Her gün ücretsiz sürpriz yıldız'}</small><button class="dailyChest" ${dailyOpened?'disabled':''}>${dailyOpened?'Açıldı ✓':'Ücretsiz Aç'}</button></div>
       <div class="storeCard"><div class="cardSymbol">▶</div><b>Ödüllü Reklam</b><small>Reklamı tamamla<br>+20 ★</small><button class="rewardAd">Reklam İzle</button></div>
-      <div class="storeCard"><div class="cardSymbol">ADS<br>×</div><b>Reklamları Kaldır</b><small>${adFree?'Satın alındı':'Tüm zorunlu reklamlardan kurtul'}</small><button class="removeAds">${adFree?'Aktif ✓':'Satın Al'}<span class="price">₺79,99</span></button></div>
-      <div class="storeCard">${miniChest('s')}<b>250 ★</b><small>Küçük Yıldız Sandığı</small><button class="pack" data-pack="250">Satın Al<span class="price">₺49,99</span></button></div>
-      <div class="storeCard">${miniChest('m')}<b>600 ★</b><small>Orta Yıldız Sandığı</small><button class="pack" data-pack="600">Satın Al<span class="price">₺99,99</span></button></div>
-      <div class="storeCard">${miniChest('l')}<b>1500 ★</b><small>Büyük Yıldız Sandığı</small><button class="pack" data-pack="1500">Satın Al<span class="price">₺199,99</span></button></div>
+      <div class="storeCard"><div class="cardSymbol">ADS<br>×</div><b>Reklamları Kaldır</b><small>${adFree?'Satın alındı':'Tüm reklamlardan kalıcı olarak kurtul'}</small><button class="removeAds">${adFree?'Aktif ✓':'Satın Al'}<span class="price">₺79,99</span></button></div>
+      <div class="storeCard">${miniChest('s')}<b>250 ★</b><small>Küçük Yıldız Sandığı</small><button class="pack" data-pack="250">Satın Al • ₺49,99</button></div>
+      <div class="storeCard">${miniChest('m')}<b>600 ★</b><small>Orta Yıldız Sandığı</small><button class="pack" data-pack="600">Satın Al • ₺99,99</button></div>
+      <div class="storeCard">${miniChest('l')}<b>1500 ★</b><small>Büyük Yıldız Sandığı</small><button class="pack" data-pack="1500">Satın Al • ₺199,99</button></div>
     </div>
 
     <div class="storeSectionTitle">Özel Temalar</div>
