@@ -71,3 +71,14 @@ jobs:
           git commit -m "Publish latest Android APK"
           git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
           git push --force origin downloads
+
+
+      - name: Publish GitHub Release APK
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk Turkiye-Bulmacasi-v78.apk
+          gh release delete v78 --yes --cleanup-tag || true
+          gh release create v78 Turkiye-Bulmacasi-v78.apk \
+            --title "Türkiye Bulmacası V78" \
+            --notes "Android APK - V78"
