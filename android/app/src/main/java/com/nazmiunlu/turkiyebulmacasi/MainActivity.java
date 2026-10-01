@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
         "ca-app-pub-3940256099942544/1033173712";
 
     private static final String APP_URL =
-        "https://nazmiunlu197-star.github.io/turkiye-bulmacasi/index.html?v=78";
+        "https://nazmiunlu197-star.github.io/turkiye-bulmacasi/index.html?v=79";
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
