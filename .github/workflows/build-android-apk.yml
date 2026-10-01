@@ -9,6 +9,14 @@ on:
     branches: [ main ]
     paths:
       - 'android/**'
+      - 'index.html'
+      - 'styles.css'
+      - 'app.js'
+      - 'fullapp.html'
+      - 'game.html'
+      - 'privacy.html'
+      - 'file_*.png'
+      - 'file_*.jpg'
       - '.github/workflows/build-android-apk.yml'
 
 jobs:
@@ -36,6 +44,14 @@ jobs:
           curl -L https://services.gradle.org/distributions/gradle-8.7-bin.zip -o /tmp/gradle.zip
           unzip -q /tmp/gradle.zip -d /opt
           echo "/opt/gradle-8.7/bin" >> "$GITHUB_PATH"
+
+      - name: Sync web app into Android assets
+        run: |
+          rm -rf android/app/src/main/assets
+          mkdir -p android/app/src/main/assets
+          cp index.html styles.css app.js fullapp.html game.html privacy.html android/app/src/main/assets/
+          cp file_*.png file_*.jpg android/app/src/main/assets/ 2>/dev/null || true
+          cp -r storeimg android/app/src/main/assets/ 2>/dev/null || true
 
       - name: Build debug APK and release AAB
         working-directory: android
@@ -77,8 +93,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cp android/app/build/outputs/apk/debug/app-debug.apk Turkiye-Bulmacasi-v78.apk
-          gh release delete v78 --yes --cleanup-tag || true
-          gh release create v78 Turkiye-Bulmacasi-v78.apk \
-            --title "Türkiye Bulmacası V78" \
-            --notes "Android APK - V78"
+          cp android/app/build/outputs/apk/debug/app-debug.apk Turkiye-Bulmacasi-v85.apk
+          gh release delete v85 --yes --cleanup-tag || true
+          gh release create v85 Turkiye-Bulmacasi-v85.apk \
+            --title "Türkiye Bulmacası V85" \
+            --notes "Android APK - V85"
