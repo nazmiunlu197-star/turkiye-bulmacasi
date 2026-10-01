@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Türkiye Bulmacası</title>
-<link rel="stylesheet" href="styles.css?v=77">
+<link rel="stylesheet" href="styles.css?v=78">
 <style id="full-screen-phone-crop">
 html,body{margin:0!important;padding:0!important;overflow:hidden!important;background:#17100b!important}
 .app{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;margin:0!important;overflow:hidden!important}
@@ -21,13 +21,15 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
 /* V77: crop the phone mockup/status area as one canvas so hotspots remain aligned. */
 #home.reference-screen{position:absolute!important;inset:0!important;width:100vw!important;height:100dvh!important;overflow:hidden!important;background:#ead2a2!important}
 #home .home-canvas{
-  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
-  transform:translateY(-3.8%) scale(1.115,1.085)!important;
+  position:absolute!important;
+  left:-6%!important;top:-3.5%!important;
+  width:112%!important;height:103.5%!important;
+  transform:none!important;
   transform-origin:50% 50%!important;
 }
 #home .reference-image{
   position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
-  object-fit:cover!important;object-position:center center!important;
+  object-fit:fill!important;object-position:center center!important;
   transform:none!important;image-rendering:auto!important;
 }
 #home .hotspot,#home .home-star-badge,#home .main-bottom-nav,#home .main-bottom-nav-bg{transform:none!important}
@@ -218,6 +220,6 @@ html,body{margin:0!important;padding:0!important;overflow:hidden!important;backg
     </div>
   </section>
 </div>
-<script src="app.js?v=77"></script>
+<script src="app.js?v=78"></script>
 </body>
 </html>
